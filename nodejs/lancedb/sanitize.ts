@@ -21,7 +21,7 @@
 // and so we must sanitize the input to ensure that it is compatible.
 
 import { BufferType, Data } from "apache-arrow";
-import type { IntBitWidth, TKeys, TimeBitWidth } from "apache-arrow/type";
+import type { IntBitWidth, Ts, TimeBitWidth } from "apache-arrow/type";
 import {
   Binary,
   Bool,
@@ -97,7 +97,7 @@ export function sanitizeMetadata(
   for (const item of metadataLike) {
     if (!(typeof item[0] === "string" || !(typeof item[1] === "string"))) {
       throw Error(
-        "Expected metadata, if present, to be a Map<string, string> but it had non-string keys or values",
+        "Expected metadata, if present, to be a Map<string, string> but it had non-string s or values",
       );
     }
   }
@@ -296,14 +296,14 @@ export function sanitizeMap(typeLike: object) {
       "Expected a Map type to have an array-like `children` property",
     );
   }
-  if (!("keysSorted" in typeLike) || typeof typeLike.keysSorted !== "boolean") {
-    throw Error("Expected a Map type to have a `keysSorted` property");
+  if (!("sSorted" in typeLike) || typeof typeLike.sSorted !== "boolean") {
+    throw Error("Expected a Map type to have a `sSorted` property");
   }
 
   return new Map_(
     // biome-ignore lint/suspicious/noExplicitAny: skip
     typeLike.children.map((field) => sanitizeField(field)) as any,
-    typeLike.keysSorted,
+    typeLike.sSorted,
   );
 }
 
@@ -329,7 +329,7 @@ export function sanitizeDictionary(typeLike: object) {
   }
   return new Dictionary(
     sanitizeType(typeLike.dictionary),
-    sanitizeType(typeLike.indices) as TKeys,
+    sanitizeType(typeLike.indices) as Ts,
     typeLike.id,
     typeLike.isOrdered,
   );

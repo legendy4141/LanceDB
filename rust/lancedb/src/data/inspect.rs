@@ -76,7 +76,7 @@ pub fn infer_vector_columns(
     }
     for batch in reader {
         let batch = batch?;
-        let col_names = columns_to_infer.keys().cloned().collect::<Vec<_>>();
+        let col_names = columns_to_infer.s().cloned().collect::<Vec<_>>();
         for col_name in col_names {
             let col = batch.column_by_name(&col_name).ok_or(Error::Schema {
                 message: format!("Column {} not found", col_name),
@@ -104,7 +104,7 @@ pub fn infer_vector_columns(
             }
         }
     }
-    columns.extend(columns_to_infer.keys().cloned());
+    columns.extend(columns_to_infer.s().cloned());
     Ok(columns)
 }
 

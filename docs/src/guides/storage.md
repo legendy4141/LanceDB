@@ -168,15 +168,15 @@ Getting even more specific, you can set the `timeout` for only a particular tabl
 
 !!! info "Storage option casing"
 
-    The storage option keys are case-insensitive. So `connect_timeout` and `CONNECT_TIMEOUT` are the same setting. Usually lowercase is used in the `storage_options` argument and uppercase is used for environment variables. In the `lancedb` Node package, the keys can also be provided in `camelCase` capitalization. For example, `connectTimeout` is equivalent to `connect_timeout`.
+    The storage option s are case-insensitive. So `connect_timeout` and `CONNECT_TIMEOUT` are the same setting. Usually lowercase is used in the `storage_options` argument and uppercase is used for environment variables. In the `lancedb` Node package, the s can also be provided in `camelCase` capitalization. For example, `connectTimeout` is equivalent to `connect_timeout`.
 
 ### General configuration
 
 There are several options that can be set for all object stores, mostly related to network client configuration.
 
-<!-- from here: https://docs.rs/object_store/latest/object_store/enum.ClientConfigKey.html -->
+<!-- from here: https://docs.rs/object_store/latest/object_store/enum.ClientConfig.html -->
 
-| Key                        | Description                                                                                      |
+|                         | Description                                                                                      |
 |----------------------------|--------------------------------------------------------------------------------------------------|
 | `allow_http`               | Allow non-TLS, i.e. non-HTTPS connections. Default: `False`.                                      |
 | `allow_invalid_certificates`| Skip certificate validation on HTTPS connections. Default: `False`.                               |
@@ -189,7 +189,7 @@ There are several options that can be set for all object stores, mostly related 
 
 ### AWS S3
 
-To configure credentials for AWS S3, you can use the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN` keys. Region can also be set, but it is not mandatory when using AWS.
+To configure credentials for AWS S3, you can use the `AWS_ACCESS__ID`, `AWS_SECRET_ACCESS_`, and `AWS_SESSION_TOKEN` s. Region can also be set, but it is not mandatory when using AWS.
 These can be set as environment variables or passed in the `storage_options` parameter:
 
 === "Python"
@@ -199,8 +199,8 @@ These can be set as environment variables or passed in the `storage_options` par
     db = await lancedb.connect_async(
         "s3://bucket/path",
         storage_options={
-            "aws_access_key_id": "my-access-key",
-            "aws_secret_access_key": "my-secret-key",
+            "aws_access__id": "my-access-",
+            "aws_secret_access_": "my-secret-",
             "aws_session_token": "my-session-token",
         }
     )
@@ -216,8 +216,8 @@ These can be set as environment variables or passed in the `storage_options` par
             "s3://bucket/path",
             {
                 storageOptions: {
-                    awsAccessKeyId: "my-access-key",
-                    awsSecretAccessKey: "my-secret-key",
+                    awsAccessId: "my-access-",
+                    awsSecretAccess: "my-secret-",
                     awsSessionToken: "my-session-token",
                 }
             }
@@ -232,8 +232,8 @@ These can be set as environment variables or passed in the `storage_options` par
             "s3://bucket/path",
             {
                 storageOptions: {
-                    awsAccessKeyId: "my-access-key",
-                    awsSecretAccessKey: "my-secret-key",
+                    awsAccessId: "my-access-",
+                    awsSecretAccess: "my-secret-",
                     awsSessionToken: "my-session-token",
                 }
             }
@@ -242,24 +242,24 @@ These can be set as environment variables or passed in the `storage_options` par
 
 Alternatively, if you are using AWS SSO, you can use the `AWS_PROFILE` and `AWS_DEFAULT_REGION` environment variables.
 
-The following keys can be used as both environment variables or keys in the `storage_options` parameter:
+The following s can be used as both environment variables or s in the `storage_options` parameter:
 
-| Key                                | Description                                                                                          |
+|                                 | Description                                                                                          |
 |------------------------------------|------------------------------------------------------------------------------------------------------|
 | `aws_region` / `region`             | The AWS region the bucket is in. This can be automatically detected when using AWS S3, but must be specified for S3-compatible stores. |
-| `aws_access_key_id` / `access_key_id` | The AWS access key ID to use.                                                                       |
-| `aws_secret_access_key` / `secret_access_key` | The AWS secret access key to use.                                                               |
+| `aws_access__id` / `access__id` | The AWS access  ID to use.                                                                       |
+| `aws_secret_access_` / `secret_access_` | The AWS secret access  to use.                                                               |
 | `aws_session_token` / `session_token` | The AWS session token to use.                                                                     |
 | `aws_endpoint` / `endpoint`         | The endpoint to use for S3-compatible stores.                                                       |
 | `aws_virtual_hosted_style_request` / `virtual_hosted_style_request` | Whether to use virtual hosted-style requests, where the bucket name is part of the endpoint. Meant to be used with `aws_endpoint`. Default: `False`. |
 | `aws_s3_express` / `s3_express`     | Whether to use S3 Express One Zone endpoints. Default: `False`. See more details below.             |
 | `aws_server_side_encryption`        | The server-side encryption algorithm to use. Must be one of `"AES256"`, `"aws:kms"`, or `"aws:kms:dsse"`. Default: `None`. |
-| `aws_sse_kms_key_id`                | The KMS key ID to use for server-side encryption. If set, `aws_server_side_encryption` must be `"aws:kms"` or `"aws:kms:dsse"`. |
-| `aws_sse_bucket_key_enabled`        | Whether to use bucket keys for server-side encryption.                                               |
+| `aws_sse_kms__id`                | The KMS  ID to use for server-side encryption. If set, `aws_server_side_encryption` must be `"aws:kms"` or `"aws:kms:dsse"`. |
+| `aws_sse_bucket__enabled`        | Whether to use bucket s for server-side encryption.                                               |
 
 !!! tip "Automatic cleanup for failed writes"
 
-    LanceDB uses [multi-part uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html) when writing data to S3 in order to maximize write speed. LanceDB will abort these uploads when it shuts down gracefully, such as when cancelled by keyboard interrupt. However, in the rare case that LanceDB crashes, it is possible that some data will be left lingering in your account. To cleanup this data, we recommend (as AWS themselves do) that you setup a lifecycle rule to delete in-progress uploads after 7 days. See the AWS guide:
+    LanceDB uses [multi-part uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html) when writing data to S3 in order to maximize write speed. LanceDB will abort these uploads when it shuts down gracefully, such as when cancelled by board interrupt. However, in the rare case that LanceDB crashes, it is possible that some data will be left lingering in your account. To cleanup this data, we recommend (as AWS themselves do) that you setup a lifecycle rule to delete in-progress uploads after 7 days. See the AWS guide:
 
     **[Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html)**
 
@@ -367,8 +367,8 @@ name of the table to use.
 
 The DynamoDB table must be created with the following schema:
 
-- Hash key: `base_uri` (string)
-- Range key: `version` (number)
+- Hash : `base_uri` (string)
+- Range : `version` (number)
 
 You can create this programmatically with:
 
@@ -381,9 +381,9 @@ You can create this programmatically with:
     dynamodb = boto3.client("dynamodb")
     table = dynamodb.create_table(
         TableName=table_name,
-        KeySchema=[
-            {"AttributeName": "base_uri", "KeyType": "HASH"},
-            {"AttributeName": "version", "KeyType": "RANGE"},
+        Schema=[
+            {"AttributeName": "base_uri", "Type": "HASH"},
+            {"AttributeName": "version", "Type": "RANGE"},
         ],
         AttributeDefinitions=[
             {"AttributeName": "base_uri", "AttributeType": "S"},
@@ -405,8 +405,8 @@ You can create this programmatically with:
     const dynamodb = new DynamoDBClient({
       region: CONFIG.awsRegion,
       credentials: {
-        accessKeyId: CONFIG.awsAccessKeyId,
-        secretAccessKey: CONFIG.awsSecretAccessKey,
+        accessId: CONFIG.awsAccessId,
+        secretAccess: CONFIG.awsSecretAccess,
       },
       endpoint: CONFIG.awsEndpoint,
     });
@@ -422,9 +422,9 @@ You can create this programmatically with:
           AttributeType: "N",
         },
       ],
-      KeySchema: [
-        { AttributeName: "base_uri", KeyType: "HASH" },
-        { AttributeName: "version", KeyType: "RANGE" },
+      Schema: [
+        { AttributeName: "base_uri", Type: "HASH" },
+        { AttributeName: "version", Type: "RANGE" },
       ],
       ProvisionedThroughput: {
         ReadCapacityUnits: 1,
@@ -596,18 +596,18 @@ GCS credentials are configured by setting the `GOOGLE_SERVICE_ACCOUNT` environme
 
     By default, GCS uses HTTP/1 for communication, as opposed to HTTP/2. This improves maximum throughput significantly. However, if you wish to use HTTP/2 for some reason, you can set the environment variable `HTTP1_ONLY` to `false`.
 
-The following keys can be used as both environment variables or keys in the `storage_options` parameter:
-<!-- source: https://docs.rs/object_store/latest/object_store/gcp/enum.GoogleConfigKey.html -->
+The following s can be used as both environment variables or s in the `storage_options` parameter:
+<!-- source: https://docs.rs/object_store/latest/object_store/gcp/enum.GoogleConfig.html -->
 
-| Key                                   | Description                                  |
+|                                    | Description                                  |
 |---------------------------------------|----------------------------------------------|
 | ``google_service_account`` / `service_account` | Path to the service account JSON file.       |
-| ``google_service_account_key``        | The serialized service account key.          |
+| ``google_service_account_``        | The serialized service account .          |
 | ``google_application_credentials``    | Path to the application credentials.         |
 
 ### Azure Blob Storage
 
-Azure Blob Storage credentials can be configured by setting the `AZURE_STORAGE_ACCOUNT_NAME`and `AZURE_STORAGE_ACCOUNT_KEY` environment variables. Alternatively, you can pass the account name and key in the `storage_options` parameter:
+Azure Blob Storage credentials can be configured by setting the `AZURE_STORAGE_ACCOUNT_NAME`and `AZURE_STORAGE_ACCOUNT_` environment variables. Alternatively, you can pass the account name and  in the `storage_options` parameter:
 
 === "Python"
 
@@ -618,7 +618,7 @@ Azure Blob Storage credentials can be configured by setting the `AZURE_STORAGE_A
         "az://my-container/my-database",
         storage_options={
             account_name: "some-account",
-            account_key: "some-key",
+            account_: "some-",
         }
     )
     ```
@@ -634,7 +634,7 @@ Azure Blob Storage credentials can be configured by setting the `AZURE_STORAGE_A
             {
                 storageOptions: {
                     accountName: "some-account",
-                    accountKey: "some-key",
+                    account: "some-",
                 }
             }
         );
@@ -649,24 +649,24 @@ Azure Blob Storage credentials can be configured by setting the `AZURE_STORAGE_A
             {
                 storageOptions: {
                     accountName: "some-account",
-                    accountKey: "some-key",
+                    account: "some-",
                 }
             }
         );
         ```
 
-These keys can be used as both environment variables or keys in the `storage_options` parameter:
+These s can be used as both environment variables or s in the `storage_options` parameter:
 
-<!-- source: https://docs.rs/object_store/latest/object_store/azure/enum.AzureConfigKey.html -->
+<!-- source: https://docs.rs/object_store/latest/object_store/azure/enum.AzureConfig.html -->
 
-| Key                                   | Description                                                                                      |
+|                                    | Description                                                                                      |
 |---------------------------------------|--------------------------------------------------------------------------------------------------|
 | ``azure_storage_account_name``        | The name of the azure storage account.                                                           |
-| ``azure_storage_account_key``         | The serialized service account key.                                                              |
+| ``azure_storage_account_``         | The serialized service account .                                                              |
 | ``azure_client_id``                   | Service principal client id for authorizing requests.                                            |
 | ``azure_client_secret``               | Service principal client secret for authorizing requests.                                        |
 | ``azure_tenant_id``                   | Tenant id used in oauth flows.                                                                   |
-| ``azure_storage_sas_key``             | Shared access signature. The signature is expected to be percent-encoded, much like they are provided in the azure storage explorer or azure portal. |
+| ``azure_storage_sas_``             | Shared access signature. The signature is expected to be percent-encoded, much like they are provided in the azure storage explorer or azure portal. |
 | ``azure_storage_token``               | Bearer token.                                                                                    |
 | ``azure_storage_use_emulator``        | Use object store with azurite storage emulator.                                                  |
 | ``azure_endpoint``                    | Override the endpoint used to communicate with blob storage.                                      |

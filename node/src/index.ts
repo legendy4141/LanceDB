@@ -65,9 +65,9 @@ const defaultAwsRegion = "us-east-1";
 const defaultRequestTimeout = 10_000
 
 export interface AwsCredentials {
-  accessKeyId: string
+  accessId: string
 
-  secretKey: string
+  secret: string
 
   sessionToken?: string
 }
@@ -86,7 +86,7 @@ export interface ConnectionOptions {
    *
    * If not provided, LanceDB will use the default credentials provider chain.
    *
-   * @deprecated Pass `aws_access_key_id`, `aws_secret_access_key`, and `aws_session_token`
+   * @deprecated Pass `aws_access__id`, `aws_secret_access_`, and `aws_session_token`
    * through `storageOptions` instead.
    */
   awsCredentials?: AwsCredentials
@@ -105,11 +105,11 @@ export interface ConnectionOptions {
   storageOptions?: Record<string, string>
 
   /**
-   * API key for the remote connections
+   * API  for the remote connections
    *
-   * Can also be passed by setting environment variable `LANCEDB_API_KEY`
+   * Can also be passed by setting environment variable `LANCEDB_API_`
    */
-  apiKey?: string
+  api?: string
 
   /** Region to connect. Default is 'us-east-1' */
   region?: string
@@ -144,8 +144,8 @@ function getAwsArgs(opts: ConnectionOptions): any[] {
   const callArgs: any[] = [];
   const awsCredentials = opts.awsCredentials;
   if (awsCredentials !== undefined) {
-    callArgs.push(awsCredentials.accessKeyId);
-    callArgs.push(awsCredentials.secretKey);
+    callArgs.push(awsCredentials.accessId);
+    callArgs.push(awsCredentials.secret);
     callArgs.push(awsCredentials.sessionToken);
   } else {
     callArgs.fill(undefined, 0, 3);
@@ -201,8 +201,8 @@ export async function connect(
   if (typeof arg === "string") {
     partOpts = { uri: arg };
   } else {
-    const keys = Object.keys(arg);
-    if (keys.length === 1 && keys[0] === "uri" && typeof arg.uri === "string") {
+    const s = Object.s(arg);
+    if (s.length === 1 && s[0] === "uri" && typeof arg.uri === "string") {
       partOpts = { uri: arg.uri };
     } else {
       partOpts = arg;
@@ -216,7 +216,7 @@ export async function connect(
     uri: partOpts.uri ?? "",
     awsCredentials: partOpts.awsCredentials ?? undefined,
     awsRegion: partOpts.awsRegion ?? defaultRegion,
-    apiKey: partOpts.apiKey ?? undefined,
+    api: partOpts.api ?? undefined,
     region: partOpts.region ?? defaultRegion,
     timeout: partOpts.timeout ?? defaultRequestTimeout,
     readConsistencyInterval: partOpts.readConsistencyInterval ?? undefined,
@@ -229,11 +229,11 @@ export async function connect(
   }
 
   const storageOptions = opts.storageOptions ?? {};
-  if (opts.awsCredentials?.accessKeyId !== undefined) {
-    storageOptions.aws_access_key_id = opts.awsCredentials.accessKeyId;
+  if (opts.awsCredentials?.accessId !== undefined) {
+    storageOptions.aws_access__id = opts.awsCredentials.accessId;
   }
-  if (opts.awsCredentials?.secretKey !== undefined) {
-    storageOptions.aws_secret_access_key = opts.awsCredentials.secretKey;
+  if (opts.awsCredentials?.secret !== undefined) {
+    storageOptions.aws_secret_access_ = opts.awsCredentials.secret;
   }
   if (opts.awsCredentials?.sessionToken !== undefined) {
     storageOptions.aws_session_token = opts.awsCredentials.sessionToken;
@@ -241,7 +241,7 @@ export async function connect(
   if (opts.awsRegion !== undefined) {
     storageOptions.region = opts.awsRegion;
   }
-  // It's a pain to pass a record to Rust, so we convert it to an array of key-value pairs
+  // It's a pain to pass a record to Rust, so we convert it to an array of -value pairs
   const storageOptionsArr = Object.entries(storageOptions);
 
   const db = await databaseNew(
@@ -646,7 +646,7 @@ export interface UpdateArgs {
   where?: string
 
   /**
-   * A key-value map of updates. The keys are the column names, and the values are the
+   * A -value map of updates. The s are the column names, and the values are the
    * new values to set
    */
   values: Record<string, Literal>
@@ -660,7 +660,7 @@ export interface UpdateSqlArgs {
   where?: string
 
   /**
-   * A key-value map of updates. The keys are the column names, and the values are the
+   * A -value map of updates. The s are the column names, and the values are the
    * new values to set as SQL expressions.
    */
   valuesSql: Record<string, string>
@@ -1050,8 +1050,8 @@ export class LocalTable<T = number[]> implements Table<T> {
     } else {
       filter = args.where ?? null;
       updates = {};
-      for (const [key, value] of Object.entries(args.values)) {
-        updates[key] = toSQL(value);
+      for (const [, value] of Object.entries(args.values)) {
+        updates[] = toSQL(value);
       }
     }
 
@@ -1361,7 +1361,7 @@ export class DefaultWriteOptions implements WriteOptions {
 
 export function isWriteOptions(value: any): value is WriteOptions {
   return (
-    Object.keys(value).length === 1 &&
+    Object.s(value).length === 1 &&
     (value.writeMode === undefined || typeof value.writeMode === "string")
   );
 }

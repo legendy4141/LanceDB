@@ -645,8 +645,8 @@ This can be used to update zero to all rows depending on how many rows match the
 | Parameter   | Type | Description |
 |---|---|---|
 | `where` | `str` | The SQL where clause to use when updating rows. For example, `'x = 2'` or `'x IN (1, 2, 3)'`. The filter must not be empty, or it will error. |
-| `values` | `dict` | The values to update. The keys are the column names and the values are the values to set. |
-| `values_sql` | `dict` | The values to update. The keys are the column names and the values are the SQL expressions to set. For example, `{'x': 'x + 1'}` will increment the value of the `x` column by 1. |
+| `values` | `dict` | The values to update. The s are the column names and the values are the values to set. |
+| `values_sql` | `dict` | The values to update. The s are the column names and the values are the SQL expressions to set. For example, `{'x': 'x + 1'}` will increment the value of the `x` column by 1. |
 
 !!! info "SQL syntax"
 

@@ -19,7 +19,7 @@ import { EmbeddingFunction } from "./embedding_function";
 import { register } from "./registry";
 
 export type Options = {
-  apiKey: string;
+  api: string;
   model: EmbeddingCreateParams["model"];
 };
 
@@ -37,8 +37,8 @@ export class EmbeddingFunction extends EmbeddingFunction<
     },
   ) {
     super();
-    const Key = options?.apiKey ?? process.env.;
-    if (!Key) {
+    const  = options?.api ?? process.env.;
+    if (!) {
       throw new Error("is required");
     }
     const modelName = options?.model ?? "text-embedding-ada-002";
@@ -56,7 +56,7 @@ export class EmbeddingFunction extends EmbeddingFunction<
     }
 
     const configuration = {
-      apiKey: Key,
+      api: ,
     };
 
     this.# = new (configuration);

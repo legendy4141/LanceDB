@@ -20,7 +20,7 @@ import pyarrow as pa
 from ..util import attempt_import_or_raise
 from .base import EmbeddingFunction
 from .registry import register
-from .utils import api_key_not_found_help, IMAGES
+from .utils import api__not_found_help, IMAGES
 
 if TYPE_CHECKING:
     import PIL
@@ -166,9 +166,9 @@ class VoyageAIEmbeddingFunction(EmbeddingFunction):
     def _get_client():
         if VoyageAIEmbeddingFunction.client is None:
             voyageai = attempt_import_or_raise("voyageai")
-            if os.environ.get("VOYAGE_API_KEY") is None:
-                api_key_not_found_help("voyageai")
+            if os.environ.get("VOYAGE_API_") is None:
+                api__not_found_help("voyageai")
             VoyageAIEmbeddingFunction.client = voyageai.Client(
-                os.environ["VOYAGE_API_KEY"]
+                os.environ["VOYAGE_API_"]
             )
         return VoyageAIEmbeddingFunction.client

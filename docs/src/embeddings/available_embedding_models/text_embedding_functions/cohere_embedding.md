@@ -1,7 +1,7 @@
 # Cohere Embeddings
 
 Using cohere API requires cohere package, which can be installed using `pip install cohere`. Cohere embeddings are used to generate embeddings for text data. The embeddings can be used for various tasks like semantic search, clustering, and classification.
-You also need to set the `COHERE_API_KEY` environment variable to use the Cohere API.
+You also need to set the `COHERE_API_` environment variable to use the Cohere API.
 
 Supported models are:
 

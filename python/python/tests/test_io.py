@@ -23,7 +23,7 @@ import pytest
 # Azure:
 # You need to setup Azure credentials an a base path to run this test. Example
 #   export AZURE_STORAGE_ACCOUNT_NAME="<account>"
-#   export AZURE_STORAGE_ACCOUNT_KEY="<key>"
+#   export AZURE_STORAGE_ACCOUNT_="<>"
 #   export REMOTE_BASE_URL=az://my_blob/dataset
 #   pytest tests/test_io.py
 

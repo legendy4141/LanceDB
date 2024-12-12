@@ -27,7 +27,7 @@ class ColbertReranker(AnswerdotaiRerankers):
     return_score : str, default "relevance"
         options are "relevance" or "all". Only "relevance" is supported for now.
     **kwargs
-        Additional keyword arguments to pass to the model, for example, 'device'.
+        Additional word arguments to pass to the model, for example, 'device'.
         See AnswerDotAI/rerankers for more information.
     """
 

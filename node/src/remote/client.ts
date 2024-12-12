@@ -123,19 +123,19 @@ async function decodeErrorData(
 
 export class HttpLancedbClient {
   private readonly _url: string
-  private readonly _apiKey: () => string
+  private readonly _api: () => string
   private readonly _middlewares: HttpLancedbClientMiddleware[]
   private readonly _timeout: number | undefined
 
   public constructor (
     url: string,
-    apiKey: string,
+    api: string,
     timeout?: number,
     private readonly _dbName?: string
 
   ) {
     this._url = url
-    this._apiKey = () => apiKey
+    this._api = () => api
     this._middlewares = []
     this._timeout = timeout
   }
@@ -186,7 +186,7 @@ export class HttpLancedbClient {
       method: Method.GET,
       headers: new Map(Object.entries({
         'Content-Type': 'application/json',
-        'x-api-key': this._apiKey(),
+        'x-api-': this._api(),
         ...(this._dbName !== undefined ? { 'x-lancedb-database': this._dbName } : {})
       })),
       params: new Map(Object.entries(params ?? {}))
@@ -231,7 +231,7 @@ export class HttpLancedbClient {
       method: Method.POST,
       headers: new Map(Object.entries({
         'Content-Type': content ?? 'application/json',
-        'x-api-key': this._apiKey(),
+        'x-api-': this._api(),
         ...(this._dbName !== undefined ? { 'x-lancedb-database': this._dbName } : {})
       })),
       params: new Map(Object.entries(params ?? {})),
@@ -281,7 +281,7 @@ export class HttpLancedbClient {
    * Make a clone of this client
    */
   private clone (): HttpLancedbClient {
-    const clone = new HttpLancedbClient(this._url, this._apiKey(), this._timeout, this._dbName)
+    const clone = new HttpLancedbClient(this._url, this._api(), this._timeout, this._dbName)
     for (const mw of this._middlewares) {
       clone._middlewares.push(mw)
     }

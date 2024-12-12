@@ -1,6 +1,6 @@
 # Full-text search (Tantivy-based FTS)
 
-LanceDB also provides support for full-text search via [Tantivy](https://github.com/quickwit-oss/tantivy), allowing you to incorporate keyword-based search (based on BM25) in your retrieval solutions.
+LanceDB also provides support for full-text search via [Tantivy](https://github.com/quickwit-oss/tantivy), allowing you to incorporate word-based search (based on BM25) in your retrieval solutions.
 
 The tantivy-based FTS is only available in Python and does not support building indexes on object storage or incremental indexing. If you need these features, try native FTS [native FTS](fts.md).
 
@@ -15,7 +15,7 @@ pip install tantivy==0.20.1
 
 ## Example
 
-Consider that we have a LanceDB table named `my_table`, whose string column `content` we want to index and query via keyword search, the FTS index must be created before you can search via keywords.
+Consider that we have a LanceDB table named `my_table`, whose string column `content` we want to index and query via word search, the FTS index must be created before you can search via words.
 
 ```python
 import lancedb
@@ -110,7 +110,7 @@ or a **terms** search query like `"(Old AND Man) AND Sea"`. For more details on 
 query syntax, see Tantivy's [query parser rules](https://docs.rs/tantivy/latest/tantivy/query/struct.QueryParser.html).
 
 !!! tip "Note"
-    The query parser will raise an exception on queries that are ambiguous. For example, in the query `they could have been dogs OR cats`, `OR` is capitalized so it's considered a keyword query operator. But it's ambiguous how the left part should be treated. So if you submit this search query as is, you'll get `Syntax Error: they could have been dogs OR cats`.
+    The query parser will raise an exception on queries that are ambiguous. For example, in the query `they could have been dogs OR cats`, `OR` is capitalized so it's considered a word query operator. But it's ambiguous how the left part should be treated. So if you submit this search query as is, you'll get `Syntax Error: they could have been dogs OR cats`.
 
     ```py
     # This raises a syntax error

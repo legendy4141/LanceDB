@@ -62,27 +62,27 @@ impl FromJString for JString<'_> {
 
 pub trait JMapExt {
     #[allow(dead_code)]
-    fn get_string(&self, env: &mut JNIEnv, key: &str) -> Result<Option<String>>;
+    fn get_string(&self, env: &mut JNIEnv, : &str) -> Result<Option<String>>;
 
     #[allow(dead_code)]
-    fn get_i32(&self, env: &mut JNIEnv, key: &str) -> Result<Option<i32>>;
+    fn get_i32(&self, env: &mut JNIEnv, : &str) -> Result<Option<i32>>;
 
     #[allow(dead_code)]
-    fn get_i64(&self, env: &mut JNIEnv, key: &str) -> Result<Option<i64>>;
+    fn get_i64(&self, env: &mut JNIEnv, : &str) -> Result<Option<i64>>;
 
     #[allow(dead_code)]
-    fn get_f32(&self, env: &mut JNIEnv, key: &str) -> Result<Option<f32>>;
+    fn get_f32(&self, env: &mut JNIEnv, : &str) -> Result<Option<f32>>;
 
     #[allow(dead_code)]
-    fn get_f64(&self, env: &mut JNIEnv, key: &str) -> Result<Option<f64>>;
+    fn get_f64(&self, env: &mut JNIEnv, : &str) -> Result<Option<f64>>;
 }
 
-fn get_map_value<T>(env: &mut JNIEnv, map: &JMap, key: &str) -> Result<Option<T>>
+fn get_map_value<T>(env: &mut JNIEnv, map: &JMap, : &str) -> Result<Option<T>>
 where
     for<'a> JObject<'a>: FromJObject<T>,
 {
-    let key_obj: JObject = env.new_string(key)?.into();
-    if let Some(value) = map.get(env, &key_obj)? {
+    let _obj: JObject = env.new_string()?.into();
+    if let Some(value) = map.get(env, &_obj)? {
         if value.is_null() {
             Ok(None)
         } else {
@@ -94,9 +94,9 @@ where
 }
 
 impl JMapExt for JMap<'_, '_, '_> {
-    fn get_string(&self, env: &mut JNIEnv, key: &str) -> Result<Option<String>> {
-        let key_obj: JObject = env.new_string(key)?.into();
-        if let Some(value) = self.get(env, &key_obj)? {
+    fn get_string(&self, env: &mut JNIEnv, : &str) -> Result<Option<String>> {
+        let _obj: JObject = env.new_string()?.into();
+        if let Some(value) = self.get(env, &_obj)? {
             let value_str: JString = value.into();
             Ok(Some(value_str.extract(env)?))
         } else {
@@ -104,19 +104,19 @@ impl JMapExt for JMap<'_, '_, '_> {
         }
     }
 
-    fn get_i32(&self, env: &mut JNIEnv, key: &str) -> Result<Option<i32>> {
-        get_map_value(env, self, key)
+    fn get_i32(&self, env: &mut JNIEnv, : &str) -> Result<Option<i32>> {
+        get_map_value(env, self, )
     }
 
-    fn get_i64(&self, env: &mut JNIEnv, key: &str) -> Result<Option<i64>> {
-        get_map_value(env, self, key)
+    fn get_i64(&self, env: &mut JNIEnv, : &str) -> Result<Option<i64>> {
+        get_map_value(env, self, )
     }
 
-    fn get_f32(&self, env: &mut JNIEnv, key: &str) -> Result<Option<f32>> {
-        get_map_value(env, self, key)
+    fn get_f32(&self, env: &mut JNIEnv, : &str) -> Result<Option<f32>> {
+        get_map_value(env, self, )
     }
 
-    fn get_f64(&self, env: &mut JNIEnv, key: &str) -> Result<Option<f64>> {
-        get_map_value(env, self, key)
+    fn get_f64(&self, env: &mut JNIEnv, : &str) -> Result<Option<f64>> {
+        get_map_value(env, self, )
     }
 }

@@ -41,11 +41,11 @@ The exhaustive list of parameters for `LanceDB` vector store are :
 |`connection`| (Optional) `Any` |`lancedb.db.LanceDBConnection` connection object to use.  If not provided, a new connection will be created.|`None`|
 |`embedding`| (Optional) `Embeddings` | Langchain embedding model.|Provided by user.|
 |`uri`| (Optional) `str` |It specifies the directory location of **LanceDB database** and establishes a connection that can be used to interact with the database. |`/tmp/lancedb`|
-|`vector_key` |(Optional) `str`| Column name to use for vector's in the table.|`'vector'`|
-|`id_key` |(Optional) `str`| Column name to use for id's in the table.|`'id'`|
-|`text_key` |(Optional) `str` |Column name to use for text in the table.|`'text'`|
+|`vector_` |(Optional) `str`| Column name to use for vector's in the table.|`'vector'`|
+|`id_` |(Optional) `str`| Column name to use for id's in the table.|`'id'`|
+|`text_` |(Optional) `str` |Column name to use for text in the table.|`'text'`|
 |`table_name` |(Optional) `str`| Name of your table in the database.|`'vectorstore'`|
-|`api_key` |(Optional `str`) |API key to use for LanceDB cloud database.|`None`|
+|`api_` |(Optional `str`) |API  to use for LanceDB cloud database.|`None`|
 |`region` |(Optional) `str`| Region to use for LanceDB cloud database.|Only for LanceDB Cloud : `None`.|
 |`mode` |(Optional) `str` |Mode to use for adding data to the table. Valid values are "append" and "overwrite".|`'overwrite'`|
 |`table`| (Optional) `Any`|You can connect to an existing table of LanceDB, created outside of langchain, and utilize it.|`None`|
@@ -56,12 +56,12 @@ The exhaustive list of parameters for `LanceDB` vector store are :
 
 ```python
 db_url = "db://lang_test" # url of db you created
-api_key = "xxxxx" # your API key
+api_ = "xxxxx" # your API 
 region="us-east-1-dev"  # your selected region
 
 vector_store = LanceDB(
     uri=db_url,
-    api_key=api_key, #(dont include for local API)
+    api_=api_, #(dont include for local API)
     region=region, #(dont include for local API)
     embedding=embeddings,
     table_name='langchain_test' # Optional
@@ -79,7 +79,7 @@ This method turn texts into embedding and add it to the database.
 |`texts`|`Iterable` of strings to add to the vectorstore.|Provided by user|
 |`metadatas`|Optional `list[dict()]` of metadatas associated with the texts.|`None`|
 |`ids`|Optional `list` of ids to associate with the texts.|`None`|
-|`kwargs`| Other keyworded arguments provided by the user. |-|
+|`kwargs`| Other worded arguments provided by the user. |-|
 
 It returns list of ids of the added texts.
 
@@ -138,7 +138,7 @@ This method performs similarity search based on **text query**.
 | `filter`    | `Optional[Dict[str, str]]`| It is used to filter the search results by specific metadata criteria.        | `None`    |
 | `fts`   | `Optional[bool]`     |   It indicates whether to perform a full-text search (FTS).      | `False`   |
 | `name`      | `Optional[str]`           | It is used for specifying the name of the table to query. If not provided, it uses the default table set during the initialization of the LanceDB instance.        | `None`    |
-| `kwargs`    | `Any`                     | Other keyworded arguments provided by the user.        | N/A     |
+| `kwargs`    | `Any`                     | Other worded arguments provided by the user.        | N/A     |
 
 Return documents most similar to the query **without relevance scores**.
 
@@ -159,7 +159,7 @@ The method returns documents that are most similar to the specified **embedding 
 | `k`         | `Optional[int]`           | It specifies the number of documents to return.        | `None`    |
 | `filter`    | `Optional[Dict[str, str]]`| It is used to filter the search results by specific metadata criteria.        | `None`    |
 | `name`      | `Optional[str]`           | It is used for specifying the name of the table to query. If not provided, it uses the default table set during the initialization of the LanceDB instance.        | `None`    |
-| `kwargs`    | `Any`                     | Other keyworded arguments provided by the user.        | N/A     |
+| `kwargs`    | `Any`                     | Other worded arguments provided by the user.        | N/A     |
 
 **It does not provide relevance scores.**
 
@@ -179,7 +179,7 @@ Returns documents most similar to the **query string** along with their relevanc
 | `query`  | `str`                     |A `str` representing the text query you want to search for in the vector store. This query will be converted into an embedding using the specified embedding function.         | N/A     |
 | `k`      | `Optional[int]`           | It specifies the number of documents to return.  | `None`    |
 | `filter` | `Optional[Dict[str, str]]`|  It is used to filter the search results by specific metadata criteria. This allows you to narrow down the search results based on certain metadata attributes associated with the documents.       | `None`    |
-| `kwargs` | `Any`                     |  Other keyworded arguments provided by the user.       | N/A     |
+| `kwargs` | `Any`                     |  Other worded arguments provided by the user.       | N/A     |
 
 It gets called by base class's `similarity_search_with_relevance_scores` which selects relevance score based on our `_select_relevance_score_fn`.
 
@@ -201,7 +201,7 @@ Similarity search using **query vector**.
 | `k`         | `Optional[int]`           |   It specifies the number of documents to return.       | `None`    |
 | `filter`    | `Optional[Dict[str, str]]`|  It is used to filter the search results by specific metadata criteria.       | `None`    |
 | `name`      | `Optional[str]`           |   It is used for specifying the name of the table to query.       | `None`    |
-| `kwargs`    | `Any`                     |   Other keyworded arguments provided by the user.      | N/A     |
+| `kwargs`    | `Any`                     |   Other worded arguments provided by the user.      | N/A     |
 
 The method returns documents most similar to the specified embedding (query) vector, along with their relevance scores.
 
@@ -225,7 +225,7 @@ Maximal marginal relevance optimizes for similarity to query AND diversity among
 | `fetch_k`| `Optional[int]`| Number of Documents to fetch to pass to MMR algorithm.| `None`    |
 | `lambda_mult` | `float`                   | Number between 0 and 1 that determines the degree of diversity among the results with 0 corresponding to maximum diversity and 1 to minimum diversity. | `0.5`     |
 | `filter`| `Optional[Dict[str, str]]`| Filter by metadata. | `None`    |
-|`kwargs`| Other keyworded arguments provided by the user. |-|
+|`kwargs`| Other worded arguments provided by the user. |-|
 
 Similarly, `max_marginal_relevance_search_by_vector()` function returns docs most similar to the embedding passed to the function using MMR. instead of a string query you need to pass the embedding to be searched for. 
 

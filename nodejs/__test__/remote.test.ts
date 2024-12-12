@@ -28,7 +28,7 @@ async function withMockDatabase(
     "db://dev",
     Object.assign(
       {
-        apiKey: "fake",
+        api: "fake",
         hostOverride: "http://localhost:8000",
       },
       connectionOptions,
@@ -45,7 +45,7 @@ async function withMockDatabase(
 describe("remote connection", () => {
   it("should accept partial connection options", async () => {
     await connect("db://test", {
-      apiKey: "fake",
+      api: "fake",
       clientConfig: {
         timeoutConfig: { readTimeout: 5 },
         retryConfig: { retries: 2 },
@@ -53,10 +53,10 @@ describe("remote connection", () => {
     });
   });
 
-  it("should pass down apiKey and userAgent", async () => {
+  it("should pass down api and userAgent", async () => {
     await withMockDatabase(
       (req, res) => {
-        expect(req.headers["x-api-key"]).toEqual("fake");
+        expect(req.headers["x-api-"]).toEqual("fake");
         expect(req.headers["user-agent"]).toEqual(
           `LanceDB-Node-Client/${process.env.npm_package_version}`,
         );

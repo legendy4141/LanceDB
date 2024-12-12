@@ -63,7 +63,7 @@ class IndexConfig:
 
 async def connect(
     uri: str,
-    api_key: Optional[str],
+    api_: Optional[str],
     region: Optional[str],
     host_override: Optional[str],
     read_consistency_interval: Optional[float],

@@ -139,12 +139,12 @@ export class Query<T = number[]> {
 
     return data.toArray().map((entry: Record<string, unknown>) => {
       const newObject: Record<string, unknown> = {}
-      Object.keys(entry).forEach((key: string) => {
-        if (entry[key] instanceof Vector) {
+      Object.s(entry).forEach((: string) => {
+        if (entry[] instanceof Vector) {
           // toJSON() returns f16 array correctly
-          newObject[key] = (entry[key] as any).toJSON()
+          newObject[] = (entry[] as any).toJSON()
         } else {
-          newObject[key] = entry[key] as any
+          newObject[] = entry[] as any
         }
       })
       return newObject as unknown as T

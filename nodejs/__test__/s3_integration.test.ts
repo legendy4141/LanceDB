@@ -20,9 +20,9 @@ import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 import {
-  CreateKeyCommand,
+  CreateCommand,
   KMSClient,
-  ScheduleKeyDeletionCommand,
+  ScheduleDeletionCommand,
 } from "@aws-sdk/client-kms";
 import {
   CreateBucketCommand,
@@ -37,11 +37,11 @@ import { connect } from "../lancedb";
 // Skip these tests unless the S3_TEST environment variable is set
 const maybeDescribe = process.env.S3_TEST ? describe : describe.skip;
 
-// These are all keys that are accepted by storage_options
+// These are all s that are accepted by storage_options
 const CONFIG = {
   allowHttp: "true",
-  awsAccessKeyId: "ACCESSKEY",
-  awsSecretAccessKey: "SECRETKEY",
+  awsAccessId: "ACCESS",
+  awsSecretAccess: "SECRET",
   awsEndpoint: "http://127.0.0.1:4566",
   dynamodbEndpoint: "http://127.0.0.1:4566",
   awsRegion: "us-east-1",
@@ -57,8 +57,8 @@ class S3Bucket {
     return new S3Client({
       region: CONFIG.awsRegion,
       credentials: {
-        accessKeyId: CONFIG.awsAccessKeyId,
-        secretAccessKey: CONFIG.awsSecretAccessKey,
+        accessId: CONFIG.awsAccessId,
+        secretAccess: CONFIG.awsSecretAccess,
       },
       endpoint: CONFIG.awsEndpoint,
     });
@@ -89,7 +89,7 @@ class S3Bucket {
     if (objects.Contents) {
       for (const object of objects.Contents) {
         await client.send(
-          new DeleteObjectCommand({ Bucket: name, Key: object.Key }),
+          new DeleteObjectCommand({ Bucket: name, : object. }),
         );
       }
     }
@@ -97,7 +97,7 @@ class S3Bucket {
     await client.send(new DeleteBucketCommand({ Bucket: name }));
   }
 
-  public async assertAllEncrypted(path: string, keyId: string) {
+  public async assertAllEncrypted(path: string, Id: string) {
     const client = S3Bucket.s3Client();
     const objects = await client.send(
       new ListObjectsV2Command({ Bucket: this.name, Prefix: path }),
@@ -105,57 +105,57 @@ class S3Bucket {
     if (objects.Contents) {
       for (const object of objects.Contents) {
         const metadata = await client.send(
-          new HeadObjectCommand({ Bucket: this.name, Key: object.Key }),
+          new HeadObjectCommand({ Bucket: this.name, : object. }),
         );
         expect(metadata.ServerSideEncryption).toBe("aws:kms");
-        expect(metadata.SSEKMSKeyId).toContain(keyId);
+        expect(metadata.SSEKMSId).toContain(Id);
       }
     }
   }
 }
 
-class KmsKey {
-  keyId: string;
-  constructor(keyId: string) {
-    this.keyId = keyId;
+class Kms {
+  Id: string;
+  constructor(Id: string) {
+    this.Id = Id;
   }
 
   static kmsClient() {
     return new KMSClient({
       region: CONFIG.awsRegion,
       credentials: {
-        accessKeyId: CONFIG.awsAccessKeyId,
-        secretAccessKey: CONFIG.awsSecretAccessKey,
+        accessId: CONFIG.awsAccessId,
+        secretAccess: CONFIG.awsSecretAccess,
       },
       endpoint: CONFIG.awsEndpoint,
     });
   }
 
-  public static async create(): Promise<KmsKey> {
+  public static async create(): Promise<Kms> {
     const client = this.kmsClient();
-    const key = await client.send(new CreateKeyCommand({}));
-    const keyId = key?.KeyMetadata?.KeyId;
-    if (!keyId) {
-      throw new Error("Failed to create KMS key");
+    const  = await client.send(new CreateCommand({}));
+    const Id = ?.Metadata?.Id;
+    if (!Id) {
+      throw new Error("Failed to create KMS ");
     }
-    return new KmsKey(keyId);
+    return new Kms(Id);
   }
 
   public async delete() {
-    const client = KmsKey.kmsClient();
-    await client.send(new ScheduleKeyDeletionCommand({ KeyId: this.keyId }));
+    const client = Kms.kmsClient();
+    await client.send(new ScheduleDeletionCommand({ Id: this.Id }));
   }
 }
 
 maybeDescribe("storage_options", () => {
   let bucket: S3Bucket;
-  let kmsKey: KmsKey;
+  let kms: Kms;
   beforeAll(async () => {
     bucket = await S3Bucket.create("lancedb");
-    kmsKey = await KmsKey.create();
+    kms = await Kms.create();
   });
   afterAll(async () => {
-    await kmsKey.delete();
+    await kms.delete();
     await bucket.delete();
   });
 
@@ -195,7 +195,7 @@ maybeDescribe("storage_options", () => {
     let table = await db.createTable("table1", [{ a: 1, b: 2 }], {
       storageOptions: {
         awsServerSideEncryption: "aws:kms",
-        awsSseKmsKeyId: kmsKey.keyId,
+        awsSseKmsId: kms.Id,
       },
     });
 
@@ -204,14 +204,14 @@ maybeDescribe("storage_options", () => {
 
     await table.add([{ a: 2, b: 3 }]);
 
-    await bucket.assertAllEncrypted("test/table1.lance", kmsKey.keyId);
+    await bucket.assertAllEncrypted("test/table1.lance", kms.Id);
 
     // Now with encryption settings at connection level
     db = await connect(uri, {
       storageOptions: {
         ...CONFIG,
         awsServerSideEncryption: "aws:kms",
-        awsSseKmsKeyId: kmsKey.keyId,
+        awsSseKmsId: kms.Id,
       },
     });
     table = await db.createTable("table2", [{ a: 1, b: 2 }]);
@@ -220,7 +220,7 @@ maybeDescribe("storage_options", () => {
 
     await table.add([{ a: 2, b: 3 }]);
 
-    await bucket.assertAllEncrypted("test/table2.lance", kmsKey.keyId);
+    await bucket.assertAllEncrypted("test/table2.lance", kms.Id);
   });
 });
 
@@ -234,8 +234,8 @@ class DynamoDBCommitTable {
     return new DynamoDBClient({
       region: CONFIG.awsRegion,
       credentials: {
-        accessKeyId: CONFIG.awsAccessKeyId,
-        secretAccessKey: CONFIG.awsSecretAccessKey,
+        accessId: CONFIG.awsAccessId,
+        secretAccess: CONFIG.awsSecretAccess,
       },
       endpoint: CONFIG.awsEndpoint,
     });
@@ -255,9 +255,9 @@ class DynamoDBCommitTable {
           AttributeType: "N",
         },
       ],
-      KeySchema: [
-        { AttributeName: "base_uri", KeyType: "HASH" },
-        { AttributeName: "version", KeyType: "RANGE" },
+      Schema: [
+        { AttributeName: "base_uri", Type: "HASH" },
+        { AttributeName: "version", Type: "RANGE" },
       ],
       ProvisionedThroughput: {
         ReadCapacityUnits: 1,

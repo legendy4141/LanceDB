@@ -104,7 +104,7 @@ Here are the hit-rate results for the dataset:
 | Full-text Search | 0.595 |
 | Hybrid Search (w/ LinearCombinationReranker) | 0.645 |
 
-**Choosing query type** is very specific to the use case and the data. This synthetic dataset has been generated to be semantically challenging, i.e, the queries don't have a lot of keywords in common with the context. So, vector search performs better than full-text search. However, in real-world scenarios, full-text search might perform better than vector search. Hybrid search is a good choice when you want to combine the benefits of both vector and full-text search.
+**Choosing query type** is very specific to the use case and the data. This synthetic dataset has been generated to be semantically challenging, i.e, the queries don't have a lot of words in common with the context. So, vector search performs better than full-text search. However, in real-world scenarios, full-text search might perform better than vector search. Hybrid search is a good choice when you want to combine the benefits of both vector and full-text search.
 
 ### Evaluation results on other datasets
 
@@ -126,6 +126,6 @@ The hit-rate results can vary based on the dataset and the query type. Here are 
     | Full-text Search | 0.82 |
     | Hybrid Search (w/ LinearCombinationReranker) | 0.80 |
 
-In these standard datasets, FTS seems to perform much better than vector search because the queries have a lot of keywords in common with the context. So, in general choosing the query type is very specific to the use case and the data.
+In these standard datasets, FTS seems to perform much better than vector search because the queries have a lot of words in common with the context. So, in general choosing the query type is very specific to the use case and the data.
 
 

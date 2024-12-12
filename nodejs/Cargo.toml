@@ -5,7 +5,7 @@ version = "0.14.1-beta.3"
 license.workspace = true
 description.workspace = true
 repository.workspace = true
-keywords.workspace = true
+words.workspace = true
 categories.workspace = true
 
 [lib]

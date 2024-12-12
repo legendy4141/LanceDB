@@ -45,13 +45,13 @@ class CohereReranker(Reranker):
         column: str = "text",
         top_n: Union[int, None] = None,
         return_score="relevance",
-        api_key: Union[str, None] = None,
+        api_: Union[str, None] = None,
     ):
         super().__init__(return_score)
         self.model_name = model_name
         self.column = column
         self.top_n = top_n
-        self.api_key = api_key
+        self.api_ = api_
 
     @cached_property
     def _client(self):
@@ -63,12 +63,12 @@ class CohereReranker(Reranker):
             raise ValueError(
                 f"cohere version must be at least 0.5.0, found {cohere.__version__}"
             )
-        if os.environ.get("COHERE_API_KEY") is None and self.api_key is None:
+        if os.environ.get("COHERE_API_") is None and self.api_ is None:
             raise ValueError(
-                "COHERE_API_KEY not set. Either set it in your environment or \
-                pass it as `api_key` argument to the CohereReranker."
+                "COHERE_API_ not set. Either set it in your environment or \
+                pass it as `api_` argument to the CohereReranker."
             )
-        return cohere.Client(os.environ.get("COHERE_API_KEY") or self.api_key)
+        return cohere.Client(os.environ.get("COHERE_API_") or self.api_)
 
     def _rerank(self, result_set: pa.Table, query: str):
         docs = result_set[self.column].to_pylist()

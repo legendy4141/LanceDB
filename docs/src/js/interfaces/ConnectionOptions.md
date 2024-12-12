@@ -8,15 +8,15 @@
 
 ## Properties
 
-### apiKey?
+### api?
 
 ```ts
-optional apiKey: string;
+optional api: string;
 ```
 
-(For LanceDB cloud only): the API key to use with LanceDB Cloud.
+(For LanceDB cloud only): the API  to use with LanceDB Cloud.
 
-Can also be set via the environment variable `LANCEDB_API_KEY`.
+Can also be set via the environment variable `LANCEDB_API_`.
 
 ***
 

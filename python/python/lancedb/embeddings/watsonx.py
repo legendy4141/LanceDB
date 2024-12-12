@@ -43,7 +43,7 @@ class WatsonxEmbeddings(TextEmbeddingFunction):
     """
 
     name: str = "ibm/slate-125m-english-rtrvr"
-    api_key: Optional[str] = None
+    api_: Optional[str] = None
     project_id: Optional[str] = None
     url: Optional[str] = None
     params: Optional[Dict] = None
@@ -96,12 +96,12 @@ class WatsonxEmbeddings(TextEmbeddingFunction):
             raise ValueError("WATSONX_PROJECT_ID must be set or passed")
 
         creds_kwargs = {}
-        if self.api_key:
-            creds_kwargs["api_key"] = self.api_key
-        elif "WATSONX_API_KEY" in os.environ:
-            creds_kwargs["api_key"] = os.environ["WATSONX_API_KEY"]
+        if self.api_:
+            creds_kwargs["api_"] = self.api_
+        elif "WATSONX_API_" in os.environ:
+            creds_kwargs["api_"] = os.environ["WATSONX_API_"]
         else:
-            raise ValueError("WATSONX_API_KEY must be set or passed")
+            raise ValueError("WATSONX_API_ must be set or passed")
         if self.url:
             creds_kwargs["url"] = self.url
         else:

@@ -75,7 +75,7 @@
         "noDebugger": "error",
         "noDuplicateCase": "error",
         "noDuplicateClassMembers": "error",
-        "noDuplicateObjectKeys": "error",
+        "noDuplicateObjects": "error",
         "noDuplicateParameters": "error",
         "noEmptyBlockStatements": "error",
         "noExplicitAny": "warn",
@@ -144,7 +144,7 @@
           },
           "suspicious": {
             "noDuplicateClassMembers": "off",
-            "noDuplicateObjectKeys": "off",
+            "noDuplicateObjects": "off",
             "noDuplicateParameters": "off",
             "noFunctionAssign": "off",
             "noImportAssign": "off",

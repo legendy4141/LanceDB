@@ -34,8 +34,8 @@ import os
 
 # Configuring the environment variable 
 if "" not in os.environ:
-# OR set the key here as a variable
-.api_key = ""
+# OR set the  here as a variable
+.api_ = ""
 
 client = .()
 

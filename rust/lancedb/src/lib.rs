@@ -15,7 +15,7 @@
 //! [LanceDB](https://github.com/lancedb/lancedb) is an open-source database for vector-search built with persistent storage,
 //! which greatly simplifies retrieval, filtering and management of embeddings.
 //!
-//! The key features of LanceDB include:
+//! The  features of LanceDB include:
 //! - Production-scale vector search with no servers to manage.
 //! - Store, query and filter vectors, metadata and multi-modal data (text, images, videos, point clouds, and more).
 //! - Support for vector similarity search, full-text search and SQL.
@@ -68,8 +68,8 @@
 //! # tokio::runtime::Runtime::new().unwrap().block_on(async {
 //! let db = lancedb::connect("data/sample-lancedb")
 //!     .aws_creds(AwsCredential {
-//!         key_id: "some_key".to_string(),
-//!         secret_key: "some_secret".to_string(),
+//!         _id: "some_".to_string(),
+//!         secret_: "some_secret".to_string(),
 //!         token: None,
 //!     })
 //!     .execute()

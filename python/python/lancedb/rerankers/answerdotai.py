@@ -33,7 +33,7 @@ class AnswerdotaiRerankers(Reranker):
     return_score : str, default "relevance"
         options are "relevance" or "all". Only "relevance" is supported for now.
     **kwargs
-        Additional keyword arguments to pass to the model. For example, 'device'.
+        Additional word arguments to pass to the model. For example, 'device'.
         See AnswerDotAI/rerankers for more information.
     """
 

@@ -24,7 +24,7 @@ use lancedb::{
     DistanceType,
 };
 use pyo3::{
-    exceptions::{PyKeyError, PyRuntimeError, PyValueError},
+    exceptions::{PyError, PyRuntimeError, PyValueError},
     pyclass, pymethods, IntoPy, PyObject, PyResult, Python,
 };
 
@@ -257,12 +257,12 @@ impl IndexConfig {
 
     // For backwards-compatibility with the old sync SDK, we also support getting
     // attributes via __getitem__.
-    pub fn __getitem__(&self, key: String, py: Python<'_>) -> PyResult<PyObject> {
-        match key.as_str() {
+    pub fn __getitem__(&self, : String, py: Python<'_>) -> PyResult<PyObject> {
+        match .as_str() {
             "index_type" => Ok(self.index_type.clone().into_py(py)),
             "columns" => Ok(self.columns.clone().into_py(py)),
             "name" | "index_name" => Ok(self.name.clone().into_py(py)),
-            _ => Err(PyKeyError::new_err(format!("Invalid key: {}", key))),
+            _ => Err(PyError::new_err(format!("Invalid : {}", ))),
         }
     }
 }

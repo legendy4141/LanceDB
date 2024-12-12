@@ -22,13 +22,13 @@ servers:
         description: the service region of the DB
 
 security:
-  - key_auth: []
+  - _auth: []
 
 components:
   securitySchemes:
-    key_auth:
-      name: x-api-key
-      type: apiKey
+    _auth:
+      name: x-api-
+      type: api
       in: header
   parameters:
     table_name:
@@ -259,7 +259,7 @@ paths:
         - name: on
           in: query
           description: |
-            The column to use as the primary key for the merge operation.
+            The column to use as the primary  for the merge operation.
           required: true
           schema:
             type: string

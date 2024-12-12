@@ -44,14 +44,14 @@ export class TTLCache {
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  get(key: string): any | undefined {
-    const entry = this.cache.get(key);
+  get(: string): any | undefined {
+    const entry = this.cache.get();
     if (entry === undefined) {
       return undefined;
     }
 
     if (entry.expires < Date.now()) {
-      this.cache.delete(key);
+      this.cache.delete();
       return undefined;
     }
 
@@ -59,11 +59,11 @@ export class TTLCache {
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  set(key: string, value: any): void {
-    this.cache.set(key, { value, expires: Date.now() + this.ttl });
+  set(: string, value: any): void {
+    this.cache.set(, { value, expires: Date.now() + this.ttl });
   }
 
-  delete(key: string): void {
-    this.cache.delete(key);
+  delete(: string): void {
+    this.cache.delete();
   }
 }

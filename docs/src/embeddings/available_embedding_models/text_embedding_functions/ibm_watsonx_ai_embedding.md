@@ -18,7 +18,7 @@ The following parameters can be passed to the `create` method:
 | Parameter  | Type     | Default Value                    | Description                                               |
 |------------|----------|----------------------------------|-----------------------------------------------------------|
 | name       | str      | "ibm/slate-125m-english-rtrvr"   | The model ID of the watsonx.ai model to use               |
-| api_key    | str      | None                             | Optional IBM Cloud API key (or set `WATSONX_API_KEY`)     |
+| api_    | str      | None                             | Optional IBM Cloud API  (or set `WATSONX_API_`)     |
 | project_id | str      | None                             | Optional watsonx project ID (or set `WATSONX_PROJECT_ID`) |
 | url        | str      | None                             | Optional custom URL for the watsonx.ai instance           |
 | params     | dict     | None                             | Optional additional parameters for the embedding model    |
@@ -34,7 +34,7 @@ pip install ibm-watsonx-ai
 Optionally set environment variables (if not passing credentials to `create` directly):
 
 ```sh
-export WATSONX_API_KEY="YOUR_WATSONX_API_KEY"
+export WATSONX_API_="YOUR_WATSONX_API_"
 export WATSONX_PROJECT_ID="YOUR_WATSONX_PROJECT_ID"
 ```
 
@@ -50,7 +50,7 @@ watsonx_embed = EmbeddingFunctionRegistry
   .create(
     name="ibm/slate-125m-english-rtrvr",
     # Uncomment and set these if not using environment variables
-    # api_key="your_api_key_here",
+    # api_="your_api__here",
     # project_id="your_project_id_here",
     # url="your_watsonx_url_here",
     # params={...},

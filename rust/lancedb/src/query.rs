@@ -1103,7 +1103,7 @@ mod tests {
     fn make_test_batches() -> impl RecordBatchReader + Send + 'static {
         let dim: usize = 128;
         let schema = Arc::new(ArrowSchema::new(vec![
-            ArrowField::new("key", DataType::Int32, false),
+            ArrowField::new("", DataType::Int32, false),
             ArrowField::new(
                 "vector",
                 DataType::FixedSizeList(

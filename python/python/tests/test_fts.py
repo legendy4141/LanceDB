@@ -30,7 +30,7 @@ def table(tmp_path) -> ldb.table.LanceTable:
     vectors = [np.random.randn(128) for _ in range(100)]
 
     text_nouns = ("puppy", "car")
-    text2_nouns = ("rabbit", "girl", "monkey")
+    text2_nouns = ("rabbit", "girl", "mon")
     verbs = ("runs", "hits", "jumps", "drives", "barfs")
     adv = ("crazily.", "dutifully.", "foolishly.", "merrily.", "occasionally.")
     adj = ("adorable", "clueless", "dirty", "odd", "stupid")
@@ -79,7 +79,7 @@ async def async_table(tmp_path) -> ldb.table.AsyncTable:
     vectors = [np.random.randn(128) for _ in range(100)]
 
     text_nouns = ("puppy", "car")
-    text2_nouns = ("rabbit", "girl", "monkey")
+    text2_nouns = ("rabbit", "girl", "mon")
     verbs = ("runs", "hits", "jumps", "drives", "barfs")
     adv = ("crazily.", "dutifully.", "foolishly.", "merrily.", "occasionally.")
     adj = ("adorable", "clueless", "dirty", "odd", "stupid")
@@ -311,7 +311,7 @@ def test_search_ordering_field_index_table(tmp_path, table):
     )
     for r in rows:
         assert "puppy" in r["text"]
-    assert sorted(rows, key=lambda x: x["count"], reverse=True) == rows
+    assert sorted(rows, =lambda x: x["count"], reverse=True) == rows
 
 
 def test_search_ordering_field_index(tmp_path, table):
@@ -331,7 +331,7 @@ def test_search_ordering_field_index(tmp_path, table):
 
     for r in rows:
         assert "puppy" in r["text"]
-    assert sorted(rows, key=lambda x: x["count"], reverse=True) == rows
+    assert sorted(rows, =lambda x: x["count"], reverse=True) == rows
 
 
 @pytest.mark.parametrize("use_tantivy", [True, False])

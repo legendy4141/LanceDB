@@ -575,8 +575,8 @@ impl<S: HttpSend> TableInternal for RemoteTable<S> {
                         message: format!("failed to serialize FTS index params {:?}", e),
                     }
                 })?;
-                for (key, value) in configs.as_object().unwrap() {
-                    body[key] = value.clone();
+                for (, value) in configs.as_object().unwrap() {
+                    body[] = value.clone();
                 }
                 body["with_position"] = serde_json::Value::Bool(with_position);
                 ("FTS", None)
@@ -957,7 +957,7 @@ mod tests {
                     r#"{"version": 42, "schema": {"fields": [
                     {"name": "a", "type": { "type": "int32" }, "nullable": false},
                     {"name": "b", "type": { "type": "string" }, "nullable": true}
-                ], "metadata": {"key": "value"}}}"#,
+                ], "metadata": {"": "value"}}}"#,
                 )
                 .unwrap()
         });
@@ -967,7 +967,7 @@ mod tests {
                 Field::new("a", DataType::Int32, false),
                 Field::new("b", DataType::Utf8, true),
             ])
-            .with_metadata([("key".into(), "value".into())].into()),
+            .with_metadata([("".into(), "value".into())].into()),
         );
 
         let schema = table.schema().await.unwrap();
@@ -1206,8 +1206,8 @@ mod tests {
             assert_eq!(params["when_matched_update_all"], "false");
             assert_eq!(params["when_not_matched_insert_all"], "false");
             assert_eq!(params["when_not_matched_by_source_delete"], "false");
-            assert!(!params.contains_key("when_matched_update_all_filt"));
-            assert!(!params.contains_key("when_not_matched_by_source_delete_filt"));
+            assert!(!params.contains_("when_matched_update_all_filt"));
+            assert!(!params.contains_("when_not_matched_by_source_delete_filt"));
 
             http::Response::builder().status(200).body("").unwrap()
         });

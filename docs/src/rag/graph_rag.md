@@ -16,13 +16,13 @@ One of the main benefits of Graph RAG is its ability to capture and represent co
 
 Working with Graph RAG is quite straightforward
 
-- **Installation and API KEY as env variable**
+- **Installation and API  as env variable**
 
-Set `` as `GRAPHRAG_API_KEY`
+Set `` as `GRAPHRAG_API_`
 
 ```bash
 pip install graphrag
-export GRAPHRAG_API_KEY="sk-..."
+export GRAPHRAG_API_="sk-..."
 ```
 
 - **Initial structure for indexing dataset**

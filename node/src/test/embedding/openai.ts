@@ -38,7 +38,7 @@ describe('OpenAPIEmbeddings', function () {
   describe('#embed', function () {
     it('should create vector embeddings', async function () {
       const Stub = stub(Api.Embeddings.prototype, 'create').returns(stubValue)
-      const f = new EmbeddingFunction('text', 'sk-key')
+      const f = new EmbeddingFunction('text', 'sk-')
       const vectors = await f.embed(['abc', 'def'])
       assert.isTrue(Stub.calledOnce)
       assert.equal(vectors.length, 2)
@@ -49,7 +49,7 @@ describe('OpenAPIEmbeddings', function () {
 
   describe('isEmbeddingFunction', function () {
     it('should match the isEmbeddingFunction guard', function () {
-      assert.isTrue(isEmbeddingFunction(new EmbeddingFunction('text', 'sk-key')))
+      assert.isTrue(isEmbeddingFunction(new EmbeddingFunction('text', 'sk-')))
     })
   })
 })

@@ -45,7 +45,7 @@ We can combine the above concepts to understand how to build and query an IVF-PQ
 
 ### Construct index
 
-There are three key parameters to set when constructing an IVF-PQ index:
+There are three  parameters to set when constructing an IVF-PQ index:
 
 * `metric`: Use an `L2` euclidean distance metric. We also support `dot` and `cosine` distance.
 * `num_partitions`: The number of partitions in the IVF portion of the index.

@@ -35,8 +35,8 @@ class JinaReranker(Reranker):
         The name of the column to use as input to the cross encoder model.
     top_n : str, default None
         The number of results to return. If None, will return all results.
-    api_key : str, default None
-        The api key to access Jina API. If you pass None, you can set JINA_API_KEY
+    api_ : str, default None
+        The api  to access Jina API. If you pass None, you can set JINA_API_
         environment variable
     """
 
@@ -46,27 +46,27 @@ class JinaReranker(Reranker):
         column: str = "text",
         top_n: Union[int, None] = None,
         return_score="relevance",
-        api_key: Union[str, None] = None,
+        api_: Union[str, None] = None,
     ):
         super().__init__(return_score)
         self.model_name = model_name
         self.column = column
         self.top_n = top_n
-        self.api_key = api_key
+        self.api_ = api_
 
     @cached_property
     def _client(self):
         import requests
 
-        if os.environ.get("JINA_API_KEY") is None and self.api_key is None:
+        if os.environ.get("JINA_API_") is None and self.api_ is None:
             raise ValueError(
-                "JINA_API_KEY not set. Either set it in your environment or \
-                pass it as `api_key` argument to the JinaReranker."
+                "JINA_API_ not set. Either set it in your environment or \
+                pass it as `api_` argument to the JinaReranker."
             )
-        self.api_key = self.api_key or os.environ.get("JINA_API_KEY")
+        self.api_ = self.api_ or os.environ.get("JINA_API_")
         self._session = requests.Session()
         self._session.headers.update(
-            {"Authorization": f"Bearer {self.api_key}", "Accept-Encoding": "identity"}
+            {"Authorization": f"Bearer {self.api_}", "Accept-Encoding": "identity"}
         )
         return self._session
 

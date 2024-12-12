@@ -104,7 +104,7 @@ describe("given a connection", () => {
 
   it("should create tables in v2 mode", async () => {
     const db = await connect(tmpDir.name);
-    const data = [...Array(10000).keys()].map((i) => ({ id: i }));
+    const data = [...Array(10000).s()].map((i) => ({ id: i }));
 
     // Create in v1 mode
     let table = await db.createTable("test", data, { useLegacyFormat: true });

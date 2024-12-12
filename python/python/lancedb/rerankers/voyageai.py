@@ -38,8 +38,8 @@ class VoyageAIReranker(Reranker):
         The number of results to return. If None, will return all results.
     return_score : str, default "relevance"
         options are "relevance" or "all". Only "relevance" is supported for now.
-    api_key : str, default None
-        The API key to use. If None, will use the  environment variable.
+    api_ : str, default None
+        The API  to use. If None, will use the  environment variable.
     truncation : Optional[bool], default None
     """
 
@@ -49,26 +49,26 @@ class VoyageAIReranker(Reranker):
         column: str = "text",
         top_n: Optional[int] = None,
         return_score="relevance",
-        api_key: Optional[str] = None,
+        api_: Optional[str] = None,
         truncation: Optional[bool] = True,
     ):
         super().__init__(return_score)
         self.model_name = model_name
         self.column = column
         self.top_n = top_n
-        self.api_key = api_key
+        self.api_ = api_
         self.truncation = truncation
 
     @cached_property
     def _client(self):
         voyageai = attempt_import_or_raise("voyageai")
-        if os.environ.get("VOYAGE_API_KEY") is None and self.api_key is None:
+        if os.environ.get("VOYAGE_API_") is None and self.api_ is None:
             raise ValueError(
-                "VOYAGE_API_KEY not set. Either set it in your environment or \
-                pass it as `api_key` argument to the VoyageAIReranker."
+                "VOYAGE_API_ not set. Either set it in your environment or \
+                pass it as `api_` argument to the VoyageAIReranker."
             )
         return voyageai.Client(
-            api_key=os.environ.get("VOYAGE_API_KEY") or self.api_key,
+            api_=os.environ.get("VOYAGE_API_") or self.api_,
         )
 
     def _rerank(self, result_set: pa.Table, query: str):

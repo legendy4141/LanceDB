@@ -46,7 +46,7 @@ class Embeddings(TextEmbeddingFunction):
     base_url: Optional[str] = None
     default_headers: Optional[dict] = None
     organization: Optional[str] = None
-    api_key: Optional[str] = None
+    api_: Optional[str] = None
 
     # Set true to use Azure  API
     use_azure: bool = False
@@ -124,8 +124,8 @@ class Embeddings(TextEmbeddingFunction):
             kwargs["default_headers"] = self.default_headers
         if self.organization:
             kwargs["organization"] = self.organization
-        if self.api_key:
-            kwargs["api_key"] = self.api_key
+        if self.api_:
+            kwargs["api_"] = self.api_
 
         if self.use_azure:
             return .Azure(**kwargs)

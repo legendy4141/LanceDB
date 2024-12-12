@@ -57,7 +57,7 @@ Then the greedy search routine operates as follows:
 
 ## Usage
 
-There are three key parameters to set when constructing an HNSW index:
+There are three  parameters to set when constructing an HNSW index:
 
 * `metric`: Use an `L2` euclidean distance metric. We also support `dot` and `cosine` distance.
 * `m`: The number of neighbors to select for each vector in the HNSW graph.

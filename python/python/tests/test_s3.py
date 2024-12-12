@@ -21,11 +21,11 @@ import pyarrow as pa
 import lancedb
 
 
-# These are all keys that are accepted by storage_options
+# These are all s that are accepted by storage_options
 CONFIG = {
     "allow_http": "true",
-    "aws_access_key_id": "ACCESSKEY",
-    "aws_secret_access_key": "SECRETKEY",
+    "aws_access__id": "ACCESS",
+    "aws_secret_access_": "SECRET",
     "aws_endpoint": "http://localhost:4566",
     "dynamodb_endpoint": "http://localhost:4566",
     "aws_region": "us-east-1",
@@ -38,8 +38,8 @@ def get_boto3_client(*args, **kwargs):
     return boto3.client(
         *args,
         region_name=CONFIG["aws_region"],
-        aws_access_key_id=CONFIG["aws_access_key_id"],
-        aws_secret_access_key=CONFIG["aws_secret_access_key"],
+        aws_access__id=CONFIG["aws_access__id"],
+        aws_secret_access_=CONFIG["aws_secret_access_"],
         **kwargs,
     )
 
@@ -62,7 +62,7 @@ def s3_bucket():
 def delete_bucket(s3, bucket_name):
     # Delete all objects first
     for obj in s3.list_objects(Bucket=bucket_name).get("Contents", []):
-        s3.delete_object(Bucket=bucket_name, Key=obj["Key"])
+        s3.delete_object(Bucket=bucket_name, =obj[""])
     s3.delete_bucket(Bucket=bucket_name)
 
 
@@ -96,28 +96,28 @@ def test_s3_lifecycle(s3_bucket: str):
 
 
 @pytest.fixture()
-def kms_key():
+def kms_():
     kms = get_boto3_client("kms", endpoint_url=CONFIG["aws_endpoint"])
-    key_id = kms.create_key()["KeyMetadata"]["KeyId"]
-    yield key_id
-    kms.schedule_key_deletion(KeyId=key_id, PendingWindowInDays=7)
+    _id = kms.create_()["Metadata"]["Id"]
+    yield _id
+    kms.schedule__deletion(Id=_id, PendingWindowInDays=7)
 
 
-def validate_objects_encrypted(bucket: str, path: str, kms_key: str):
+def validate_objects_encrypted(bucket: str, path: str, kms_: str):
     s3 = get_boto3_client("s3", endpoint_url=CONFIG["aws_endpoint"])
     objects = s3.list_objects_v2(Bucket=bucket, Prefix=path)["Contents"]
     for obj in objects:
-        info = s3.head_object(Bucket=bucket, Key=obj["Key"])
+        info = s3.head_object(Bucket=bucket, =obj[""])
         assert info["ServerSideEncryption"] == "aws:kms", (
-            "object %s not encrypted" % obj["Key"]
+            "object %s not encrypted" % obj[""]
         )
-        assert info["SSEKMSKeyId"].endswith(kms_key), (
-            "object %s not encrypted with correct key" % obj["Key"]
+        assert info["SSEKMSId"].endswith(kms_), (
+            "object %s not encrypted with correct " % obj[""]
         )
 
 
 @pytest.mark.s3_test
-def test_s3_sse(s3_bucket: str, kms_key: str):
+def test_s3_sse(s3_bucket: str, kms_: str):
     storage_options = copy.copy(CONFIG)
 
     uri = f"s3://{s3_bucket}/test_lifecycle"
@@ -132,21 +132,21 @@ def test_s3_sse(s3_bucket: str, kms_key: str):
             schema=data.schema,
             storage_options={
                 "aws_server_side_encryption": "aws:kms",
-                "aws_sse_kms_key_id": kms_key,
+                "aws_sse_kms__id": kms_,
             },
         )
         await table.add(data)
         await table.update({"x": "1"})
 
         path = "test_lifecycle/table1.lance"
-        validate_objects_encrypted(s3_bucket, path, kms_key)
+        validate_objects_encrypted(s3_bucket, path, kms_)
 
         # Test we can set encryption at connection level too.
         db = await lancedb.connect_async(
             uri,
             storage_options=dict(
                 aws_server_side_encryption="aws:kms",
-                aws_sse_kms_key_id=kms_key,
+                aws_sse_kms__id=kms_,
                 **storage_options,
             ),
         )
@@ -156,7 +156,7 @@ def test_s3_sse(s3_bucket: str, kms_key: str):
         await table.update({"x": "1"})
 
         path = "test_lifecycle/table2.lance"
-        validate_objects_encrypted(s3_bucket, path, kms_key)
+        validate_objects_encrypted(s3_bucket, path, kms_)
 
     asyncio.run(test())
 
@@ -171,9 +171,9 @@ def commit_table():
         pass
     ddb.create_table(
         TableName=table_name,
-        KeySchema=[
-            {"AttributeName": "base_uri", "KeyType": "HASH"},
-            {"AttributeName": "version", "KeyType": "RANGE"},
+        Schema=[
+            {"AttributeName": "base_uri", "Type": "HASH"},
+            {"AttributeName": "version", "Type": "RANGE"},
         ],
         AttributeDefinitions=[
             {"AttributeName": "base_uri", "AttributeType": "S"},
@@ -217,10 +217,10 @@ def test_s3_dynamodb(s3_bucket: str, commit_table: str):
 
 
 @pytest.mark.s3_test
-def test_s3_dynamodb_sync(s3_bucket: str, commit_table: str, monkeypatch):
+def test_s3_dynamodb_sync(s3_bucket: str, commit_table: str, monpatch):
     # Sync API doesn't support storage_options, so we have to provide as env vars
-    for key, value in CONFIG.items():
-        monkeypatch.setenv(key.upper(), value)
+    for , value in CONFIG.items():
+        monpatch.setenv(.upper(), value)
 
     uri = f"s3+ddb://{s3_bucket}/test2?ddbTableName={commit_table}"
     data = pa.table({"x": ["a", "b", "c"]})

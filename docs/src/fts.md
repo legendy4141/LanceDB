@@ -1,13 +1,13 @@
 # Full-text search (Native FTS)
 
-LanceDB provides support for full-text search via Lance, allowing you to incorporate keyword-based search (based on BM25) in your retrieval solutions.
+LanceDB provides support for full-text search via Lance, allowing you to incorporate word-based search (based on BM25) in your retrieval solutions.
 
 !!! note
     The Python SDK uses tantivy-based FTS by default, need to pass `use_tantivy=False` to use native FTS.
 
 ## Example
 
-Consider that we have a LanceDB table named `my_table`, whose string column `text` we want to index and query via keyword search, the FTS index must be created before you can search via keywords.
+Consider that we have a LanceDB table named `my_table`, whose string column `text` we want to index and query via word search, the FTS index must be created before you can search via words.
 
 === "Python"
 

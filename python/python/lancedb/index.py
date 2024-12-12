@@ -84,7 +84,7 @@ class LabelList:
     support queries with `array_contains_all` and `array_contains_any`
     using an underlying bitmap index.
 
-    For example, it works with `tags`, `categories`, `keywords`, etc.
+    For example, it works with `tags`, `categories`, `words`, etc.
     """
 
     def __init__(self):

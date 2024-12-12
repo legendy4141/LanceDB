@@ -30,7 +30,7 @@ from .table import AsyncTable
 def connect(
     uri: URI,
     *,
-    api_key: Optional[str] = None,
+    api_: Optional[str] = None,
     region: str = "us-east-1",
     host_override: Optional[str] = None,
     read_consistency_interval: Optional[timedelta] = None,
@@ -45,10 +45,10 @@ def connect(
     ----------
     uri: str or Path
         The uri of the database.
-    api_key: str, optional
+    api_: str, optional
         If presented, connect to LanceDB cloud.
         Otherwise, connect to a database on file system or cloud storage.
-        Can be set via environment variable `LANCEDB_API_KEY`.
+        Can be set via environment variable `LANCEDB_API_`.
     region: str, default "us-east-1"
         The region to use for LanceDB Cloud.
     host_override: str, optional
@@ -66,7 +66,7 @@ def connect(
         always consistent.
     client_config: ClientConfig or dict, optional
         Configuration options for the LanceDB Cloud HTTP client. If a dict, then
-        the keys are the attributes of the ClientConfig class. If None, then the
+        the s are the attributes of the ClientConfig class. If None, then the
         default configuration is used.
     storage_options: dict, optional
         Additional options for the storage backend. See available options at
@@ -86,7 +86,7 @@ def connect(
 
     Connect to LanceDB cloud:
 
-    >>> db = lancedb.connect("db://my_database", api_key="ldb_...")
+    >>> db = lancedb.connect("db://my_database", api_="ldb_...")
 
     Returns
     -------
@@ -96,15 +96,15 @@ def connect(
     from .remote.db import RemoteDBConnection
 
     if isinstance(uri, str) and uri.startswith("db://"):
-        if api_key is None:
-            api_key = os.environ.get("LANCEDB_API_KEY")
-        if api_key is None:
-            raise ValueError(f"api_key is required to connected LanceDB cloud: {uri}")
+        if api_ is None:
+            api_ = os.environ.get("LANCEDB_API_")
+        if api_ is None:
+            raise ValueError(f"api_ is required to connected LanceDB cloud: {uri}")
         if isinstance(request_thread_pool, int):
             request_thread_pool = ThreadPoolExecutor(request_thread_pool)
         return RemoteDBConnection(
             uri,
-            api_key,
+            api_,
             region,
             host_override,
             # TODO: remove this (deprecation warning downstream)
@@ -115,7 +115,7 @@ def connect(
         )
 
     if kwargs:
-        raise ValueError(f"Unknown keyword arguments: {kwargs}")
+        raise ValueError(f"Unknown word arguments: {kwargs}")
     return LanceDBConnection(
         uri,
         read_consistency_interval=read_consistency_interval,
@@ -126,7 +126,7 @@ def connect(
 async def connect_async(
     uri: URI,
     *,
-    api_key: Optional[str] = None,
+    api_: Optional[str] = None,
     region: str = "us-east-1",
     host_override: Optional[str] = None,
     read_consistency_interval: Optional[timedelta] = None,
@@ -139,10 +139,10 @@ async def connect_async(
     ----------
     uri: str or Path
         The uri of the database.
-    api_key: str, optional
+    api_: str, optional
         If present, connect to LanceDB cloud.
         Otherwise, connect to a database on file system or cloud storage.
-        Can be set via environment variable `LANCEDB_API_KEY`.
+        Can be set via environment variable `LANCEDB_API_`.
     region: str, default "us-east-1"
         The region to use for LanceDB Cloud.
     host_override: str, optional
@@ -160,7 +160,7 @@ async def connect_async(
         always consistent.
     client_config: ClientConfig or dict, optional
         Configuration options for the LanceDB Cloud HTTP client. If a dict, then
-        the keys are the attributes of the ClientConfig class. If None, then the
+        the s are the attributes of the ClientConfig class. If None, then the
         default configuration is used.
     storage_options: dict, optional
         Additional options for the storage backend. See available options at
@@ -176,9 +176,9 @@ async def connect_async(
     ...     # For object storage, use a URI prefix
     ...     db = await lancedb.connect_async("s3://my-bucket/lancedb",
     ...                                      storage_options={
-    ...                                          "aws_access_key_id": "***"})
+    ...                                          "aws_access__id": "***"})
     ...     # Connect to LanceDB cloud
-    ...     db = await lancedb.connect_async("db://my_database", api_key="ldb_...",
+    ...     db = await lancedb.connect_async("db://my_database", api_="ldb_...",
     ...                                      client_config={
     ...                                          "retry_config": {"retries": 5}})
 
@@ -198,7 +198,7 @@ async def connect_async(
     return AsyncConnection(
         await lancedb_connect(
             sanitize_uri(uri),
-            api_key,
+            api_,
             region,
             host_override,
             read_consistency_interval_secs,

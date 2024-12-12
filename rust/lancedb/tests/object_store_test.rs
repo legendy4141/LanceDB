@@ -22,8 +22,8 @@ use aws_sdk_s3::{config::Credentials, types::ServerSideEncryption, Client as S3C
 use lancedb::Result;
 
 const CONFIG: &[(&str, &str)] = &[
-    ("access_key_id", "ACCESS_KEY"),
-    ("secret_access_key", "SECRET_KEY"),
+    ("access__id", "ACCESS_"),
+    ("secret_access_", "SECRET_"),
     ("endpoint", "http://127.0.0.1:4566"),
     ("dynamodb_endpoint", "http://127.0.0.1:4566"),
     ("allow_http", "true"),
@@ -74,7 +74,7 @@ impl S3Bucket {
             client
                 .delete_object()
                 .bucket(bucket)
-                .key(object.key.unwrap())
+                .(object..unwrap())
                 .send()
                 .await
                 .unwrap();
@@ -145,34 +145,34 @@ async fn test_minio_lifecycle() -> Result<()> {
     Ok(())
 }
 
-struct KMSKey(String);
+struct KMS(String);
 
-impl KMSKey {
+impl KMS {
     async fn new() -> Self {
         let config = aws_config().await;
         let client = aws_sdk_kms::Client::new(&config);
-        let key = client
-            .create_key()
-            .description("test key")
+        let  = client
+            .create_()
+            .description("test ")
             .send()
             .await
             .unwrap()
-            .key_metadata
+            ._metadata
             .unwrap()
-            .key_id;
-        Self(key)
+            ._id;
+        Self()
     }
 }
 
-impl Drop for KMSKey {
+impl Drop for KMS {
     fn drop(&mut self) {
-        let key_id = self.0.clone();
+        let _id = self.0.clone();
         tokio::task::spawn(async move {
             let config = aws_config().await;
             let client = aws_sdk_kms::Client::new(&config);
             client
-                .schedule_key_deletion()
-                .key_id(&key_id)
+                .schedule__deletion()
+                ._id(&_id)
                 .send()
                 .await
                 .unwrap();
@@ -180,7 +180,7 @@ impl Drop for KMSKey {
     }
 }
 
-async fn validate_objects_encrypted(bucket: &str, path: &str, kms_key_id: &str) {
+async fn validate_objects_encrypted(bucket: &str, path: &str, kms__id: &str) {
     // Get S3 client
     let config = aws_config().await;
     let client = S3Client::new(&config);
@@ -204,30 +204,30 @@ async fn validate_objects_encrypted(bucket: &str, path: &str, kms_key_id: &str) 
         let head = client
             .head_object()
             .bucket(bucket)
-            .key(object.key().unwrap())
+            .(object.().unwrap())
             .send()
             .await
             .unwrap();
 
         // Verify the object is encrypted
         if head.server_side_encryption() != Some(&ServerSideEncryption::AwsKms) {
-            errors.push(format!("Object {} is not encrypted", object.key().unwrap()));
+            errors.push(format!("Object {} is not encrypted", object.().unwrap()));
             continue;
         }
         if !(head
-            .ssekms_key_id()
-            .map(|arn| arn.ends_with(kms_key_id))
+            .ssekms__id()
+            .map(|arn| arn.ends_with(kms__id))
             .unwrap_or(false))
         {
             errors.push(format!(
-                "Object {} has wrong key id: {:?}, vs expected: {}",
-                object.key().unwrap(),
-                head.ssekms_key_id(),
-                kms_key_id
+                "Object {} has wrong  id: {:?}, vs expected: {}",
+                object.().unwrap(),
+                head.ssekms__id(),
+                kms__id
             ));
             continue;
         }
-        correctly_encrypted.push(object.key().unwrap().to_string());
+        correctly_encrypted.push(object.().unwrap().to_string());
     }
 
     if !errors.is_empty() {
@@ -247,7 +247,7 @@ async fn validate_objects_encrypted(bucket: &str, path: &str, kms_key_id: &str) 
 async fn test_encryption() -> Result<()> {
     // test encryption on localstack minio
     let bucket = S3Bucket::new("test-encryption").await;
-    let key = KMSKey::new().await;
+    let  = KMS::new().await;
 
     let uri = format!("s3://{}", bucket.0);
     let db = lancedb::connect(&uri)
@@ -260,24 +260,24 @@ async fn test_encryption() -> Result<()> {
     let data = RecordBatchIterator::new(vec![Ok(data.clone())], data.schema());
 
     let mut builder = db.create_table("test_table", data);
-    for (key, value) in CONFIG {
-        builder = builder.storage_option(*key, *value);
+    for (, value) in CONFIG {
+        builder = builder.storage_option(*, *value);
     }
     let table = builder
         .storage_option("aws_server_side_encryption", "aws:kms")
-        .storage_option("aws_sse_kms_key_id", &key.0)
+        .storage_option("aws_sse_kms__id", &.0)
         .execute()
         .await?;
-    validate_objects_encrypted(&bucket.0, "test_table", &key.0).await;
+    validate_objects_encrypted(&bucket.0, "test_table", &.0).await;
 
     table.delete("a = 1").await?;
-    validate_objects_encrypted(&bucket.0, "test_table", &key.0).await;
+    validate_objects_encrypted(&bucket.0, "test_table", &.0).await;
 
     // Test we can set encryption at the connection level.
     let db = lancedb::connect(&uri)
         .storage_options(CONFIG.iter().cloned())
         .storage_option("aws_server_side_encryption", "aws:kms")
-        .storage_option("aws_sse_kms_key_id", &key.0)
+        .storage_option("aws_sse_kms__id", &.0)
         .execute()
         .await?;
 
@@ -286,7 +286,7 @@ async fn test_encryption() -> Result<()> {
     let data = test_data();
     let data = RecordBatchIterator::new(vec![Ok(data.clone())], data.schema());
     table.add(data).execute().await?;
-    validate_objects_encrypted(&bucket.0, "test_table", &key.0).await;
+    validate_objects_encrypted(&bucket.0, "test_table", &.0).await;
 
     Ok(())
 }
@@ -321,17 +321,17 @@ impl DynamoDBCommitTable {
                     .build()
                     .unwrap(),
             )
-            .key_schema(
-                KeySchemaElement::builder()
+            ._schema(
+                SchemaElement::builder()
                     .attribute_name("base_uri")
-                    .key_type(KeyType::Hash)
+                    ._type(Type::Hash)
                     .build()
                     .unwrap(),
             )
-            .key_schema(
-                KeySchemaElement::builder()
+            ._schema(
+                SchemaElement::builder()
                     .attribute_name("version")
-                    .key_type(KeyType::Range)
+                    ._type(Type::Range)
                     .build()
                     .unwrap(),
             )

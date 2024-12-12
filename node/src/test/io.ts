@@ -36,14 +36,14 @@ describe('LanceDB S3 client', function () {
     describe.skip('Skip S3 test', function () {})
   }
 
-  if (process.env.TEST_S3_BASE_URL != null && process.env.TEST_AWS_ACCESS_KEY_ID != null && process.env.TEST_AWS_SECRET_ACCESS_KEY != null) {
+  if (process.env.TEST_S3_BASE_URL != null && process.env.TEST_AWS_ACCESS__ID != null && process.env.TEST_AWS_SECRET_ACCESS_ != null) {
     const baseUri = process.env.TEST_S3_BASE_URL
     it('use custom credentials', async function () {
       const opts: ConnectionOptions = {
         uri: `${baseUri}/custom_credentials`,
         awsCredentials: {
-          accessKeyId: process.env.TEST_AWS_ACCESS_KEY_ID as string,
-          secretKey: process.env.TEST_AWS_SECRET_ACCESS_KEY as string
+          accessId: process.env.TEST_AWS_ACCESS__ID as string,
+          secret: process.env.TEST_AWS_SECRET_ACCESS_ as string
         }
       }
       const table = await createTestDB(opts, 2, 20)

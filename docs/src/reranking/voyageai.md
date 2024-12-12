@@ -2,7 +2,7 @@
 
 Voyage AI provides cutting-edge embedding and rerankers.
 
-This re-ranker uses the [VoyageAI](https://docs.voyageai.com/docs/) API to rerank the search results. You can use this re-ranker by passing `VoyageAIReranker()` to the `rerank()` method. Note that you'll either need to set the `VOYAGE_API_KEY` environment variable or pass the `api_key` argument to use this re-ranker.
+This re-ranker uses the [VoyageAI](https://docs.voyageai.com/docs/) API to rerank the search results. You can use this re-ranker by passing `VoyageAIReranker()` to the `rerank()` method. Note that you'll either need to set the `VOYAGE_API_` environment variable or pass the `api_` argument to use this re-ranker.
 
 
 !!! note
@@ -50,7 +50,7 @@ Accepted Arguments
 | `model_name` | `str` | `None` | The name of the reranker model to use. Available models are: rerank-2, rerank-2-lite |
 | `column` | `str` | `"text"` | The name of the column to use as input to the cross encoder model. |
 | `top_n` | `str` | `None` | The number of results to return. If None, will return all results. |
-| `api_key` | `str` | `None` | The API key for the Voyage AI API. If not provided, the `VOYAGE_API_KEY` environment variable is used. |
+| `api_` | `str` | `None` | The API  for the Voyage AI API. If not provided, the `VOYAGE_API_` environment variable is used. |
 | `return_score` | str | `"relevance"` | Options are "relevance" or "all". The type of score to return. If "relevance", will return only the `_relevance_score. If "all" is supported, will return relevance score along with the vector and/or fts scores depending on query type |
 | `truncation` | `bool` | `None` | Whether to truncate the input to satisfy the "context length limit" on the query and the documents. |
 

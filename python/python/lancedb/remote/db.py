@@ -37,7 +37,7 @@ class RemoteDBConnection(DBConnection):
     def __init__(
         self,
         db_url: str,
-        api_key: str,
+        api_: str,
         region: str,
         host_override: Optional[str] = None,
         request_thread_pool: Optional[ThreadPoolExecutor] = None,
@@ -90,7 +90,7 @@ class RemoteDBConnection(DBConnection):
         self._conn = LOOP.run(
             connect_async(
                 db_url,
-                api_key=api_key,
+                api_=api_,
                 region=region,
                 host_override=host_override,
                 client_config=client_config,
@@ -198,7 +198,7 @@ class RemoteDBConnection(DBConnection):
         Can create with list of tuples or dictionaries:
 
         >>> import lancedb
-        >>> db = lancedb.connect("db://...", api_key="...", # doctest: +SKIP
+        >>> db = lancedb.connect("db://...", api_="...", # doctest: +SKIP
         ...                      region="...")              # doctest: +SKIP
         >>> data = [{"vector": [1.1, 1.2], "lat": 45.5, "long": -122.7},
         ...         {"vector": [0.2, 1.8], "lat": 40.1, "long":  -74.1}]

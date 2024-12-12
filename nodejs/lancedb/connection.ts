@@ -330,7 +330,7 @@ export class LocalConnection extends Connection {
 }
 
 /**
- * Takes storage options and makes all the keys snake case.
+ * Takes storage options and makes all the s snake case.
  */
 export function cleanseStorageOptions(
   options?: Record<string, string>,
@@ -339,10 +339,10 @@ export function cleanseStorageOptions(
     return undefined;
   }
   const result: Record<string, string> = {};
-  for (const [key, value] of Object.entries(options)) {
+  for (const [, value] of Object.entries(options)) {
     if (value !== undefined) {
-      const newKey = camelToSnakeCase(key);
-      result[newKey] = value;
+      const new = camelToSnakeCase();
+      result[new] = value;
     }
   }
   return result;

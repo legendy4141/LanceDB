@@ -64,8 +64,8 @@ describe("LanceDB client", function () {
     it("should accept custom aws credentials", async function () {
       const uri = await createTestDB();
       const awsCredentials: AwsCredentials = {
-        accessKeyId: "",
-        secretKey: ""
+        accessId: "",
+        secret: ""
       };
       const con = await lancedb.connect({
         uri,
@@ -296,7 +296,7 @@ describe("LanceDB client", function () {
           id: 1
         }
       ];
-      // even thought the keys in data is out of order it should still work
+      // even thought the s in data is out of order it should still work
       const table = await con.createTable({
         name: "vectors",
         data,
@@ -986,7 +986,7 @@ describe("Remote LanceDB client", function () {
       const con = await lancedb.connect({
         uri: "db://test-1234",
         region: "asdfasfasfdf",
-        apiKey: "some-api-key"
+        api: "some-api-"
       });
 
       // GET

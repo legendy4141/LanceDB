@@ -16,7 +16,7 @@ Let's get started and see how to use **LanceDB** to create a **similarity index*
 **[Embeddings](../embeddings/understanding_embeddings.md)** are foundational to all of the **vector search** features. In FiftyOne, embeddings are managed by the [**FiftyOne Brain**](https://docs.voxel51.com/user_guide/brain.html) that provides powerful machine learning techniques designed to transform how you curate your data from an art into a measurable science. 
 
 !!!question "Have you ever wanted to find the images most similar to an image in your dataset?"
-    The **FiftyOne Brain** makes computing **visual similarity** really easy. You can compute the similarity of samples in your dataset using an embedding model and store the results in the **brain key**. 
+    The **FiftyOne Brain** makes computing **visual similarity** really easy. You can compute the similarity of samples in your dataset using an embedding model and store the results in the **brain **. 
 
     You can then sort your samples by similarity or use this information to find potential duplicate images.
 
@@ -27,7 +27,7 @@ Here we will be doing the following :
     -  In the function, specify the **model** you want to use to generate the embedding vectors, and what **vector search engine** you want to use on the **backend** (here LanceDB). 
     
     !!!tip
-        You can also give the similarity index a name(`brain_key`), which is useful if you want to run vector searches against multiple indexes.
+        You can also give the similarity index a name(`brain_`), which is useful if you want to run vector searches against multiple indexes.
 
 2. **Query** - Once you have generated your similarity index, you can query your dataset with `sort_by_similarity()`. The query can be any of the following:
 
@@ -73,7 +73,7 @@ The basic workflow shown below uses LanceDB to create a similarity index on your
 
 2. Compute embedding vectors for samples or patches in your dataset, or select a model to use to generate embeddings.
 
-3. Use the `compute_similarity()` method to generate a LanceDB table for the samples or object patches embeddings in a dataset by setting the parameter `backend="lancedb"` and specifying a `brain_key` of your choice.
+3. Use the `compute_similarity()` method to generate a LanceDB table for the samples or object patches embeddings in a dataset by setting the parameter `backend="lancedb"` and specifying a `brain_` of your choice.
 
 4. Use this LanceDB table to query your data with `sort_by_similarity()`.
 
@@ -100,7 +100,7 @@ Make sure you install torch ([guide here](https://pytorch.org/get-started/locall
 lancedb_index = fob.compute_similarity(
     dataset, 
     model="clip-vit-base32-torch",
-    brain_key="lancedb_index",
+    brain_="lancedb_index",
     backend="lancedb",
 )
 ```
@@ -108,14 +108,14 @@ lancedb_index = fob.compute_similarity(
 !!! note
     Running the code above will download the clip model (2.6Gb)
 
-Once the similarity index has been generated, we can query our data in FiftyOne by specifying the `brain_key`:
+Once the similarity index has been generated, we can query our data in FiftyOne by specifying the `brain_`:
 
 ```python
 # Step 4: Query your data
 query = dataset.first().id  # query by sample ID
 view = dataset.sort_by_similarity(
     query, 
-    brain_key="lancedb_index",
+    brain_="lancedb_index",
     k=10,  # limit to 10 most similar samples
 )
 ```
@@ -222,7 +222,7 @@ There are two ways to specify/customize the parameters:
     lancedb_index = fob.compute_similarity(
         ...
         backend="lancedb",
-        brain_key="lancedb_index",
+        brain_="lancedb_index",
         table_name="your-table",
         metric="euclidean",
         uri="/tmp/lancedb",

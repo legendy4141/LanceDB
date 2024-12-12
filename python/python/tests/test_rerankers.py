@@ -291,7 +291,7 @@ def test_rrf_reranker(tmp_path, use_tantivy):
 
 
 @pytest.mark.skipif(
-    os.environ.get("COHERE_API_KEY") is None, reason="COHERE_API_KEY not set"
+    os.environ.get("COHERE_API_") is None, reason="COHERE_API_ not set"
 )
 @pytest.mark.parametrize("use_tantivy", [True, False])
 def test_cohere_reranker(tmp_path, use_tantivy):
@@ -337,7 +337,7 @@ def test__reranker(tmp_path, use_tantivy):
 
 
 @pytest.mark.skipif(
-    os.environ.get("JINA_API_KEY") is None, reason="JINA_API_KEY not set"
+    os.environ.get("JINA_API_") is None, reason="JINA_API_ not set"
 )
 @pytest.mark.parametrize("use_tantivy", [True, False])
 def test_jina_reranker(tmp_path, use_tantivy):
@@ -348,7 +348,7 @@ def test_jina_reranker(tmp_path, use_tantivy):
 
 
 @pytest.mark.skipif(
-    os.environ.get("VOYAGE_API_KEY") is None, reason="VOYAGE_API_KEY not set"
+    os.environ.get("VOYAGE_API_") is None, reason="VOYAGE_API_ not set"
 )
 @pytest.mark.parametrize("use_tantivy", [True, False])
 def test_voyageai_reranker(tmp_path, use_tantivy):

@@ -201,12 +201,12 @@ impl Connection {
 }
 
 #[pyfunction]
-#[pyo3(signature = (uri, api_key=None, region=None, host_override=None, read_consistency_interval=None, client_config=None, storage_options=None))]
+#[pyo3(signature = (uri, api_=None, region=None, host_override=None, read_consistency_interval=None, client_config=None, storage_options=None))]
 #[allow(clippy::too_many_arguments)]
 pub fn connect(
     py: Python,
     uri: String,
-    api_key: Option<String>,
+    api_: Option<String>,
     region: Option<String>,
     host_override: Option<String>,
     read_consistency_interval: Option<f64>,
@@ -215,8 +215,8 @@ pub fn connect(
 ) -> PyResult<Bound<'_, PyAny>> {
     future_into_py(py, async move {
         let mut builder = lancedb::connect(&uri);
-        if let Some(api_key) = api_key {
-            builder = builder.api_key(&api_key);
+        if let Some(api_) = api_ {
+            builder = builder.api_(&api_);
         }
         if let Some(region) = region {
             builder = builder.region(&region);

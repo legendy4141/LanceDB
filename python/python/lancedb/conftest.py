@@ -10,14 +10,14 @@ from .embeddings import EmbeddingFunctionRegistry, TextEmbeddingFunction
 
 
 @pytest.fixture(autouse=True)
-def doctest_setup(monkeypatch, tmpdir):
+def doctest_setup(monpatch, tmpdir):
     # disable color for doctests so we don't have to include
     # escape codes in docstrings
-    monkeypatch.setitem(os.environ, "NO_COLOR", "1")
+    monpatch.setitem(os.environ, "NO_COLOR", "1")
     # Explicitly set the column width
-    monkeypatch.setitem(os.environ, "COLUMNS", "80")
+    monpatch.setitem(os.environ, "COLUMNS", "80")
     # Work in a temporary directory
-    monkeypatch.chdir(tmpdir)
+    monpatch.chdir(tmpdir)
 
 
 registry = EmbeddingFunctionRegistry.get_instance()

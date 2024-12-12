@@ -7,7 +7,7 @@ class MissingValueError(ValueError):
     pass
 
 
-class MissingColumnError(KeyError):
+class MissingColumnError(Error):
     """
     Exception raised when a column name specified is not in
     the  DataFrame object

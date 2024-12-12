@@ -16,10 +16,10 @@
 
 async function example () {
   const lancedb = require('vectordb')
-  // You need to provide an  API key, here we read it from the  environment variable
-  const apiKey = process.env.
+  // You need to provide an  API , here we read it from the  environment variable
+  const api = process.env.
   // The embedding function will create embeddings for the 'text' column(text in this case)
-  const embedding = new lancedb.EmbeddingFunction('text', apiKey)
+  const embedding = new lancedb.EmbeddingFunction('text', api)
 
   const db = await lancedb.connect('data/sample-lancedb')
 

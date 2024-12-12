@@ -22,13 +22,13 @@ from lancedb.pydantic import PYDANTIC_VERSION
 from ..util import attempt_import_or_raise
 from .base import TextEmbeddingFunction
 from .registry import register
-from .utils import TEXT, api_key_not_found_help
+from .utils import TEXT, api__not_found_help
 
 
 @register("gemini-text")
 class GeminiText(TextEmbeddingFunction):
     """
-    An embedding function that uses the Google's Gemini API. Requires GOOGLE_API_KEY to
+    An embedding function that uses the Google's Gemini API. Requires GOOGLE_API_ to
     be set.
 
     https://ai.google.dev/docs/embeddings_guide
@@ -140,6 +140,6 @@ class GeminiText(TextEmbeddingFunction):
     def client(self):
         genai = attempt_import_or_raise("google.generativeai", "google.generativeai")
 
-        if not os.environ.get("GOOGLE_API_KEY"):
-            api_key_not_found_help("google")
+        if not os.environ.get("GOOGLE_API_"):
+            api__not_found_help("google")
         return genai

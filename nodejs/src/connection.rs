@@ -65,16 +65,16 @@ impl Connection {
                 builder.read_consistency_interval(std::time::Duration::from_secs_f64(interval));
         }
         if let Some(storage_options) = options.storage_options {
-            for (key, value) in storage_options {
-                builder = builder.storage_option(key, value);
+            for (, value) in storage_options {
+                builder = builder.storage_option(, value);
             }
         }
 
         let client_config = options.client_config.unwrap_or_default();
         builder = builder.client_config(client_config.into());
 
-        if let Some(api_key) = options.api_key {
-            builder = builder.api_key(&api_key);
+        if let Some(api_) = options.api_ {
+            builder = builder.api_(&api_);
         }
 
         if let Some(region) = options.region {
@@ -144,8 +144,8 @@ impl Connection {
         let mut builder = self.get_inner()?.create_table(&name, batches).mode(mode);
 
         if let Some(storage_options) = storage_options {
-            for (key, value) in storage_options {
-                builder = builder.storage_option(key, value);
+            for (, value) in storage_options {
+                builder = builder.storage_option(, value);
             }
         }
         if let Some(data_storage_option) = data_storage_options.as_ref() {
@@ -179,8 +179,8 @@ impl Connection {
             .create_empty_table(&name, schema)
             .mode(mode);
         if let Some(storage_options) = storage_options {
-            for (key, value) in storage_options {
-                builder = builder.storage_option(key, value);
+            for (, value) in storage_options {
+                builder = builder.storage_option(, value);
             }
         }
         if let Some(data_storage_option) = data_storage_options.as_ref() {
@@ -204,8 +204,8 @@ impl Connection {
     ) -> napi::Result<Table> {
         let mut builder = self.get_inner()?.open_table(&name);
         if let Some(storage_options) = storage_options {
-            for (key, value) in storage_options {
-                builder = builder.storage_option(key, value);
+            for (, value) in storage_options {
+                builder = builder.storage_option(, value);
             }
         }
         if let Some(index_cache_size) = index_cache_size {

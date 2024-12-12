@@ -24,10 +24,10 @@ const { Configuration, Api } = require('')
 const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
 
 (async () => {
-  // You need to provide an  API key, here we read it from the  environment variable
-  const apiKey = process.env.
+  // You need to provide an  API , here we read it from the  environment variable
+  const api = process.env.
   // The embedding function will create embeddings for the 'context' column
-  const embedFunction = new lancedb.EmbeddingFunction('context', apiKey)
+  const embedFunction = new lancedb.EmbeddingFunction('context', api)
 
   // Connects to LanceDB
   const db = await lancedb.connect('data/youtube-lancedb')
@@ -41,7 +41,7 @@ const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
   }
 
   // Use  Completion API to generate and answer based on the context that LanceDB provides
-  const configuration = new Configuration({ apiKey })
+  const configuration = new Configuration({ api })
   const  = new Api(configuration)
   const rl = readline.createInterface({ input, output })
   try {
@@ -99,12 +99,12 @@ function contextualize (rows, contextSize, groupColumn) {
   })
 
   const data = []
-  Object.keys(grouped).forEach(key => {
-    for (let i = 0; i < grouped[key].length; i++) {
+  Object.s(grouped).forEach( => {
+    for (let i = 0; i < grouped[].length; i++) {
       const start = i - contextSize > 0 ? i - contextSize : 0
-      grouped[key][i].context = grouped[key].slice(start, i + 1).map(r => r.text).join(' ')
+      grouped[][i].context = grouped[].slice(start, i + 1).map(r => r.text).join(' ')
     }
-    data.push(...grouped[key])
+    data.push(...grouped[])
   })
   return data
 }

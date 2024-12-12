@@ -330,6 +330,6 @@ def url_retrieve(url: str):
         raise ConnectionError("could not download {} due to {}".format(url, err))
 
 
-def api_key_not_found_help(provider):
-    logging.error("Could not find API key for %s", provider)
-    raise ValueError(f"Please set the {provider.upper()}_API_KEY environment variable.")
+def api__not_found_help(provider):
+    logging.error("Could not find API  for %s", provider)
+    raise ValueError(f"Please set the {provider.upper()}_API_ environment variable.")

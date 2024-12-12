@@ -15,7 +15,7 @@
 
 • **valuesSql**: `Record`\<`string`, `string`\>
 
-A key-value map of updates. The keys are the column names, and the values are the
+A -value map of updates. The s are the column names, and the values are the
 new values to set as SQL expressions.
 
 #### Defined in

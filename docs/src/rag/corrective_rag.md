@@ -61,10 +61,10 @@ def grade_documents(state):
             state (dict): The current graph state
 
         Returns:
-            state (dict): Updates documents key with relevant documents
+            state (dict): Updates documents  with relevant documents
         """
 
-    state_dict = state["keys"]
+    state_dict = state["s"]
     question = state_dict["question"]
     documents = state_dict["documents"]
 
@@ -88,7 +88,7 @@ def grade_documents(state):
         template="""You are a grader assessing relevance of a retrieved document to a user question. \n
         Here is the retrieved document: \n\n {context} \n\n
         Here is the user question: {question} \n
-        If the document contains keyword(s) or semantic meaning related to the user question, grade it as relevant. \n
+        If the document contains word(s) or semantic meaning related to the user question, grade it as relevant. \n
         Give a binary score 'yes' or 'no' score to indicate whether the document is relevant to the question.""",
         input_variables=["context", "question"],
     )
@@ -107,7 +107,7 @@ def grade_documents(state):
             continue
 
     return {
-        "keys": {
+        "s": {
             "documents": filtered_docs,
             "question": question,
             "run_web_search": search,

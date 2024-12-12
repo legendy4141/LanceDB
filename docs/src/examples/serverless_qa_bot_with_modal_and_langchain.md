@@ -32,7 +32,7 @@ stub = Stub(
 )
 ```
 
-We're using Modal's Secrets injection to secure our  key. To set your own, you can access the Modal UI and enter your key.
+We're using Modal's Secrets injection to secure our  . To set your own, you can access the Modal UI and enter your .
 
 ### Setting up caches for LanceDB and LangChain
 

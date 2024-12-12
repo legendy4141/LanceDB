@@ -51,7 +51,7 @@ pub struct RemoteDatabase<S: HttpSend = Sender> {
 impl RemoteDatabase {
     pub fn try_new(
         uri: &str,
-        api_key: &str,
+        api_: &str,
         region: &str,
         host_override: Option<String>,
         client_config: ClientConfig,
@@ -59,7 +59,7 @@ impl RemoteDatabase {
     ) -> Result<Self> {
         let client = RestfulLanceDbClient::try_new(
             uri,
-            api_key,
+            api_,
             region,
             host_override,
             client_config,
@@ -387,7 +387,7 @@ mod tests {
         // Storage options should be ignored.
         let table = conn
             .open_table("table1")
-            .storage_option("key", "value")
+            .storage_option("", "value")
             .execute()
             .await
             .unwrap();
@@ -580,7 +580,7 @@ mod tests {
         let db_uri = "db://my-container/my-prefix";
         let _ = ConnectBuilder::new(db_uri)
             .region("us-east-1")
-            .api_key("my-api-key")
+            .api_("my-api-")
             .storage_options(vec![("azure_storage_account_name", "my-storage-account")])
             .execute()
             .await

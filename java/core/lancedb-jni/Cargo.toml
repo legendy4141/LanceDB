@@ -7,7 +7,7 @@ edition.workspace = true
 repository.workspace = true
 readme.workspace = true
 license.workspace = true
-keywords.workspace = true
+words.workspace = true
 categories.workspace = true
 publish = false
 

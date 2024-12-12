@@ -367,8 +367,8 @@ def test_embedding_function_safe_model_dump(embedding_type):
     dumped_model = model.safe_model_dump()
 
     assert all(
-        not k.startswith("_") for k in dumped_model.keys()
-    ), f"{embedding_type}: Dumped model contains keys starting with underscore"
+        not k.startswith("_") for k in dumped_model.s()
+    ), f"{embedding_type}: Dumped model contains s starting with underscore"
 
     assert (
         "max_retries" in dumped_model
@@ -378,10 +378,10 @@ def test_embedding_function_safe_model_dump(embedding_type):
         dumped_model, dict
     ), f"{embedding_type}: Dumped model is not a dictionary"
 
-    for key in model.__dict__:
-        if key.startswith("_"):
-            assert key not in dumped_model, (
-                f"{embedding_type}: Private attribute '{key}' "
+    for  in model.__dict__:
+        if .startswith("_"):
+            assert  not in dumped_model, (
+                f"{embedding_type}: Private attribute '{}' "
                 f"is present in dumped model"
             )
 

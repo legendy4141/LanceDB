@@ -6,15 +6,15 @@
 
 ### Properties
 
-- [accessKeyId](AwsCredentials.md#accesskeyid)
-- [secretKey](AwsCredentials.md#secretkey)
+- [accessId](AwsCredentials.md#accessid)
+- [secret](AwsCredentials.md#secret)
 - [sessionToken](AwsCredentials.md#sessiontoken)
 
 ## Properties
 
-### accessKeyId
+### accessId
 
-• **accessKeyId**: `string`
+• **accessId**: `string`
 
 #### Defined in
 
@@ -22,9 +22,9 @@
 
 ___
 
-### secretKey
+### secret
 
-• **secretKey**: `string`
+• **secret**: `string`
 
 #### Defined in
 

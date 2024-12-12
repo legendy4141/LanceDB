@@ -67,19 +67,19 @@ impl TryFrom<&str> for EmbeddingModel {
 
 pub struct EmbeddingFunction {
     model: EmbeddingModel,
-    api_key: String,
+    api_: String,
     api_base: Option<String>,
     org_id: Option<String>,
 }
 
 impl std::fmt::Debug for EmbeddingFunction {
     fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
-        // let's be safe and not print the full API key
-        let creds_display = if self.api_key.len() > 6 {
+        // let's be safe and not print the full API 
+        let creds_display = if self.api_.len() > 6 {
             format!(
                 "{}***{}",
-                &self.api_key[0..2],
-                &self.api_key[self.api_key.len() - 4..]
+                &self.api_[0..2],
+                &self.api_[self.api_.len() - 4..]
             )
         } else {
             "[INVALID]".to_string()
@@ -87,7 +87,7 @@ impl std::fmt::Debug for EmbeddingFunction {
 
         f.debug_struct("")
             .field("model", &self.model)
-            .field("api_key", &creds_display)
+            .field("api_", &creds_display)
             .field("api_base", &self.api_base)
             .field("org_id", &self.org_id)
             .finish()
@@ -96,28 +96,28 @@ impl std::fmt::Debug for EmbeddingFunction {
 
 impl EmbeddingFunction {
     /// Create a new EmbeddingFunction
-    pub fn new<A: Into<String>>(api_key: A) -> Self {
-        Self::new_impl(api_key.into(), EmbeddingModel::TextEmbeddingAda002)
+    pub fn new<A: Into<String>>(api_: A) -> Self {
+        Self::new_impl(api_.into(), EmbeddingModel::TextEmbeddingAda002)
     }
 
     pub fn new_with_model<A: Into<String>, M: TryInto<EmbeddingModel>>(
-        api_key: A,
+        api_: A,
         model: M,
     ) -> crate::Result<Self>
     where
         M::Error: Into<crate::Error>,
     {
         Ok(Self::new_impl(
-            api_key.into(),
+            api_.into(),
             model.try_into().map_err(|e| e.into())?,
         ))
     }
 
     /// concrete implementation to reduce monomorphization
-    fn new_impl(api_key: String, model: EmbeddingModel) -> Self {
+    fn new_impl(api_: String, model: EmbeddingModel) -> Self {
         Self {
             model,
-            api_key,
+            api_,
             api_base: None,
             org_id: None,
         }
@@ -193,7 +193,7 @@ impl EmbeddingFunction {
             });
         };
 
-        let mut creds = Config::new().with_api_key(self.api_key.clone());
+        let mut creds = Config::new().with_api_(self.api_.clone());
 
         if let Some(api_base) = &self.api_base {
             creds = creds.with_api_base(api_base.clone());

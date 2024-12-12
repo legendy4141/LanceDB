@@ -71,7 +71,7 @@ markdown_extensions:
   - footnotes
   - pymdownx.critic
   - pymdownx.caret
-  - pymdownx.keys
+  - pymdownx.s
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.details

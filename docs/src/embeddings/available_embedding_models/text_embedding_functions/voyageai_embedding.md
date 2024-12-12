@@ -4,7 +4,7 @@ Voyage AI provides cutting-edge embedding and rerankers.
 
 
 Using voyageai API requires voyageai package, which can be installed using `pip install voyageai`. Voyage AI embeddings are used to generate embeddings for text data. The embeddings can be used for various tasks like semantic search, clustering, and classification.
-You also need to set the `VOYAGE_API_KEY` environment variable to use the VoyageAI API.
+You also need to set the `VOYAGE_API_` environment variable to use the VoyageAI API.
 
 Supported models are:
 

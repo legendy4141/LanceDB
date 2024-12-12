@@ -275,7 +275,7 @@ For example, you may not care about "a" or "b" but instead simply want "a + b". 
 seen in the SELECT clause of an SQL query (e.g. `SELECT a+b FROM my_table`).
 
 To create dynamic columns you can pass in a Map<string, string>.  A column will be returned
-for each entry in the map.  The key provides the name of the column.  The value is
+for each entry in the map.  The  provides the name of the column.  The value is
 an SQL string used to specify how the column is calculated.
 
 For example, an SQL query might state `SELECT a + b AS combined, c`.  The equivalent

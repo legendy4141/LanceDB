@@ -18,7 +18,7 @@ from llama_index.vector_stores.lancedb import LanceDBVectorStore
 import textwrap
 import 
 
-.api_key = "sk-..."
+.api_ = "sk-..."
 
 documents = SimpleDirectoryReader("./data/your-data-dir/").load_data()
 print("Document ID:", documents[0].doc_id, "Document Hash:", documents[0].hash)
@@ -26,7 +26,7 @@ print("Document ID:", documents[0].doc_id, "Document Hash:", documents[0].hash)
 ## For LanceDB cloud :
 # vector_store = LanceDBVectorStore( 
 #     uri="db://db_name", # your remote DB URI
-#     api_key="sk_..", # lancedb cloud api key
+#     api_="sk_..", # lancedb cloud api 
 #     region="your-region" # the region you configured
 #     ...
 # )
@@ -59,10 +59,10 @@ from llama_index.core.vector_stores import (
 query_filters = MetadataFilters(
     filters=[
         MetadataFilter(
-            key="creation_date", operator=FilterOperator.EQ, value="2024-05-23"
+            ="creation_date", operator=FilterOperator.EQ, value="2024-05-23"
         ),
         MetadataFilter(
-            key="file_size", value=75040, operator=FilterOperator.GT
+            ="file_size", value=75040, operator=FilterOperator.GT
         ),
     ],
     condition=FilterCondition.AND,
@@ -96,9 +96,9 @@ The exhaustive list of parameters for `LanceDBVectorStore` vector store are :
 - `table_name` : Optional[str], Name of your table in the database. Defaults to `"vectors"`.
 - `table`: Optional[Any], `lancedb.db.LanceTable` object to be passed. Defaults to `None`. 
 - `vector_column_name`: Optional[Any], Column name to use for vector's in the table. Defaults to `'vector'`.   
-- `doc_id_key`: Optional[str], Column name to use for document id's in the table. Defaults to `'doc_id'`.  
-- `text_key`: Optional[str], Column name to use for text in the table. Defaults to `'text'`.  
-- `api_key`: Optional[str], API key to use for LanceDB cloud database. Defaults to `None`.  
+- `doc_id_`: Optional[str], Column name to use for document id's in the table. Defaults to `'doc_id'`.  
+- `text_`: Optional[str], Column name to use for text in the table. Defaults to `'text'`.  
+- `api_`: Optional[str], API  to use for LanceDB cloud database. Defaults to `None`.  
 - `region`: Optional[str], Region to use for LanceDB cloud database. Only for LanceDB Cloud, defaults to `None`.  
 - `nprobes` : Optional[int], Set the number of probes to use. Only applicable if ANN index is created on the table else its ignored. Defaults to `20`.
 - `refine_factor` : Optional[int], Refine the results by reading extra elements and re-ranking them in memory. Defaults to `None`.

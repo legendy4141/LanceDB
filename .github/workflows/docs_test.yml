@@ -102,7 +102,7 @@ jobs:
     - name: Test
       env:
         LANCEDB_URI: ${{ secrets.LANCEDB_URI }}
-        LANCEDB_DEV_API_KEY: ${{ secrets.LANCEDB_DEV_API_KEY }}
+        LANCEDB_DEV_API_: ${{ secrets.LANCEDB_DEV_API_ }}
       run: |
         cd docs
         npm t

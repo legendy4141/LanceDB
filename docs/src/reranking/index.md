@@ -33,7 +33,7 @@ data = [
     {"text": "goodbye world"}
     ]
 tbl = db.create_table("test", data)
-reranker = CohereReranker(api_key="your_api_key")
+reranker = CohereReranker(api_="your_api_")
 
 # Run vector search with a reranker
 result = tbl.query("hello").rerank(reranker).to_list() 

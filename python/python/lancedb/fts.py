@@ -104,8 +104,8 @@ def populate_index(
 
     for name in fields:
         try:
-            f = table.schema.field(name)  # raises KeyError if not found
-        except KeyError:
+            f = table.schema.field(name)  # raises Error if not found
+        except Error:
             f = resolve_path(table.schema, name)
             nested.append(name)
 
@@ -166,7 +166,7 @@ def resolve_path(schema, field_name: str) -> pa.Field:
         if pa.types.is_struct(field.type):
             field = field.type.field(segment)
         else:
-            raise KeyError(f"field {field_name} not found in schema {schema}")
+            raise Error(f"field {field_name} not found in schema {schema}")
     return field
 
 

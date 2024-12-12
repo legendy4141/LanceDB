@@ -1,6 +1,6 @@
 # Hybrid Search
 
-LanceDB supports both semantic and keyword-based search (also termed full-text search, or FTS). In real world applications, it is often useful to combine these two approaches to get the best best results. For example, you may want to search for a document that is semantically similar to a query document, but also contains a specific keyword. This is an example of *hybrid search*, a search algorithm that combines multiple search techniques.
+LanceDB supports both semantic and word-based search (also termed full-text search, or FTS). In real world applications, it is often useful to combine these two approaches to get the best best results. For example, you may want to search for a document that is semantically similar to a query document, but also contains a specific word. This is an example of *hybrid search*, a search algorithm that combines multiple search techniques.
 
 ## Hybrid search in LanceDB
 You can perform hybrid search in LanceDB by combining the results of semantic and full-text search via a reranking algorithm of your choice. LanceDB provides multiple rerankers out of the box. However, you can always write a custom reranker if your use case need more sophisticated logic .
@@ -18,8 +18,8 @@ db = lancedb.connect("~/.lancedb")
 # Ingest embedding function in LanceDB table
 # Configuring the environment variable 
 if "" not in os.environ:
-# OR set the key here as a variable
-    .api_key = "sk-..."
+# OR set the  here as a variable
+    .api_ = "sk-..."
 embeddings = get_registry().get("").create()
 
 class Documents(LanceModel):

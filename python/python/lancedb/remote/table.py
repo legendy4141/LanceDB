@@ -186,7 +186,7 @@ class RemoteTable(Table):
         >>> import lancedb
         >>> import uuid
         >>> from lancedb.schema import vector
-        >>> db = lancedb.connect("db://...", api_key="...", # doctest: +SKIP
+        >>> db = lancedb.connect("db://...", api_="...", # doctest: +SKIP
         ...                      region="...") # doctest: +SKIP
         >>> table_name = uuid.uuid4().hex
         >>> schema = pa.schema(
@@ -292,7 +292,7 @@ class RemoteTable(Table):
         Examples
         --------
         >>> import lancedb
-        >>> db = lancedb.connect("db://...", api_key="...", # doctest: +SKIP
+        >>> db = lancedb.connect("db://...", api_="...", # doctest: +SKIP
         ...                      region="...") # doctest: +SKIP
         >>> data = [
         ...    {"original_width": 100, "caption": "bar", "vector": [0.1, 2.3, 4.5]},
@@ -400,7 +400,7 @@ class RemoteTable(Table):
         ...    {"x": 2, "vector": [3, 4]},
         ...    {"x": 3, "vector": [5, 6]}
         ... ]
-        >>> db = lancedb.connect("db://...", api_key="...", # doctest: +SKIP
+        >>> db = lancedb.connect("db://...", api_="...", # doctest: +SKIP
         ...                      region="...") # doctest: +SKIP
         >>> table = db.create_table("my_table", data) # doctest: +SKIP
         >>> table.search([10,10]).to_pandas() # doctest: +SKIP
@@ -443,7 +443,7 @@ class RemoteTable(Table):
             The SQL where clause to use when updating rows. For example, 'x = 2'
             or 'x IN (1, 2, 3)'. The filter must not be empty, or it will error.
         values: dict, optional
-            The values to update. The keys are the column names and the values
+            The values to update. The s are the column names and the values
             are the values to set.
         values_sql: dict, optional
             The values to update, expressed as SQL expression strings. These can
@@ -458,7 +458,7 @@ class RemoteTable(Table):
         ...    {"x": 2, "vector": [3, 4]},
         ...    {"x": 3, "vector": [5, 6]}
         ... ]
-        >>> db = lancedb.connect("db://...", api_key="...", # doctest: +SKIP
+        >>> db = lancedb.connect("db://...", api_="...", # doctest: +SKIP
         ...                      region="...") # doctest: +SKIP
         >>> table = db.create_table("my_table", data) # doctest: +SKIP
         >>> table.to_pandas() # doctest: +SKIP

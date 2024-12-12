@@ -19,7 +19,7 @@ Usage Example:
     from lancedb.embeddings import get_registry
     import pandas as pd
 
-    os.environ['JINA_API_KEY'] = 'jina_*'
+    os.environ['JINA_API_'] = 'jina_*'
 
     db = lancedb.connect("~/.lancedb")
     func = get_registry().get("jina").create()

@@ -665,7 +665,7 @@ repeatedly calilng this method.
 * **updates**: `Record`&lt;`string`, `string`&gt; \| `Map`&lt;`string`, `string`&gt;
     the
     columns to update
-    Keys in the map should specify the name of the column to update.
+    s in the map should specify the name of the column to update.
     Values in the map provide the new value of the column.  These can
     be SQL literal strings (e.g. "7" or "'foo'") or they can be expressions
     based on the row being updated (e.g. "my_col + 1")

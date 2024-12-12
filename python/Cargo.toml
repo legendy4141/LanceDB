@@ -5,7 +5,7 @@ edition.workspace = true
 description = "Python bindings for LanceDB"
 license.workspace = true
 repository.workspace = true
-keywords.workspace = true
+words.workspace = true
 categories.workspace = true
 rust-version = "1.75.0"
 

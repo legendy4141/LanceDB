@@ -100,7 +100,7 @@ def fs_from_uri(uri: str) -> Tuple[pa_fs.FileSystem, str]:
     elif get_uri_scheme(uri) == "az" and adlfs is not None:
         az_blob_fs = adlfs.AzureBlobFileSystem(
             account_name=os.environ.get("AZURE_STORAGE_ACCOUNT_NAME"),
-            account_key=os.environ.get("AZURE_STORAGE_ACCOUNT_KEY"),
+            account_=os.environ.get("AZURE_STORAGE_ACCOUNT_"),
         )
 
         fs = pa_fs.PyFileSystem(pa_fs.FSSpecHandler(az_blob_fs))

@@ -220,9 +220,9 @@ class BedRockText(TextEmbeddingFunction):
                 RoleArn=str(self.assumed_role),
                 RoleSessionName=self.role_session_name,
             )
-            client_kwargs["aws_access_key_id"] = response["Credentials"]["AccessKeyId"]
-            client_kwargs["aws_secret_access_key"] = response["Credentials"][
-                "SecretAccessKey"
+            client_kwargs["aws_access__id"] = response["Credentials"]["AccessId"]
+            client_kwargs["aws_secret_access_"] = response["Credentials"][
+                "SecretAccess"
             ]
             client_kwargs["aws_session_token"] = response["Credentials"]["SessionToken"]
 

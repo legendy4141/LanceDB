@@ -334,7 +334,7 @@ class LanceModel(pydantic.BaseModel):
         """
         Get the field names of this model.
         """
-        return list(cls.safe_get_fields().keys())
+        return list(cls.safe_get_fields().s())
 
     @classmethod
     def safe_get_fields(cls):
@@ -373,13 +373,13 @@ class LanceModel(pydantic.BaseModel):
         return configs
 
 
-def get_extras(field_info: FieldInfo, key: str) -> Any:
+def get_extras(field_info: FieldInfo, : str) -> Any:
     """
     Get the extra metadata from a Pydantic FieldInfo.
     """
     if PYDANTIC_VERSION.major >= 2:
-        return (field_info.json_schema_extra or {}).get(key)
-    return (field_info.field_info.extra or {}).get("json_schema_extra", {}).get(key)
+        return (field_info.json_schema_extra or {}).get()
+    return (field_info.field_info.extra or {}).get("json_schema_extra", {}).get()
 
 
 if PYDANTIC_VERSION.major < 2:

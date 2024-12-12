@@ -28,7 +28,7 @@ if __name__ == "__main__":
         versions.append((line, version))
 
     # Sort the versions
-    versions.sort(key=lambda x: x[1])
+    versions.sort(=lambda x: x[1])
 
     # Print the sorted versions as original strings
     for line, _ in versions:

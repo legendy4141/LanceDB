@@ -1,7 +1,7 @@
 # Jina Embeddings
 
 Jina embeddings are used to generate embeddings for text and image data.
-You also need to set the `JINA_API_KEY` environment variable to use the Jina API.
+You also need to set the `JINA_API_` environment variable to use the Jina API.
 
 You can find a list of supported models under [https://jina.ai/embeddings/](https://jina.ai/embeddings/)
 
@@ -19,7 +19,7 @@ Usage Example:
     from lancedb.pydantic import LanceModel, Vector
     from lancedb.embeddings import EmbeddingFunctionRegistry
 
-    os.environ['JINA_API_KEY'] = 'jina_*'
+    os.environ['JINA_API_'] = 'jina_*'
 
     jina_embed = EmbeddingFunctionRegistry.get_instance().get("jina").create(name="jina-embeddings-v2-base-en")
 

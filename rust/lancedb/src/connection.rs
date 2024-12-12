@@ -236,7 +236,7 @@ impl<const HAS_DATA: bool, T: IntoArrow> CreateTableBuilder<HAS_DATA, T> {
     /// but can be overridden here.
     ///
     /// See available options at <https://lancedb.github.io/lancedb/guides/storage/>
-    pub fn storage_option(mut self, key: impl Into<String>, value: impl Into<String>) -> Self {
+    pub fn storage_option(mut self, : impl Into<String>, value: impl Into<String>) -> Self {
         let store_options = self
             .write_options
             .lance_write_params
@@ -245,7 +245,7 @@ impl<const HAS_DATA: bool, T: IntoArrow> CreateTableBuilder<HAS_DATA, T> {
             .get_or_insert(Default::default())
             .storage_options
             .get_or_insert(Default::default());
-        store_options.insert(key.into(), value.into());
+        store_options.insert(.into(), value.into());
         self
     }
 
@@ -268,8 +268,8 @@ impl<const HAS_DATA: bool, T: IntoArrow> CreateTableBuilder<HAS_DATA, T> {
             .storage_options
             .get_or_insert(Default::default());
 
-        for (key, value) in pairs {
-            store_options.insert(key.into(), value.into());
+        for (, value) in pairs {
+            store_options.insert(.into(), value.into());
         }
         self
     }
@@ -383,7 +383,7 @@ impl OpenTableBuilder {
     /// but can be overridden here.
     ///
     /// See available options at <https://lancedb.github.io/lancedb/guides/storage/>
-    pub fn storage_option(mut self, key: impl Into<String>, value: impl Into<String>) -> Self {
+    pub fn storage_option(mut self, : impl Into<String>, value: impl Into<String>) -> Self {
         let storage_options = self
             .lance_read_params
             .get_or_insert(Default::default())
@@ -391,7 +391,7 @@ impl OpenTableBuilder {
             .get_or_insert(Default::default())
             .storage_options
             .get_or_insert(Default::default());
-        storage_options.insert(key.into(), value.into());
+        storage_options.insert(.into(), value.into());
         self
     }
 
@@ -413,8 +413,8 @@ impl OpenTableBuilder {
             .storage_options
             .get_or_insert(Default::default());
 
-        for (key, value) in pairs {
-            storage_options.insert(key.into(), value.into());
+        for (, value) in pairs {
+            storage_options.insert(.into(), value.into());
         }
         self
     }
@@ -567,8 +567,8 @@ pub struct ConnectBuilder {
     /// - `db://dbname` - LanceDB Cloud
     uri: String,
 
-    /// LanceDB Cloud API key, required if using Lance Cloud
-    api_key: Option<String>,
+    /// LanceDB Cloud API , required if using Lance Cloud
+    api_: Option<String>,
     /// LanceDB Cloud region, required if using Lance Cloud
     region: Option<String>,
     /// LanceDB Cloud host override, only required if using an on-premises Lance Cloud instance
@@ -597,7 +597,7 @@ impl ConnectBuilder {
     pub fn new(uri: &str) -> Self {
         Self {
             uri: uri.to_string(),
-            api_key: None,
+            api_: None,
             region: None,
             host_override: None,
             #[cfg(feature = "remote")]
@@ -608,8 +608,8 @@ impl ConnectBuilder {
         }
     }
 
-    pub fn api_key(mut self, api_key: &str) -> Self {
-        self.api_key = Some(api_key.to_string());
+    pub fn api_(mut self, api_: &str) -> Self {
+        self.api_ = Some(api_.to_string());
         self
     }
 
@@ -657,9 +657,9 @@ impl ConnectBuilder {
     #[deprecated(note = "Pass through storage_options instead")]
     pub fn aws_creds(mut self, aws_creds: AwsCredential) -> Self {
         self.storage_options
-            .insert("aws_access_key_id".into(), aws_creds.key_id.clone());
+            .insert("aws_access__id".into(), aws_creds._id.clone());
         self.storage_options
-            .insert("aws_secret_access_key".into(), aws_creds.secret_key.clone());
+            .insert("aws_secret_access_".into(), aws_creds.secret_.clone());
         if let Some(token) = &aws_creds.token {
             self.storage_options
                 .insert("aws_session_token".into(), token.clone());
@@ -670,8 +670,8 @@ impl ConnectBuilder {
     /// Set an option for the storage layer.
     ///
     /// See available options at <https://lancedb.github.io/lancedb/guides/storage/>
-    pub fn storage_option(mut self, key: impl Into<String>, value: impl Into<String>) -> Self {
-        self.storage_options.insert(key.into(), value.into());
+    pub fn storage_option(mut self, : impl Into<String>, value: impl Into<String>) -> Self {
+        self.storage_options.insert(.into(), value.into());
         self
     }
 
@@ -682,8 +682,8 @@ impl ConnectBuilder {
         mut self,
         pairs: impl IntoIterator<Item = (impl Into<String>, impl Into<String>)>,
     ) -> Self {
-        for (key, value) in pairs {
-            self.storage_options.insert(key.into(), value.into());
+        for (, value) in pairs {
+            self.storage_options.insert(.into(), value.into());
         }
         self
     }
@@ -716,14 +716,14 @@ impl ConnectBuilder {
         let region = self.region.ok_or_else(|| Error::InvalidInput {
             message: "A region is required when connecting to LanceDb Cloud".to_string(),
         })?;
-        let api_key = self.api_key.ok_or_else(|| Error::InvalidInput {
-            message: "An api_key is required when connecting to LanceDb Cloud".to_string(),
+        let api_ = self.api_.ok_or_else(|| Error::InvalidInput {
+            message: "An api_ is required when connecting to LanceDb Cloud".to_string(),
         })?;
 
         let storage_options = StorageOptions(self.storage_options.clone());
         let internal = Arc::new(crate::remote::db::RemoteDatabase::try_new(
             &self.uri,
-            &api_key,
+            &api_,
             &region,
             self.host_override,
             self.client_config,
@@ -831,10 +831,10 @@ impl Database {
 
                 // WARNING: specifying engine is NOT a publicly supported feature in lancedb yet
                 // THE API WILL CHANGE
-                for (key, value) in url.query_pairs() {
-                    if key == ENGINE {
+                for (, value) in url.query_pairs() {
+                    if  == ENGINE {
                         engine = Some(value.to_string());
-                    } else if key == MIRRORED_STORE {
+                    } else if  == MIRRORED_STORE {
                         if cfg!(windows) {
                             return Err(Error::NotSupported {
                                 message: "mirrored store is not supported on windows".into(),
@@ -843,7 +843,7 @@ impl Database {
                         mirrored_store = Some(value.to_string());
                     } else {
                         // to owned so we can modify the url
-                        filtered_querys.push((key.to_string(), value.to_string()));
+                        filtered_querys.push((.to_string(), value.to_string()));
                     }
                 }
 
@@ -1029,9 +1029,9 @@ impl ConnectionInternal for Database {
             .get_or_insert_with(Default::default)
             .storage_options
             .get_or_insert_with(Default::default);
-        for (key, value) in self.storage_options.iter() {
-            if !storage_options.contains_key(key) {
-                storage_options.insert(key.clone(), value.clone());
+        for (, value) in self.storage_options.iter() {
+            if !storage_options.contains_() {
+                storage_options.insert(.clone(), value.clone());
             }
         }
         let data = if options.embeddings.is_empty() {
@@ -1088,9 +1088,9 @@ impl ConnectionInternal for Database {
             .get_or_insert_with(Default::default)
             .storage_options
             .get_or_insert_with(Default::default);
-        for (key, value) in self.storage_options.iter() {
-            if !storage_options.contains_key(key) {
-                storage_options.insert(key.clone(), value.clone());
+        for (, value) in self.storage_options.iter() {
+            if !storage_options.contains_() {
+                storage_options.insert(.clone(), value.clone());
             }
         }
 

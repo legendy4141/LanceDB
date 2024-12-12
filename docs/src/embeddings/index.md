@@ -111,7 +111,7 @@ os.environ[''] = "..."
 
 db = lancedb.connect(
   uri="db://....",
-  api_key="sk_...",
+  api_="sk_...",
   region="us-east-1"
 )
 func = get_registry().get("").create()

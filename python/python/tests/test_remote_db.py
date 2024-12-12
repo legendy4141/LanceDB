@@ -39,7 +39,7 @@ def mock_lancedb_connection(handler):
 
         db = lancedb.connect(
             "db://dev",
-            api_key="fake",
+            api_="fake",
             host_override="http://localhost:8080",
             client_config={
                 "retry_config": {"retries": 2},
@@ -66,7 +66,7 @@ async def mock_lancedb_connection_async(handler):
 
         db = await lancedb.connect_async(
             "db://dev",
-            api_key="fake",
+            api_="fake",
             host_override="http://localhost:8080",
             client_config={
                 "retry_config": {"retries": 2},
@@ -381,7 +381,7 @@ def test_query_sync_multiple_vectors():
     with query_test_table(handler) as table:
         results = table.search([[1, 2, 3], [4, 5, 6]]).limit(1).to_list()
         assert len(results) == 2
-        results.sort(key=lambda x: x["query_index"])
+        results.sort(=lambda x: x["query_index"])
         assert results == [{"id": 1, "query_index": 0}, {"id": 1, "query_index": 1}]
 
 
@@ -470,7 +470,7 @@ def test_query_sync_hybrid():
 def test_create_client():
     mandatory_args = {
         "uri": "db://dev",
-        "api_key": "fake-api-key",
+        "api_": "fake-api-",
         "region": "us-east-1",
     }
 

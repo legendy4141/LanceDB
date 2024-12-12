@@ -28,14 +28,14 @@ An embedding function that automatically creates vector representation for a giv
 
 ### constructor
 
-• **new EmbeddingFunction**(`sourceColumn`, `Key`, `modelName?`)
+• **new EmbeddingFunction**(`sourceColumn`, ``, `modelName?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `sourceColumn` | `string` | `undefined` |
-| `Key` | `string` | `undefined` |
+| `` | `string` | `undefined` |
 | `modelName` | `string` | `'text-embedding-ada-002'` |
 
 #### Defined in

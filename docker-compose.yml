@@ -9,8 +9,8 @@ services:
       - DEBUG=1
       - LS_LOG=trace
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - AWS_ACCESS_KEY_ID=ACCESSKEY
-      - AWS_SECRET_ACCESS_KEY=SECRETKEY
+      - AWS_ACCESS__ID=ACCESS
+      - AWS_SECRET_ACCESS_=SECRET
     healthcheck:
       test: [ "CMD", "curl", "-s", "http://localhost:4566/_localstack/health" ]
       interval: 5s

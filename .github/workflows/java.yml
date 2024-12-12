@@ -12,7 +12,7 @@ on:
       - .github/workflows/java.yml
 env:
   # This env var is used by Swatinem/rust-cache@v2 for the cache
-  # key, so we set it to make sure it is always consistent.
+  # , so we set it to make sure it is always consistent.
   CARGO_TERM_COLOR: always
   # Disable full debug symbol generation to speed up CI build and keep memory down
   # "1" means line tables only, which is useful for panic tracebacks.

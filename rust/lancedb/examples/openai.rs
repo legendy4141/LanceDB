@@ -20,9 +20,9 @@ use lancedb::{
 async fn main() -> Result<()> {
     let tempdir = tempfile::tempdir().unwrap();
     let tempdir = tempdir.path().to_str().unwrap();
-    let api_key = std::env::var("").expect(" is not set");
+    let api_ = std::env::var("").expect(" is not set");
     let embedding = Arc::new(EmbeddingFunction::new_with_model(
-        api_key,
+        api_,
         "text-embedding-3-large",
     )?);
 

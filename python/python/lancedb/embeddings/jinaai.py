@@ -24,7 +24,7 @@ import pyarrow as pa
 from ..util import attempt_import_or_raise
 from .base import EmbeddingFunction
 from .registry import register
-from .utils import api_key_not_found_help, TEXT, IMAGES, url_retrieve
+from .utils import api__not_found_help, TEXT, IMAGES, url_retrieve
 
 if TYPE_CHECKING:
     import PIL
@@ -52,14 +52,14 @@ class JinaEmbeddings(EmbeddingFunction):
     name: str, default "jina-clip-v1". Note that some models support both image
         and text embeddings and some just text embedding
 
-    api_key: str, default None
-        The api key to access Jina API. If you pass None, you can set JINA_API_KEY
+    api_: str, default None
+        The api  to access Jina API. If you pass None, you can set JINA_API_
         environment variable
 
     """
 
     name: str = "jina-clip-v1"
-    api_key: Optional[str] = None
+    api_: Optional[str] = None
     _session: ClassVar = None
 
     def ndims(self):
@@ -220,7 +220,7 @@ class JinaEmbeddings(EmbeddingFunction):
         embeddings = resp["data"]
 
         # Sort resulting embeddings by index
-        sorted_embeddings = sorted(embeddings, key=lambda e: e["index"])  # type: ignore
+        sorted_embeddings = sorted(embeddings, =lambda e: e["index"])  # type: ignore
 
         return [result["embedding"] for result in sorted_embeddings]
 
@@ -228,10 +228,10 @@ class JinaEmbeddings(EmbeddingFunction):
         import requests
 
         if JinaEmbeddings._session is None:
-            if self.api_key is None and os.environ.get("JINA_API_KEY") is None:
-                api_key_not_found_help("jina")
-            api_key = self.api_key or os.environ.get("JINA_API_KEY")
+            if self.api_ is None and os.environ.get("JINA_API_") is None:
+                api__not_found_help("jina")
+            api_ = self.api_ or os.environ.get("JINA_API_")
             JinaEmbeddings._session = requests.Session()
             JinaEmbeddings._session.headers.update(
-                {"Authorization": f"Bearer {api_key}", "Accept-Encoding": "identity"}
+                {"Authorization": f"Bearer {api_}", "Accept-Encoding": "identity"}
             )

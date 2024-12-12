@@ -19,7 +19,7 @@ Based on the `query_type`, the `rerank()` function can accept other arguments as
 ## Choosing a Reranker
 There are many rerankers available in LanceDB like `CrossEncoderReranker`, `CohereReranker`, and `ColBERT`. The choice of reranker depends on the dataset and the application. You can even implement you own custom reranker by extending the `Reranker` class. For more details about each available reranker and performance comparison, refer to the [rerankers](https://lancedb.github.io/lancedb/reranking/) documentation.
 
-In this example, we'll use the `CohereReranker` to rerank the search results. It requires  `cohere` to be installed and `COHERE_API_KEY` to be set in the environment. To get your API key, sign up on [Cohere](https://cohere.ai/).
+In this example, we'll use the `CohereReranker` to rerank the search results. It requires  `cohere` to be installed and `COHERE_API_` to be set in the environment. To get your API , sign up on [Cohere](https://cohere.ai/).
 
 ```python
 from lancedb.rerankers import CohereReranker

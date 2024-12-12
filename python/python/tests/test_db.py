@@ -673,7 +673,7 @@ def test_prefilter_with_index(tmp_path):
         {"vector": np.random.rand(128), "item": "foo", "price": float(i)}
         for i in range(1000)
     ]
-    sample_key = data[100]["vector"]
+    sample_ = data[100]["vector"]
     table = db.create_table(
         "test",
         data,
@@ -683,7 +683,7 @@ def test_prefilter_with_index(tmp_path):
         num_sub_vectors=4,
     )
     table = (
-        table.search(sample_key)
+        table.search(sample_)
         .where("price == 500", prefilter=True)
         .limit(5)
         .to_arrow()

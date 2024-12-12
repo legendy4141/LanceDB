@@ -65,8 +65,8 @@ You need to create two files - `transcript.py` and `ollama_assistant.py` or `_as
     from transcript import extract_transcript
 
     if "" not in os.environ:
-    # OR set the key here as a variable
-        .api_key = "sk-..."
+    # OR set the  here as a variable
+        .api_ = "sk-..."
 
     # The code below creates a file "transcript.txt" in the directory, the txt file will be used below
     youtube_url = "https://www.youtube.com/watch?v=Xs33-Gzl8Mo" 
@@ -190,7 +190,7 @@ deactivate
     knowledge_base = TextKnowledgeBase(
         path="transcript.txt",
         vector_db=LanceDb(
-            embedder=Embedder(api_key = .api_key),
+            embedder=Embedder(api_ = .api_),
             table_name="transcript_documents",
             uri="./t3mp/.lancedb",
         ),
@@ -276,13 +276,13 @@ Now that the Knowledge Base is initialized, , we can go to **step 2**.
     ```python
     # define an assistant with gpt-4o-mini llm and reference to the knowledge base created above
     assistant = Assistant(
-        llm=Chat(model="gpt-4o-mini", max_tokens=1000, temperature=0.3,api_key = .api_key),
+        llm=Chat(model="gpt-4o-mini", max_tokens=1000, temperature=0.3,api_ = .api_),
         description="""You are an Expert in explaining youtube video transcripts. You are a bot that takes transcript of a video and answer the question based on it.
         
         This is transcript for the above timestamp: {relevant_document}
         The user input is: {user_input}
         generate highlights only when asked.
-        When asked to generate highlights from the video, understand the context for each timestamp and create key highlight points, answer in following way - 
+        When asked to generate highlights from the video, understand the context for each timestamp and create  highlight points, answer in following way - 
         [timestamp] - highlight 1
         [timestamp] - highlight 2
         ... so on
@@ -304,7 +304,7 @@ Now that the Knowledge Base is initialized, , we can go to **step 2**.
         This is transcript for the above timestamp: {relevant_document}
         The user input is: {user_input}
         generate highlights only when asked.
-        When asked to generate highlights from the video, understand the context for each timestamp and create key highlight points, answer in following way - 
+        When asked to generate highlights from the video, understand the context for each timestamp and create  highlight points, answer in following way - 
         [timestamp] - highlight 1
         [timestamp] - highlight 2
         ... so on

@@ -32,7 +32,7 @@ import { sanitizeType } from "../sanitize";
  */
 export interface FunctionOptions {
   // biome-ignore lint/suspicious/noExplicitAny: options can be anything
-  [key: string]: any;
+  [: string]: any;
 }
 
 export interface EmbeddingFunctionConstructor<

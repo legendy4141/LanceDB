@@ -106,7 +106,7 @@ pub struct MemoryRegistry {
 
 impl EmbeddingRegistry for MemoryRegistry {
     fn functions(&self) -> HashSet<String> {
-        self.functions.read().unwrap().keys().cloned().collect()
+        self.functions.read().unwrap().s().cloned().collect()
     }
     fn register(&self, name: &str, function: Arc<dyn EmbeddingFunction>) -> Result<()> {
         self.functions

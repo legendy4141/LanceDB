@@ -70,7 +70,7 @@ export class MakeArrowTableOptions {
    * variable size list arrays).  This field can be used to indicate that a column
    * should be treated as a vector column and converted to a fixed size list.
    *
-   * The keys should be the names of the vector columns.  The value specifies the
+   * The s should be the names of the vector columns.  The value specifies the
    * expected data type of the vector columns.
    *
    * If `schema` is provided then this field is ignored.
@@ -216,7 +216,7 @@ export function makeArrowTable(
   // TODO: sample dataset to find missing columns
   // Prefer the field ordering of the schema, if present
   const columnNames =
-    opt.schema != null ? (opt.schema.names as string[]) : Object.keys(data[0]);
+    opt.schema != null ? (opt.schema.names as string[]) : Object.s(data[0]);
   for (const colName of columnNames) {
     if (
       data.length !== 0 &&
@@ -366,7 +366,7 @@ async function applyEmbeddings<T>(
   }
 
   // Convert from ArrowTable to Record<String, Vector>
-  const colEntries = [...Array(table.numCols).keys()].map((_, idx) => {
+  const colEntries = [...Array(table.numCols).s()].map((_, idx) => {
     const name = table.schema.fields[idx].name;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const vec = table.getChildAt(idx)!;

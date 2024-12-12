@@ -58,7 +58,7 @@ import lancedb
 db = lancedb.connect("./embeddings")
 
 IMAGE_DIR = "images/"
-API_KEY = os.environ.get("ROBOFLOW_API_KEY")
+API_ = os.environ.get("ROBOFLOW_API_")
 SERVER_URL = "http://localhost:9001"
 
 results = []
@@ -73,7 +73,7 @@ for i, image in enumerate(os.listdir(IMAGE_DIR)):
     }
 
     res = requests.post(
-        f"{SERVER_URL}/clip/embed_image?api_key={API_KEY}",
+        f"{SERVER_URL}/clip/embed_image?api_={API_}",
         json=infer_clip_payload,
     )
 
@@ -90,10 +90,10 @@ tbl = db.create_table("images", data=results)
 tbl.create_fts_index("name")
 ```
 
-To use the code above, you will need a Roboflow API key. [Learn how to retrieve a Roboflow API key](https://docs.roboflow.com/api-reference/authentication#retrieve-an-api-key). Run the following command to set up your API key in your environment:
+To use the code above, you will need a Roboflow API . [Learn how to retrieve a Roboflow API ](https://docs.roboflow.com/api-reference/authentication#retrieve-an-api-). Run the following command to set up your API  in your environment:
 
 ```
-export ROBOFLOW_API_KEY=""
+export ROBOFLOW_API_=""
 ```
 
 Replace the `IMAGE_DIR` value with the folder in which you are storing the images for which you want to calculate embeddings. If you want to use the Roboflow CLIP API to calculate embeddings, replace the `SERVER_URL` value with `https://infer.roboflow.com`.
@@ -128,7 +128,7 @@ infer_clip_payload = {
 }
 
 res = requests.post(
-    f"{SERVER_URL}/clip/embed_text?api_key={API_KEY}",
+    f"{SERVER_URL}/clip/embed_text?api_={API_}",
     json=infer_clip_payload,
 )
 

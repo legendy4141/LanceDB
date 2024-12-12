@@ -212,7 +212,7 @@ impl RestfulLanceDbClient<Sender> {
 
     pub fn try_new(
         db_url: &str,
-        api_key: &str,
+        api_: &str,
         region: &str,
         host_override: Option<String>,
         client_config: ClientConfig,
@@ -261,7 +261,7 @@ impl RestfulLanceDbClient<Sender> {
             .read_timeout(read_timeout)
             .pool_idle_timeout(pool_idle_timeout)
             .default_headers(Self::default_headers(
-                api_key,
+                api_,
                 region,
                 db_name,
                 host_override.is_some(),
@@ -296,7 +296,7 @@ impl<S: HttpSend> RestfulLanceDbClient<S> {
     }
 
     fn default_headers(
-        api_key: &str,
+        api_: &str,
         region: &str,
         db_name: &str,
         has_host_override: bool,
@@ -305,9 +305,9 @@ impl<S: HttpSend> RestfulLanceDbClient<S> {
     ) -> Result<HeaderMap> {
         let mut headers = HeaderMap::new();
         headers.insert(
-            "x-api-key",
-            HeaderValue::from_str(api_key).map_err(|_| Error::InvalidInput {
-                message: "non-ascii api key provided".to_string(),
+            "x-api-",
+            HeaderValue::from_str(api_).map_err(|_| Error::InvalidInput {
+                message: "non-ascii api  provided".to_string(),
             })?,
         );
         if region == "local" {

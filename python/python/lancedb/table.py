@@ -231,12 +231,12 @@ def _to_batches_with_split(data):
     Return a generator of RecordBatches from a HuggingFace DatasetDict
     with an extra `split` column
     """
-    for key, dataset in data.items():
+    for , dataset in data.items():
         for batch in dataset.data.to_batches():
             table = pa.Table.from_batches([batch])
             if "split" not in table.column_names:
                 table = table.append_column(
-                    "split", pa.array([key] * batch.num_rows, pa.string())
+                    "split", pa.array([] * batch.num_rows, pa.string())
                 )
             for b in table.to_batches():
                 yield b
@@ -637,7 +637,7 @@ class Table(ABC):
         on: Union[str, Iterable[str]]
             A column (or columns) to join on.  This is how records from the
             source table and target table are matched.  Typically this is some
-            kind of key or id column.
+            kind of  or id column.
 
         Examples
         --------
@@ -838,7 +838,7 @@ class Table(ABC):
             The SQL where clause to use when updating rows. For example, 'x = 2'
             or 'x IN (1, 2, 3)'. The filter must not be empty, or it will error.
         values: dict, optional
-            The values to update. The keys are the column names and the values
+            The values to update. The s are the column names and the values
             are the values to set.
         values_sql: dict, optional
             The values to update, expressed as SQL expression strings. These can
@@ -986,7 +986,7 @@ class Table(ABC):
         Alter column names and nullability.
 
         alterations : Iterable[Dict[str, Any]]
-            A sequence of dictionaries, each with the following keys:
+            A sequence of dictionaries, each with the following s:
             - "path": str
                 The column path to alter. For a top-level column, this is the name.
                 For a nested column, this is the dot-separated path, e.g. "a.b.c".
@@ -1959,7 +1959,7 @@ class LanceTable(Table):
             The SQL where clause to use when updating rows. For example, 'x = 2'
             or 'x IN (1, 2, 3)'. The filter must not be empty, or it will error.
         values: dict, optional
-            The values to update. The keys are the column names and the values
+            The values to update. The s are the column names and the values
             are the values to set.
         values_sql: dict, optional
             The values to update, expressed as SQL expression strings. These can
@@ -2423,7 +2423,7 @@ def _validate_metadata(metadata: dict):
                 v.decode("utf8")
             except UnicodeDecodeError:
                 raise ValueError(
-                    f"Metadata key {k} is not valid utf8. "
+                    f"Metadata  {k} is not valid utf8. "
                     "Consider base64 encode for generic binary metadata."
                 )
         elif isinstance(v, dict):
@@ -2719,7 +2719,7 @@ class AsyncTable:
         on: Union[str, Iterable[str]]
             A column (or columns) to join on.  This is how records from the
             source table and target table are matched.  Typically this is some
-            kind of key or id column.
+            kind of  or id column.
 
         Examples
         --------
@@ -2902,14 +2902,14 @@ class AsyncTable:
         Parameters
         ----------
         updates: dict, optional
-            The updates to apply.  The keys should be the name of the column to
+            The updates to apply.  The s should be the name of the column to
             update.  The values should be the new values to assign.  This is
             required unless updates_sql is supplied.
         where: str, optional
             An SQL filter that controls which rows are updated. For example, 'x = 2'
             or 'x IN (1, 2, 3)'.  Only rows that satisfy this filter will be udpated.
         updates_sql: dict, optional
-            The updates to apply, expressed as SQL expression strings.  The keys should
+            The updates to apply, expressed as SQL expression strings.  The s should
             be column names. The values should be SQL expressions.  These can be SQL
             literals (e.g. "7" or "'foo'") or they can be expressions based on the
             previous value of the row (e.g. "x + 1" to increment the x column by 1)
@@ -2958,7 +2958,7 @@ class AsyncTable:
         Alter column names and nullability.
 
         alterations : Iterable[Dict[str, Any]]
-            A sequence of dictionaries, each with the following keys:
+            A sequence of dictionaries, each with the following s:
             - "path": str
                 The column path to alter. For a top-level column, this is the name.
                 For a nested column, this is the dot-separated path, e.g. "a.b.c".
@@ -3194,5 +3194,5 @@ class IndexStatistics:
 
     # This exists for backwards compatibility with an older API, which returned
     # a dictionary instead of a class.
-    def __getitem__(self, key):
-        return getattr(self, key)
+    def __getitem__(self, ):
+        return getattr(self, )

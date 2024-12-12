@@ -19,7 +19,7 @@ import numpy as np
 from ..util import attempt_import_or_raise
 from .base import TextEmbeddingFunction
 from .registry import register
-from .utils import api_key_not_found_help, TEXT
+from .utils import api__not_found_help, TEXT
 
 
 @register("cohere")
@@ -141,6 +141,6 @@ class CohereEmbeddingFunction(TextEmbeddingFunction):
     def _init_client(self):
         cohere = attempt_import_or_raise("cohere")
         if CohereEmbeddingFunction.client is None:
-            if os.environ.get("COHERE_API_KEY") is None:
-                api_key_not_found_help("cohere")
-            CohereEmbeddingFunction.client = cohere.Client(os.environ["COHERE_API_KEY"])
+            if os.environ.get("COHERE_API_") is None:
+                api__not_found_help("cohere")
+            CohereEmbeddingFunction.client = cohere.Client(os.environ["COHERE_API_"])

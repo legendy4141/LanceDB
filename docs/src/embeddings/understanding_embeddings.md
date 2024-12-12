@@ -94,7 +94,7 @@ As a developer, you can create a variety of innovative applications using vector
 
     ---
 
-    Develop systems that recommend content (such as articles, movies, or products) based on the similarity of keywords and descriptions, enhancing user experience.
+    Develop systems that recommend content (such as articles, movies, or products) based on the similarity of words and descriptions, enhancing user experience.
 
     [:octicons-arrow-right-24: Check out examples](../examples/python_examples/recommendersystem.md)
 

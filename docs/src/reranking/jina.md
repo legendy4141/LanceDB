@@ -1,6 +1,6 @@
 # Jina Reranker
 
-This re-ranker uses the [Jina](https://jina.ai/reranker/) API to rerank the search results. You can use this re-ranker by passing `JinaReranker()` to the `rerank()` method. Note that you'll either need to set the `JINA_API_KEY` environment variable or pass the `api_key` argument to use this re-ranker.
+This re-ranker uses the [Jina](https://jina.ai/reranker/) API to rerank the search results. You can use this re-ranker by passing `JinaReranker()` to the `rerank()` method. Note that you'll either need to set the `JINA_API_` environment variable or pass the `api_` argument to use this re-ranker.
 
 
 !!! note
@@ -14,7 +14,7 @@ from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
 from lancedb.rerankers import JinaReranker
 
-os.environ['JINA_API_KEY'] = "jina_*"
+os.environ['JINA_API_'] = "jina_*"
 
 
 embedder = get_registry().get("jina").create()
@@ -30,7 +30,7 @@ data = [
     ]
 tbl = db.create_table("test", schema=Schema, mode="overwrite")
 tbl.add(data)
-reranker = JinaReranker(api_key="key")
+reranker = JinaReranker(api_="")
 
 # Run vector search with a reranker
 result = tbl.search("hello").rerank(reranker=reranker).to_list() 
@@ -51,7 +51,7 @@ Accepted Arguments
 | `model_name` | `str` | `"jina-reranker-v2-base-multilingual"` | The name of the reranker model to use. You can find the list of available models in https://jina.ai/reranker/|
 | `column` | `str` | `"text"` | The name of the column to use as input to the cross encoder model. |
 | `top_n` | `str` | `None` | The number of results to return. If None, will return all results. |
-| `api_key` | `str` | `None` | The API key for the Jina API. If not provided, the `JINA_API_KEY` environment variable is used. |
+| `api_` | `str` | `None` | The API  for the Jina API. If not provided, the `JINA_API_` environment variable is used. |
 | `return_score` | str | `"relevance"` | Options are "relevance" or "all". The type of score to return. If "relevance", will return only the `_relevance_score. If "all" is supported, will return relevance score along with the vector and/or fts scores depending on query type |
 
 

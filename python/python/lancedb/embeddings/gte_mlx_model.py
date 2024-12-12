@@ -140,7 +140,7 @@ class Model:
 
     def run(self, input_text: List[str]) -> mx.array:
         tokens = self.tokenizer(input_text, return_tensors="np", padding=True)
-        tokens = {key: mx.array(v) for key, v in tokens.items()}
+        tokens = {: mx.array(v) for , v in tokens.items()}
 
         last_hidden_state, _ = self.model(**tokens)
 

@@ -1,7 +1,7 @@
 {
   "name": "@lancedb/lancedb",
   "description": "LanceDB: A serverless, low-latency vector database for AI applications",
-  "keywords": [
+  "words": [
     "database",
     "lance",
     "lancedb",

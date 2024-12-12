@@ -67,7 +67,7 @@ When using an IVF-PQ index, there's a trade-off between recall and latency at qu
 MinIO supports an S3 compatible API. In order to connect to a MinIO instance, you need to:
 
 - Set the envvar `AWS_ENDPOINT` to the URL of your MinIO API
-- Set the envvars `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` with your MinIO credential
+- Set the envvars `AWS_ACCESS__ID` and `AWS_SECRET_ACCESS_` with your MinIO credential
 - Call `lancedb.connect("s3://minio_bucket_name")`
 
 ### Where can I find benchmarks for LanceDB?

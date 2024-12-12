@@ -6,7 +6,7 @@ import pyarrow as pa
 from ..table import Table
 
 Filter = Union[str, pa.compute.Expression]
-Keys = Union[str, List[str]]
+s = Union[str, List[str]]
 JoinType = Literal[
     "left semi",
     "right semi",
@@ -131,12 +131,12 @@ class PyarrowDatasetAdapter(pa.dataset.Dataset):
     def join(
         self,
         right_dataset: Any,
-        keys: Keys,
-        right_keys: Optional[Keys] = None,
+        s: s,
+        right_s: Optional[s] = None,
         join_type: Optional[JoinType] = None,
         left_suffix: Optional[str] = None,
         right_suffix: Optional[str] = None,
-        coalesce_keys: bool = True,
+        coalesce_s: bool = True,
         use_threads: bool = True,
     ):
         raise NotImplementedError
@@ -145,10 +145,10 @@ class PyarrowDatasetAdapter(pa.dataset.Dataset):
         self,
         right_dataset: Any,
         on: str,
-        by: Keys,
+        by: s,
         tolerance: int,
         right_on: Optional[str] = None,
-        right_by: Optional[Keys] = None,
+        right_by: Optional[s] = None,
     ):
         raise NotImplementedError
 

@@ -107,7 +107,7 @@ For example, the following filter string is acceptable:
         --8<-- "docs/src/sql_legacy.ts:vec_search"
         ```
 
-If your column name contains special characters or is a [SQL Keyword](https://docs.rs/sqlparser/latest/sqlparser/keywords/index.html),
+If your column name contains special characters or is a [SQL word](https://docs.rs/sqlparser/latest/sqlparser/words/index.html),
 you can use backtick (`` ` ``) to escape it. For nested fields, each segment of the
 path must be wrapped in backticks.
 

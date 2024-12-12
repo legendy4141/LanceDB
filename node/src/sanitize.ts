@@ -90,7 +90,7 @@ function sanitizeMetadata(
   for (const item of metadataLike) {
     if (!(typeof item[0] === "string" || !(typeof item[1] === "string"))) {
       throw Error(
-        "Expected metadata, if present, to be a Map<string, string> but it had non-string keys or values"
+        "Expected metadata, if present, to be a Map<string, string> but it had non-string s or values"
       );
     }
   }
@@ -286,12 +286,12 @@ function sanitizeMap(typeLike: object) {
       "Expected a Map type to have an array-like `children` property"
     );
   }
-  if (!("keysSorted" in typeLike) || typeof typeLike.keysSorted !== "boolean") {
-    throw Error("Expected a Map type to have a `keysSorted` property");
+  if (!("sSorted" in typeLike) || typeof typeLike.sSorted !== "boolean") {
+    throw Error("Expected a Map type to have a `sSorted` property");
   }
   return new Map_(
     typeLike.children.map((field) => sanitizeField(field)) as any,
-    typeLike.keysSorted
+    typeLike.sSorted
   );
 }
 

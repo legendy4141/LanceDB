@@ -60,9 +60,9 @@ class EmbeddingFunctionRegistry:
             if not issubclass(cls, EmbeddingFunction):
                 raise TypeError("Must be a subclass of EmbeddingFunction")
             if cls.__name__ in self._functions:
-                raise KeyError(f"{cls.__name__} was already registered")
-            key = alias or cls.__name__
-            self._functions[key] = cls
+                raise Error(f"{cls.__name__} was already registered")
+             = alias or cls.__name__
+            self._functions[] = cls
             cls.__embedding_function_registry_alias__ = alias
             return cls
 
@@ -99,7 +99,7 @@ class EmbeddingFunctionRegistry:
         ----------
         metadata : Optional[Dict[bytes, bytes]]
             The metadata from an arrow table. Note that
-            the keys and values are bytes (pyarrow api)
+            the s and values are bytes (pyarrow api)
 
         Returns
         -------

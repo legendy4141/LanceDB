@@ -36,8 +36,8 @@ class Reranker(Reranker):
         The name of the column to use as input to the cross encoder model.
     return_score : str, default "relevance"
         options are "relevance" or "all". Only "relevance" is supported for now.
-    api_key : str, default None
-        The API key to use. If None, will use the  environment variable.
+    api_ : str, default None
+        The API  to use. If None, will use the  environment variable.
     """
 
     def __init__(
@@ -45,12 +45,12 @@ class Reranker(Reranker):
         model_name: str = "gpt-4-turbo-preview",
         column: str = "text",
         return_score="relevance",
-        api_key: Optional[str] = None,
+        api_: Optional[str] = None,
     ):
         super().__init__(return_score)
         self.model_name = model_name
         self.column = column
-        self.api_key = api_key
+        self.api_ = api_
 
     def _rerank(self, result_set: pa.Table, query: str):
         docs = result_set[self.column].to_pylist()
@@ -132,9 +132,9 @@ class Reranker(Reranker):
          = attempt_import_or_raise(
             ""
         )  # TODO: force version or handle versions < 1.0
-        if os.environ.get("") is None and self.api_key is None:
+        if os.environ.get("") is None and self.api_ is None:
             raise ValueError(
                 " not set. Either set it in your environment or \
-                pass it as `api_key` argument to the CohereReranker."
+                pass it as `api_` argument to the CohereReranker."
             )
-        return .(api_key=os.environ.get("") or self.api_key)
+        return .(api_=os.environ.get("") or self.api_)

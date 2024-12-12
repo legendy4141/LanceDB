@@ -330,7 +330,7 @@ class LanceQueryBuilder(ABC):
         """
         Execute the query and return the results as a list of dictionaries.
 
-        Each list entry is a dictionary with the selected column names as keys,
+        Each list entry is a dictionary with the selected column names as s,
         or all table columns if `select` is not called. The vector and the "_distance"
         fields are returned whether or not they're explicitly selected.
         """
@@ -1372,7 +1372,7 @@ class AsyncQueryBase(object):
         (e.g. `SELECT a+b FROM my_table`).
 
         To create dynamic columns you can pass in a dict[str, str].  A column will be
-        returned for each entry in the map.  The key provides the name of the column.
+        returned for each entry in the map.  The  provides the name of the column.
         The value is an SQL string used to specify how the column is calculated.
 
         For example, an SQL query might state `SELECT a + b AS combined, c`.  The
@@ -1489,7 +1489,7 @@ class AsyncQueryBase(object):
         """
         Execute the query and return the results as a list of dictionaries.
 
-        Each list entry is a dictionary with the selected column names as keys,
+        Each list entry is a dictionary with the selected column names as s,
         or all table columns if `select` is not called. The vector and the "_distance"
         fields are returned whether or not they're explicitly selected.
         """

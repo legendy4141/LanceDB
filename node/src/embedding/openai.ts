@@ -19,7 +19,7 @@ export class EmbeddingFunction implements EmbeddingFunction<string> {
   private readonly _: 
   private readonly _modelName: string
 
-  constructor (sourceColumn: string, Key: string, modelName: string = 'text-embedding-ada-002') {
+  constructor (sourceColumn: string, : string, modelName: string = 'text-embedding-ada-002') {
     /**
      * @type {import("").default}
      */
@@ -33,7 +33,7 @@ export class EmbeddingFunction implements EmbeddingFunction<string> {
 
     this.sourceColumn = sourceColumn
     const configuration = {
-      apiKey: Key
+      api: 
     }
 
     this._ = new (configuration)

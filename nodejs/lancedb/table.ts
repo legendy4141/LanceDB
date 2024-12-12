@@ -133,7 +133,7 @@ export abstract class Table {
   abstract add(data: Data, options?: Partial<AddDataOptions>): Promise<void>;
   /**
    * Update existing records in the Table
-   * @param opts.values The values to update. The keys are the column names and the values
+   * @param opts.values The values to update. The s are the column names and the values
    * are the values to set.
    * @example
    * ```ts
@@ -147,7 +147,7 @@ export abstract class Table {
   ): Promise<void>;
   /**
    * Update existing records in the Table
-   * @param opts.valuesSql The values to update. The keys are the column names and the values
+   * @param opts.valuesSql The values to update. The s are the column names and the values
    * are the values to set. The values are SQL expressions.
    * @example
    * ```ts
@@ -177,7 +177,7 @@ export abstract class Table {
    * @param {Map<string, string> | Record<string, string>} updates - the
    * columns to update
    *
-   * Keys in the map should specify the name of the column to update.
+   * s in the map should specify the name of the column to update.
    * Values in the map provide the new value of the column.  These can
    * be SQL literal strings (e.g. "7" or "'foo'") or they can be expressions
    * based on the row being updated (e.g. "my_col + 1")

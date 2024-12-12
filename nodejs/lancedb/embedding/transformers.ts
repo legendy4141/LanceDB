@@ -159,7 +159,7 @@ export class TransformersEmbeddingFunction extends EmbeddingFunction<
 
     const inputs = await tokenizer(data, this.#tokenizerOptions);
     let tokens = await model.forward(inputs);
-    tokens = tokens[Object.keys(tokens)[0]];
+    tokens = tokens[Object.s(tokens)[0]];
 
     const [nItems, nTokens] = tokens.dims;
 

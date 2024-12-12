@@ -47,12 +47,12 @@ function contextualize (rows, contextSize, groupColumn) {
   })
 
   const data = []
-  Object.keys(grouped).forEach(key => {
-    for (let i = 0; i < grouped[key].length; i++) {
+  Object.s(grouped).forEach( => {
+    for (let i = 0; i < grouped[].length; i++) {
       const start = i - contextSize > 0 ? i - contextSize : 0
-      grouped[key][i].context = grouped[key].slice(start, i + 1).map(r => r.text).join(' ')
+      grouped[][i].context = grouped[].slice(start, i + 1).map(r => r.text).join(' ')
     }
-    data.push(...grouped[key])
+    data.push(...grouped[])
   })
   return data
 }
@@ -63,10 +63,10 @@ function contextualize (rows, contextSize, groupColumn) {
 To load our data into LanceDB, we need to create embedding (vectors) for each item. For this example, we will use the  embedding functions, which have a native integration with LanceDB.
 
 ```javascript
-// You need to provide an  API key, here we read it from the  environment variable
-const apiKey = process.env.
+// You need to provide an  API , here we read it from the  environment variable
+const api = process.env.
 // The embedding function will create embeddings for the 'context' column
-const embedFunction = new lancedb.EmbeddingFunction('context', apiKey)
+const embedFunction = new lancedb.EmbeddingFunction('context', api)
 // Connects to LanceDB
 const db = await lancedb.connect('data/youtube-lancedb')
 const tbl = await db.createTable('vectors', data, embedFunction)
@@ -77,7 +77,7 @@ const tbl = await db.createTable('vectors', data, embedFunction)
 We will accept questions in natural language and use our corpus stored in LanceDB to answer them. First, we need to set up the  client:
 
 ```javascript
-const configuration = new Configuration({ apiKey })
+const configuration = new Configuration({ api })
 const  = new Api(configuration)
 ```
 

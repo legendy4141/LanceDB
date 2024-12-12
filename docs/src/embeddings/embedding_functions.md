@@ -1,4 +1,4 @@
-Representing multi-modal data as vector embeddings is becoming a standard practice. Embedding functions can themselves be thought of as key part of the data processing pipeline that each request has to be passed through. The assumption here is: after initial setup, these components and the underlying methodology are not expected to change for a particular project.
+Representing multi-modal data as vector embeddings is becoming a standard practice. Embedding functions can themselves be thought of as  part of the data processing pipeline that each request has to be passed through. The assumption here is: after initial setup, these components and the underlying methodology are not expected to change for a particular project.
 
 For this purpose, LanceDB introduces an **embedding functions API**, that allow you simply set up once, during the configuration stage of your project. After this, the table remembers it, effectively making the embedding functions *disappear in the background* so you don't have to worry about manually passing callables, and instead, simply focus on the rest of your data engineering pipeline.
 
@@ -37,10 +37,10 @@ For this purpose, LanceDB introduces an **embedding functions API**, that allow 
     import * as lancedb from '@lancedb/lancedb'
     import { getRegistry } from '@lancedb/lancedb/embeddings'
 
-    // You need to provide an  API key
-    const apiKey = ""
+    // You need to provide an  API 
+    const api = ""
     // The embedding function will create embeddings for the 'text' column
-    const func = getRegistry().get("").create({apiKey})
+    const func = getRegistry().get("").create({api})
     ```
 === "Rust"
     In the Rust SDK, the choices are more limited. For now, only the 

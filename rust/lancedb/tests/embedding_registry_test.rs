@@ -258,7 +258,7 @@ impl Default for MyRegistry {
 /// a mock registry that only has one function called `embed_fun`
 impl EmbeddingRegistry for MyRegistry {
     fn functions(&self) -> HashSet<String> {
-        self.functions.keys().cloned().collect()
+        self.functions.s().cloned().collect()
     }
 
     fn register(&self, _name: &str, _function: Arc<dyn EmbeddingFunction>) -> Result<()> {

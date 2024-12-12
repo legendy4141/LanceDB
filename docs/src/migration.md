@@ -139,7 +139,7 @@ The embedding API has been completely reworked, and it now more closely resemble
 
     ```ts
 
-    const embeddingFunction = new lancedb.EmbeddingFunction('text', API_KEY)
+    const embeddingFunction = new lancedb.EmbeddingFunction('text', API_)
     const data = [
         { id: 1, text: 'Black T-Shirt', price: 10 },
         { id: 2, text: 'Leather Jacket', price: 50 }
@@ -154,7 +154,7 @@ The embedding API has been completely reworked, and it now more closely resemble
     import * as arrow from "apache-arrow";
     import { LanceSchema, getRegistry } from "@lancedb/lancedb/embedding";
 
-    const func = getRegistry().get("").create({apiKey: API_KEY});
+    const func = getRegistry().get("").create({api: API_});
 
     const data = [
         { id: 1, text: 'Black T-Shirt', price: 10 },
@@ -173,7 +173,7 @@ The embedding API has been completely reworked, and it now more closely resemble
 You can also use a schema driven approach, which parallels the Pydantic integration in our Python SDK:
 
 ```ts
-const func = getRegistry().get("").create({apiKey: API_KEY});
+const func = getRegistry().get("").create({api: API_});
 
 const data = [
     { id: 1, text: 'Black T-Shirt', price: 10 },

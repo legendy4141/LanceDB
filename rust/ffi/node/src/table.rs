@@ -185,8 +185,8 @@ impl JsTable {
         let channel = cx.channel();
         let table = js_table.table.clone();
 
-        let key = cx.argument::<JsString>(0)?.value(&mut cx);
-        let mut builder = table.merge_insert(&[&key]);
+        let  = cx.argument::<JsString>(0)?.value(&mut cx);
+        let mut builder = table.merge_insert(&[&]);
         if cx.argument::<JsBoolean>(1)?.value(&mut cx) {
             let filter = cx.argument_opt(2).unwrap();
             if filter.is_a::<JsNull, _>(&mut cx) {

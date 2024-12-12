@@ -129,7 +129,7 @@ def _validate_metadata(metadata: dict):
                 v.decode("utf8")
             except UnicodeDecodeError:
                 raise ValueError(
-                    f"Metadata key {k} is not valid utf8. "
+                    f"Metadata  {k} is not valid utf8. "
                     "Consider base64 encode for generic binary metadata."
                 )
         elif isinstance(v, dict):

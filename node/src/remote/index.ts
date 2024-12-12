@@ -53,13 +53,13 @@ export class RemoteConnection implements Connection {
     if (!opts.uri.startsWith('db://')) {
       throw new Error(`Invalid remote DB URI: ${opts.uri}`)
     }
-    if (opts.apiKey == null || opts.apiKey === '') {
-      opts = Object.assign({}, opts, { apiKey: process.env.LANCEDB_API_KEY })
+    if (opts.api == null || opts.api === '') {
+      opts = Object.assign({}, opts, { api: process.env.LANCEDB_API_ })
     }
-    if (opts.apiKey === undefined || opts.region === undefined) {
+    if (opts.api === undefined || opts.region === undefined) {
       throw new Error(
-        'API key and region are must be passed for remote connections. ' +
-        'API key can also be set through LANCEDB_API_KEY env variable.')
+        'API  and region are must be passed for remote connections. ' +
+        'API  can also be set through LANCEDB_API_ env variable.')
     }
 
     this._dbName = opts.uri.slice('db://'.length)
@@ -71,7 +71,7 @@ export class RemoteConnection implements Connection {
     }
     this._client = new HttpLancedbClient(
       server,
-      opts.apiKey,
+      opts.api,
       opts.timeout,
       opts.hostOverride === undefined ? undefined : this._dbName
     )
@@ -245,11 +245,11 @@ export class RemoteQuery<T = number[]> extends Query<T> {
 
     return data.toArray().map((entry: Record<string, unknown>) => {
       const newObject: Record<string, unknown> = {}
-      Object.keys(entry).forEach((key: string) => {
-        if (entry[key] instanceof Vector) {
-          newObject[key] = (entry[key] as any).toArray()
+      Object.s(entry).forEach((: string) => {
+        if (entry[] instanceof Vector) {
+          newObject[] = (entry[] as any).toArray()
         } else {
-          newObject[key] = entry[key] as any
+          newObject[] = entry[] as any
         }
       })
       return newObject as unknown as T
@@ -422,7 +422,7 @@ export class RemoteTable<T = number[]> implements Table<T> {
     ]
     for (const param of unsupportedParams) {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (indexParams[param as keyof VectorIndexParams]) {
+      if (indexParams[param as of VectorIndexParams]) {
         throw new Error(`${param} is not supported for remote connections`)
       }
     }
@@ -495,13 +495,13 @@ export class RemoteTable<T = number[]> implements Table<T> {
     } else {
       filter = args.where ?? null
       updates = {}
-      for (const [key, value] of Object.entries(args.values)) {
-        updates[key] = toSQL(value)
+      for (const [, value] of Object.entries(args.values)) {
+        updates[] = toSQL(value)
       }
     }
     await this._client.post(`/v1/table/${encodeURIComponent(this._name)}/update/`, {
       predicate: filter,
-      updates: Object.entries(updates).map(([key, value]) => [key, value])
+      updates: Object.entries(updates).map(([, value]) => [, value])
     })
   }
 

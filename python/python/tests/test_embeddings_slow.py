@@ -252,7 +252,7 @@ def test_imagebind(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("COHERE_API_KEY") is None, reason="COHERE_API_KEY not set"
+    os.environ.get("COHERE_API_") is None, reason="COHERE_API_ not set"
 )  # also skip if cohere not installed
 def test_cohere_embedding_function():
     cohere = (
@@ -291,7 +291,7 @@ def test_instructor_embedding(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("GOOGLE_API_KEY") is None, reason="GOOGLE_API_KEY not set"
+    os.environ.get("GOOGLE_API_") is None, reason="GOOGLE_API_ not set"
 )
 def test_gemini_embedding(tmp_path):
     model = get_registry().get("gemini-text").create(max_retries=0)
@@ -413,9 +413,9 @@ def test__embedding(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("WATSONX_API_KEY") is None
+    os.environ.get("WATSONX_API_") is None
     or os.environ.get("WATSONX_PROJECT_ID") is None,
-    reason="WATSONX_API_KEY and WATSONX_PROJECT_ID not set",
+    reason="WATSONX_API_ and WATSONX_PROJECT_ID not set",
 )
 def test_watsonx_embedding(tmp_path):
     from lancedb.embeddings import WatsonxEmbeddings
@@ -488,7 +488,7 @@ def test_ollama_embedding(tmp_path):
     assert "name" in dumped_model
     assert "max_retries" in dumped_model
     assert dumped_model["max_retries"] == 0
-    assert all(not k.startswith("_") for k in dumped_model.keys())
+    assert all(not k.startswith("_") for k in dumped_model.s())
 
     # Test serialization of the dumped model
     import json
@@ -501,7 +501,7 @@ def test_ollama_embedding(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("VOYAGE_API_KEY") is None, reason="VOYAGE_API_KEY not set"
+    os.environ.get("VOYAGE_API_") is None, reason="VOYAGE_API_ not set"
 )
 def test_voyageai_embedding_function():
     voyageai = get_registry().get("voyageai").create(name="voyage-3", max_retries=0)

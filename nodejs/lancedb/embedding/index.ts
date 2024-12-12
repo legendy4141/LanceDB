@@ -52,16 +52,16 @@ export function LanceSchema(
     EmbeddingFunction,
     Partial<EmbeddingFunctionConfig>
   >();
-  Object.entries(fields).forEach(([key, value]) => {
+  Object.entries(fields).forEach(([, value]) => {
     if (Array.isArray(value)) {
       const [dtype, metadata] = value as [
         object,
         Map<string, EmbeddingFunction>,
       ];
-      arrowFields.push(new Field(key, sanitizeType(dtype), true));
-      parseEmbeddingFunctions(embeddingFunctions, key, metadata);
+      arrowFields.push(new Field(, sanitizeType(dtype), true));
+      parseEmbeddingFunctions(embeddingFunctions, , metadata);
     } else {
-      arrowFields.push(new Field(key, sanitizeType(value), true));
+      arrowFields.push(new Field(, sanitizeType(value), true));
     }
   });
   const registry = getRegistry();
@@ -74,7 +74,7 @@ export function LanceSchema(
 
 function parseEmbeddingFunctions(
   embeddingFunctions: Map<EmbeddingFunction, Partial<EmbeddingFunctionConfig>>,
-  key: string,
+  : string,
   metadata: Map<string, EmbeddingFunction>,
 ): void {
   if (metadata.has("source_column_for")) {
@@ -83,11 +83,11 @@ function parseEmbeddingFunctions(
     if (current !== undefined) {
       embeddingFunctions.set(embedFunction, {
         ...current,
-        sourceColumn: key,
+        sourceColumn: ,
       });
     } else {
       embeddingFunctions.set(embedFunction, {
-        sourceColumn: key,
+        sourceColumn: ,
         function: embedFunction,
       });
     }
@@ -98,11 +98,11 @@ function parseEmbeddingFunctions(
     if (current !== undefined) {
       embeddingFunctions.set(embedFunction, {
         ...current,
-        vectorColumn: key,
+        vectorColumn: ,
       });
     } else {
       embeddingFunctions.set(embedFunction, {
-        vectorColumn: key,
+        vectorColumn: ,
         function: embedFunction,
       });
     }

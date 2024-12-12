@@ -6,7 +6,7 @@
 
 ### Properties
 
-- [apiKey](ConnectionOptions.md#apikey)
+- [api](ConnectionOptions.md#api)
 - [awsCredentials](ConnectionOptions.md#awscredentials)
 - [awsRegion](ConnectionOptions.md#awsregion)
 - [hostOverride](ConnectionOptions.md#hostoverride)
@@ -18,13 +18,13 @@
 
 ## Properties
 
-### apiKey
+### api
 
-• `Optional` **apiKey**: `string`
+• `Optional` **api**: `string`
 
-API key for the remote connections
+API  for the remote connections
 
-Can also be passed by setting environment variable `LANCEDB_API_KEY`
+Can also be passed by setting environment variable `LANCEDB_API_`
 
 #### Defined in
 
@@ -42,7 +42,7 @@ If not provided, LanceDB will use the default credentials provider chain.
 
 **`Deprecated`**
 
-Pass `aws_access_key_id`, `aws_secret_access_key`, and `aws_session_token`
+Pass `aws_access__id`, `aws_secret_access_`, and `aws_session_token`
 through `storageOptions` instead.
 
 #### Defined in

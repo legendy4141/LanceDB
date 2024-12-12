@@ -5,11 +5,11 @@ edition.workspace = true
 description = "LanceDB: A serverless, low-latency vector database for AI applications"
 license.workspace = true
 repository.workspace = true
-keywords.workspace = true
+words.workspace = true
 categories.workspace = true
 rust-version = "1.75"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# See more s and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 arrow = { workspace = true }
 arrow-array = { workspace = true }
