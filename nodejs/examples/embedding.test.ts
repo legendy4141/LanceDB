@@ -3,21 +3,21 @@
 import { expect, test } from "@jest/globals";
 // --8<-- [start:imports]
 import * as lancedb from "@lancedb/lancedb";
-import "@lancedb/lancedb/embedding/openai";
+import "@lancedb/lancedb/embedding/";
 import { LanceSchema, getRegistry, register } from "@lancedb/lancedb/embedding";
 import { EmbeddingFunction } from "@lancedb/lancedb/embedding";
 import { type Float, Float32, Utf8 } from "apache-arrow";
 // --8<-- [end:imports]
 import { withTempDirectory } from "./util.ts";
 
-const openAiTest = process.env. == null ? test.skip : test;
+const Test = process.env. == null ? test.skip : test;
 
-openAiTest("openai embeddings", async () => {
+Test(" embeddings", async () => {
   await withTempDirectory(async (databaseDir) => {
-    // --8<-- [start:openai_embeddings]
+    // --8<-- [start:_embeddings]
     const db = await lancedb.connect(databaseDir);
     const func = getRegistry()
-      .get("openai")
+      .get("")
       ?.create({ model: "text-embedding-ada-002" }) as EmbeddingFunction;
 
     const wordsSchema = LanceSchema({
@@ -31,7 +31,7 @@ openAiTest("openai embeddings", async () => {
 
     const query = "greetings";
     const actual = (await tbl.search(query).limit(1).toArray())[0];
-    // --8<-- [end:openai_embeddings]
+    // --8<-- [end:_embeddings]
     expect(actual).toHaveProperty("text");
   });
 });

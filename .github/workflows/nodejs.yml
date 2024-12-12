@@ -100,9 +100,9 @@ jobs:
     - name: Test examples
       working-directory: ./
       env:
-        OPENAI_BASE_URL: http://0.0.0.0:8000
+        _BASE_URL: http://0.0.0.0:8000
       run: |
-        python ci/mock_openai.py &
+        python ci/mock_.py &
         cd nodejs/examples
         npm test
   macos:

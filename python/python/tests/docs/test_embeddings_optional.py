@@ -9,10 +9,10 @@ import pytest
 
 
 @pytest.mark.slow
-def test_embeddings_openai():
-    # --8<-- [start:openai_embeddings]
+def test_embeddings_():
+    # --8<-- [start:_embeddings]
     db = lancedb.connect("/tmp/db")
-    func = get_registry().get("openai").create(name="text-embedding-ada-002")
+    func = get_registry().get("").create(name="text-embedding-ada-002")
 
     class Words(LanceModel):
         text: str = func.SourceField()
@@ -24,4 +24,4 @@ def test_embeddings_openai():
     query = "greetings"
     actual = table.search(query).limit(1).to_pydantic(Words)[0]
     print(actual.text)
-    # --8<-- [end:openai_embeddings]
+    # --8<-- [end:_embeddings]

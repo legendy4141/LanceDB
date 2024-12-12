@@ -30,31 +30,31 @@ For this purpose, LanceDB introduces an **embedding functions API**, that allow 
     abstract base interface. It subclasses Pydantic Model which can be utilized to write complex schemas simply as we'll see next!
 
 === "TypeScript"
-    In the TypeScript SDK, the choices are more limited. For now, only the OpenAI
+    In the TypeScript SDK, the choices are more limited. For now, only the 
     embedding function is available.
 
     ```javascript
     import * as lancedb from '@lancedb/lancedb'
     import { getRegistry } from '@lancedb/lancedb/embeddings'
 
-    // You need to provide an OpenAI API key
+    // You need to provide an  API key
     const apiKey = ""
     // The embedding function will create embeddings for the 'text' column
-    const func = getRegistry().get("openai").create({apiKey})
+    const func = getRegistry().get("").create({apiKey})
     ```
 === "Rust"
-    In the Rust SDK, the choices are more limited. For now, only the OpenAI
-    embedding function is available. But unlike the Python and TypeScript SDKs, you need manually register the OpenAI embedding function.
+    In the Rust SDK, the choices are more limited. For now, only the 
+    embedding function is available. But unlike the Python and TypeScript SDKs, you need manually register the  embedding function.
 
     ```toml
-    // Make sure to include the `openai` feature
+    // Make sure to include the `` feature
     [dependencies]
-    lancedb = {version = "*", features = ["openai"]}
+    lancedb = {version = "*", features = [""]}
     ```
 
     ```rust
-    --8<-- "rust/lancedb/examples/openai.rs:imports"
-    --8<-- "rust/lancedb/examples/openai.rs:openai_embeddings"
+    --8<-- "rust/lancedb/examples/.rs:imports"
+    --8<-- "rust/lancedb/examples/.rs:_embeddings"
     ```
 
 ## 2. Define the data model or schema

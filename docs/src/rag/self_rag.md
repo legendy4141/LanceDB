@@ -20,7 +20,7 @@ Here’s a code snippet for defining retriever using Langchain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import LanceDB
-from langchain_openai import OpenAIEmbeddings
+from langchain_ import Embeddings
 
 urls = [
     "https://lilianweng.github.io/posts/2023-06-23-agent/",
@@ -40,7 +40,7 @@ doc_splits = text_splitter.split_documents(docs_list)
 # add documents in LanceDB
 vectorstore = LanceDB.from_documents(
     documents=doc_splits,
-    embedding=OpenAIEmbeddings(),
+    embedding=Embeddings(),
 )
 retriever = vectorstore.as_retriever()
 
@@ -53,7 +53,7 @@ def grade_documents(state) -> Literal["generate", "rewrite"]:
     class grade(BaseModel):
         binary_score: str = Field(description="Relevance score 'yes' or 'no'")
 
-    model = ChatOpenAI(temperature=0, model="gpt-4-0125-preview", streaming=True)
+    model = Chat(temperature=0, model="gpt-4-0125-preview", streaming=True)
     llm_with_tool = model.with_structured_output(grade)
     prompt = PromptTemplate(
         template="""You are a grader assessing relevance of a retrieved document to a user question. \n
@@ -90,7 +90,7 @@ def rewrite(state):
             Formulate an improved question: """,
         )
     ]
-    model = ChatOpenAI(temperature=0, model="gpt-4-0125-preview", streaming=True)
+    model = Chat(temperature=0, model="gpt-4-0125-preview", streaming=True)
     response = model.invoke(msg)
     return {"messages": [response]}
 ```

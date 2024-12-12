@@ -17,9 +17,9 @@ It is retained for compatibility and will be removed in a future version.
 
 To get started with embeddings, you can use the built-in embedding functions.
 
-### OpenAI Embedding function
+###  Embedding function
 
-LanceDB registers the OpenAI embeddings function in the registry as `openai`. You can pass any supported model name to the `create`. By default it uses `"text-embedding-ada-002"`.
+LanceDB registers the  embeddings function in the registry as ``. You can pass any supported model name to the `create`. By default it uses `"text-embedding-ada-002"`.
 
 === "Python"
 
@@ -29,7 +29,7 @@ LanceDB registers the OpenAI embeddings function in the registry as `openai`. Yo
     from lancedb.embeddings import get_registry
 
     db = lancedb.connect("/tmp/db")
-    func = get_registry().get("openai").create(name="text-embedding-ada-002")
+    func = get_registry().get("").create(name="text-embedding-ada-002")
 
     class Words(LanceModel):
         text: str = func.SourceField()
@@ -52,14 +52,14 @@ LanceDB registers the OpenAI embeddings function in the registry as `openai`. Yo
 
     ```typescript
     --8<--- "nodejs/examples/embedding.test.ts:imports"
-    --8<--- "nodejs/examples/embedding.test.ts:openai_embeddings"
+    --8<--- "nodejs/examples/embedding.test.ts:_embeddings"
     ```
 
 === "Rust"
 
     ```rust
-    --8<--- "rust/lancedb/examples/openai.rs:imports"
-    --8<--- "rust/lancedb/examples/openai.rs:openai_embeddings"
+    --8<--- "rust/lancedb/examples/.rs:imports"
+    --8<--- "rust/lancedb/examples/.rs:_embeddings"
     ```
 
 ### Sentence Transformers Embedding function
@@ -100,7 +100,7 @@ LanceDB registers the Sentence Transformers embeddings function in the registry 
     Coming Soon!
 
 ### Embedding function with LanceDB cloud
-Embedding functions are now supported on LanceDB cloud. The embeddings will be generated on the source device and sent to the cloud. This means that the source device must have the necessary resources to generate the embeddings. Here's an example using the OpenAI embedding function:
+Embedding functions are now supported on LanceDB cloud. The embeddings will be generated on the source device and sent to the cloud. This means that the source device must have the necessary resources to generate the embeddings. Here's an example using the  embedding function:
 
 ```python
 import os
@@ -114,7 +114,7 @@ db = lancedb.connect(
   api_key="sk_...",
   region="us-east-1"
 )
-func = get_registry().get("openai").create()
+func = get_registry().get("").create()
 
 class Words(LanceModel):
     text: str = func.SourceField()

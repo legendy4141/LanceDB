@@ -12,7 +12,7 @@ An embedding function that automatically creates vector representation for a giv
 
 ## Implemented by
 
-- [`OpenAIEmbeddingFunction`](../classes/OpenAIEmbeddingFunction.md)
+- [`EmbeddingFunction`](../classes/EmbeddingFunction.md)
 
 ## Table of contents
 

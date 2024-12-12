@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright The LanceDB Authors
-"""A zero-dependency mock OpenAI embeddings API endpoint for testing purposes."""
+"""A zero-dependency mock  embeddings API endpoint for testing purposes."""
 import argparse
 import json
 import http.server
 
 
-class MockOpenAIRequestHandler(http.server.BaseHTTPRequestHandler):
+class MockRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers["Content-Length"])
         post_data = self.rfile.read(content_length)
         post_data = json.loads(post_data.decode("utf-8"))
-        # See: https://platform.openai.com/docs/api-reference/embeddings/create
+        # See: https://platform..com/docs/api-reference/embeddings/create
 
         if isinstance(post_data["input"], str):
             num_inputs = 1
@@ -45,13 +45,13 @@ class MockOpenAIRequestHandler(http.server.BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Mock OpenAI embeddings API endpoint")
+    parser = argparse.ArgumentParser(description="Mock  embeddings API endpoint")
     parser.add_argument("--port", type=int, default=8000, help="Port to listen on")
     args = parser.parse_args()
     port = args.port
 
     print(f"server started on port {port}. Press Ctrl-C to stop.")
-    print(f"To use, set OPENAI_BASE_URL=http://localhost:{port} in your environment.")
+    print(f"To use, set _BASE_URL=http://localhost:{port} in your environment.")
 
-    with http.server.HTTPServer(("0.0.0.0", port), MockOpenAIRequestHandler) as server:
+    with http.server.HTTPServer(("0.0.0.0", port), MockRequestHandler) as server:
         server.serve_forever()

@@ -13,15 +13,15 @@ if TYPE_CHECKING:
     import numpy as np
 
 
-@register("openai")
-class OpenAIEmbeddings(TextEmbeddingFunction):
+@register("")
+class Embeddings(TextEmbeddingFunction):
     """
-    An embedding function that uses the OpenAI API
+    An embedding function that uses the  API
 
-    https://platform.openai.com/docs/guides/embeddings
+    https://platform..com/docs/guides/embeddings
 
     This can also be used for open source models that
-    are compatible with the OpenAI API.
+    are compatible with the  API.
 
     Notes
     -----
@@ -32,8 +32,8 @@ class OpenAIEmbeddings(TextEmbeddingFunction):
 
     ```python
     from lancedb.embeddings import get_registry
-    openai = get_registry().get("openai")
-    embedding_function = openai.create(
+     = get_registry().get("")
+    embedding_function = .create(
         name="<ollama-embedding-model-name>",
         base_url="http://localhost:11434",
         )
@@ -48,7 +48,7 @@ class OpenAIEmbeddings(TextEmbeddingFunction):
     organization: Optional[str] = None
     api_key: Optional[str] = None
 
-    # Set true to use Azure OpenAI API
+    # Set true to use Azure  API
     use_azure: bool = False
 
     def ndims(self):
@@ -84,7 +84,7 @@ class OpenAIEmbeddings(TextEmbeddingFunction):
         texts: list[str] or np.ndarray (of str)
             The texts to embed
         """
-        openai = attempt_import_or_raise("openai")
+         = attempt_import_or_raise("")
 
         valid_texts = []
         valid_indices = []
@@ -102,21 +102,21 @@ class OpenAIEmbeddings(TextEmbeddingFunction):
             if self.name != "text-embedding-ada-002":
                 kwargs["dimensions"] = self.dim
 
-            rs = self._openai_client.embeddings.create(**kwargs)
+            rs = self.__client.embeddings.create(**kwargs)
             valid_embeddings = {
                 idx: v.embedding for v, idx in zip(rs.data, valid_indices)
             }
-        except openai.BadRequestError:
+        except .BadRequestError:
             logging.exception("Bad request: %s", texts)
             return [None] * len(texts)
         except Exception:
-            logging.exception("OpenAI embeddings error")
+            logging.exception(" embeddings error")
             raise
         return [valid_embeddings.get(idx, None) for idx in range(len(texts))]
 
     @cached_property
-    def _openai_client(self):
-        openai = attempt_import_or_raise("openai")
+    def __client(self):
+         = attempt_import_or_raise("")
         kwargs = {}
         if self.base_url:
             kwargs["base_url"] = self.base_url
@@ -128,6 +128,6 @@ class OpenAIEmbeddings(TextEmbeddingFunction):
             kwargs["api_key"] = self.api_key
 
         if self.use_azure:
-            return openai.AzureOpenAI(**kwargs)
+            return .Azure(**kwargs)
         else:
-            return openai.OpenAI(**kwargs)
+            return .(**kwargs)

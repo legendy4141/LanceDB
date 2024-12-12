@@ -3,7 +3,7 @@ from .cohere import CohereReranker
 from .colbert import ColbertReranker
 from .cross_encoder import CrossEncoderReranker
 from .linear_combination import LinearCombinationReranker
-from .openai import OpenaiReranker
+from . import Reranker
 from .jinaai import JinaReranker
 from .rrf import RRFReranker
 from .answerdotai import AnswerdotaiRerankers
@@ -14,7 +14,7 @@ __all__ = [
     "CrossEncoderReranker",
     "CohereReranker",
     "LinearCombinationReranker",
-    "OpenaiReranker",
+    "Reranker",
     "ColbertReranker",
     "JinaReranker",
     "RRFReranker",

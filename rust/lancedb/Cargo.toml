@@ -45,7 +45,7 @@ url.workspace = true
 regex.workspace = true
 serde = { version = "^1" }
 serde_json = { version = "1" }
-async-openai = { version = "0.20.0", optional = true }
+async- = { version = "0.20.0", optional = true }
 serde_with = { version = "3.8.1" }
 aws-sdk-bedrockruntime = { version = "1.27.0", optional = true }
 # For remote feature
@@ -88,7 +88,7 @@ remote = ["dep:reqwest", "dep:http", "dep:rand", "dep:uuid"]
 fp16kernels = ["lance-linalg/fp16kernels"]
 s3-test = []
 bedrock = ["dep:aws-sdk-bedrockruntime"]
-openai = ["dep:async-openai", "dep:reqwest"]
+ = ["dep:async-", "dep:reqwest"]
 polars = ["dep:polars-arrow", "dep:polars"]
 sentence-transformers = [
     "dep:hf-hub",
@@ -104,8 +104,8 @@ native-tls = ["reqwest?/native-tls"]
 rustls-tls = ["reqwest?/rustls-tls"]
 
 [[example]]
-name = "openai"
-required-features = ["openai"]
+name = ""
+required-features = [""]
 
 [[example]]
 name = "sentence_transformers"

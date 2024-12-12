@@ -19,9 +19,9 @@ from langchain.document_loaders import ArxivLoader
 from langchain.chains import FlareChain
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
+from langchain.llms import 
 
-llm = OpenAI()
+llm = ()
 
 # load dataset
 

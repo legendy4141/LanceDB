@@ -1,18 +1,18 @@
-# OpenAI Reranker (Experimental)
+#  Reranker (Experimental)
 
-This re-ranker uses OpenAI chat model to rerank the search results. You can use this re-ranker by passing `OpenAI()` to the `rerank()` method. 
+This re-ranker uses  chat model to rerank the search results. You can use this re-ranker by passing `()` to the `rerank()` method. 
 !!! note
     Supported Query Types: Hybrid, Vector, FTS
 
 !!! warning
-    This re-ranker is experimental. OpenAI doesn't have a dedicated reranking model, so we are using the chat model for reranking. 
+    This re-ranker is experimental.  doesn't have a dedicated reranking model, so we are using the chat model for reranking. 
 
 ```python
 import numpy
 import lancedb
 from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
-from lancedb.rerankers import OpenaiReranker
+from lancedb.rerankers import Reranker
 
 embedder = get_registry().get("sentence-transformers").create()
 db = lancedb.connect("~/.lancedb")
@@ -27,7 +27,7 @@ data = [
     ]
 tbl = db.create_table("test", schema=Schema, mode="overwrite")
 tbl.add(data)
-reranker = OpenaiReranker()
+reranker = Reranker()
 
 # Run vector search with a reranker
 result = tbl.search("hello").rerank(reranker=reranker).to_list() 

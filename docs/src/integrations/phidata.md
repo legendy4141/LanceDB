@@ -45,28 +45,28 @@ Let's see how using LanceDB inside phidata helps in making LLM more useful:
 
 **Install the following packages in the virtual environment**
 ```python
-pip install lancedb phidata youtube_transcript_api openai ollama numpy pandas
+pip install lancedb phidata youtube_transcript_api  ollama numpy pandas
 ```
 
 **Create python files and import necessary libraries**
 
-You need to create two files - `transcript.py` and `ollama_assistant.py` or `openai_assistant.py`
+You need to create two files - `transcript.py` and `ollama_assistant.py` or `_assistant.py`
 
-=== "openai_assistant.py"
+=== "_assistant.py"
 
     ```python
-    import os, openai
+    import os, 
     from rich.prompt import Prompt
     from phi.assistant import Assistant
     from phi.knowledge.text import TextKnowledgeBase
     from phi.vectordb.lancedb import LanceDb
-    from phi.llm.openai import OpenAIChat
-    from phi.embedder.openai import OpenAIEmbedder
+    from phi.llm. import Chat
+    from phi.embedder. import Embedder
     from transcript import extract_transcript
 
     if "" not in os.environ:
     # OR set the key here as a variable
-        openai.api_key = "sk-..."
+        .api_key = "sk-..."
 
     # The code below creates a file "transcript.txt" in the directory, the txt file will be used below
     youtube_url = "https://www.youtube.com/watch?v=Xs33-Gzl8Mo" 
@@ -183,14 +183,14 @@ deactivate
 
 ## **Step 1** - Create a Knowledge Base for AI Assistant using LanceDB
 
-=== "openai_assistant.py"
+=== "_assistant.py"
 
     ```python
-    # Create knowledge Base with OpenAIEmbedder in LanceDB
+    # Create knowledge Base with Embedder in LanceDB
     knowledge_base = TextKnowledgeBase(
         path="transcript.txt",
         vector_db=LanceDb(
-            embedder=OpenAIEmbedder(api_key = openai.api_key),
+            embedder=Embedder(api_key = .api_key),
             table_name="transcript_documents",
             uri="./t3mp/.lancedb",
         ),
@@ -253,7 +253,7 @@ Let's dig deeper into the `vector_db` parameter and see what parameters `LanceDb
 
 | Name| Type | Purpose | Default |
 |:----|:-----|:--------|:--------|
-|`embedder`|`Embedder`| phidata provides many Embedders that abstract the interaction with embedding APIs and utilize it to generate embeddings. Check out other embedders [here](https://docs.phidata.com/embedder/introduction) | `OpenAIEmbedder` |
+|`embedder`|`Embedder`| phidata provides many Embedders that abstract the interaction with embedding APIs and utilize it to generate embeddings. Check out other embedders [here](https://docs.phidata.com/embedder/introduction) | `Embedder` |
 |`distance`|`List[str]`| The choice of distance metric used to calculate the similarity between vectors, which directly impacts search results and performance in vector databases. |`Distance.cosine`|
 |`connection`|`lancedb.db.LanceTable`| LanceTable can be accessed through `.connection`. You can connect to an existing table of LanceDB, created outside of phidata, and utilize it. If not provided, it creates a new table using `table_name` parameter and adds it to `connection`. |`None`|
 |`uri`|`str`| It specifies the directory location of **LanceDB database** and establishes a connection that can be used to interact with the database. | `"/tmp/lancedb"` |
@@ -271,12 +271,12 @@ Now that the Knowledge Base is initialized, , we can go to **step 2**.
 ## **Step 2** -  Create an assistant with our choice of LLM and reference to the knowledge base.
 
 
-=== "openai_assistant.py"
+=== "_assistant.py"
 
     ```python
     # define an assistant with gpt-4o-mini llm and reference to the knowledge base created above
     assistant = Assistant(
-        llm=OpenAIChat(model="gpt-4o-mini", max_tokens=1000, temperature=0.3,api_key = openai.api_key),
+        llm=Chat(model="gpt-4o-mini", max_tokens=1000, temperature=0.3,api_key = .api_key),
         description="""You are an Expert in explaining youtube video transcripts. You are a bot that takes transcript of a video and answer the question based on it.
         
         This is transcript for the above timestamp: {relevant_document}

@@ -6,8 +6,8 @@ from pathlib import Path
 import requests
 from langchain.chains import RetrievalQA
 from langchain.document_loaders import UnstructuredHTMLLoader
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.llms import OpenAI
+from langchain.embeddings import Embeddings
+from langchain.llms import 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import LanceDB
 from modal import Image, Secret, Stub, web_endpoint
@@ -15,13 +15,13 @@ from modal import Image, Secret, Stub, web_endpoint
 import lancedb
 
 lancedb_image = Image.debian_slim().pip_install(
-    "lancedb", "langchain", "openai", "pandas", "tiktoken", "unstructured", "tabulate"
+    "lancedb", "langchain", "", "pandas", "tiktoken", "unstructured", "tabulate"
 )
 
 stub = Stub(
     name="example-langchain-lancedb",
     image=lancedb_image,
-    secrets=[Secret.from_name("my-openai-secret")],
+    secrets=[Secret.from_name("my--secret")],
 )
 
 docsearch = None
@@ -83,7 +83,7 @@ def qanda_langchain(query):
         chunk_overlap=200,
     )
     documents = text_splitter.split_documents(docs)
-    embeddings = OpenAIEmbeddings()
+    embeddings = Embeddings()
 
     db = lancedb.connect(db_path)
     table = db.create_table(
@@ -99,7 +99,7 @@ def qanda_langchain(query):
     )
     docsearch = LanceDB.from_documents(documents, embeddings, connection=table)
     qa = RetrievalQA.from_chain_type(
-        llm=OpenAI(), chain_type="stuff", retriever=docsearch.as_retriever()
+        llm=(), chain_type="stuff", retriever=docsearch.as_retriever()
     )
     return qa.run(query)
 

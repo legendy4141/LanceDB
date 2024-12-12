@@ -18,7 +18,7 @@ We'll start by specifying our dependencies and creating a new Modal `Stub`:
 lancedb_image = Image.debian_slim().pip_install(
     "lancedb",
     "langchain",
-    "openai",
+    "",
     "pandas",
     "tiktoken",
     "unstructured",
@@ -28,11 +28,11 @@ lancedb_image = Image.debian_slim().pip_install(
 stub = Stub(
     name="example-langchain-lancedb",
     image=lancedb_image,
-    secrets=[Secret.from_name("my-openai-secret")],
+    secrets=[Secret.from_name("my--secret")],
 )
 ```
 
-We're using Modal's Secrets injection to secure our OpenAI key. To set your own, you can access the Modal UI and enter your key.
+We're using Modal's Secrets injection to secure our  key. To set your own, you can access the Modal UI and enter your key.
 
 ### Setting up caches for LanceDB and LangChain
 
@@ -94,7 +94,7 @@ def store_docs():
 
 ### Simple LangChain chain for a QA bot
 
-Now we can create a simple LangChain chain for our QA bot. We'll use the `RecursiveCharacterTextSplitter` to split our documents into chunks, and then use the `OpenAIEmbeddings` to vectorize them.
+Now we can create a simple LangChain chain for our QA bot. We'll use the `RecursiveCharacterTextSplitter` to split our documents into chunks, and then use the `Embeddings` to vectorize them.
 
 Lastly, we'll create a LanceDB table and store the vectorized documents in it, then create a `RetrievalQA` model from the chain and return it.
 
@@ -108,14 +108,14 @@ def qanda_langchain(query):
         chunk_overlap=200,
     )
     documents = text_splitter.split_documents(docs)
-    embeddings = OpenAIEmbeddings()
+    embeddings = Embeddings()
 
     db = lancedb.connect(db_path) 
     table = db.create_table("pandas_docs", data=[
         {"vector": embeddings.embed_query("Hello World"), "text": "Hello World", "id": "1"}
     ], mode="overwrite")
     docsearch = LanceDB.from_documents(documents, embeddings, connection=table)
-    qa = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=docsearch.as_retriever())
+    qa = RetrievalQA.from_chain_type(llm=(), chain_type="stuff", retriever=docsearch.as_retriever())
     return qa.run(query)
 ```
 

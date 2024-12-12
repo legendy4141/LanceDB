@@ -53,7 +53,7 @@ const {
 
 export { Query };
 export type { EmbeddingFunction };
-export { OpenAIEmbeddingFunction } from "./embedding/openai";
+export { EmbeddingFunction } from "./embedding/";
 export {
   convertToTable,
   makeArrowTable,

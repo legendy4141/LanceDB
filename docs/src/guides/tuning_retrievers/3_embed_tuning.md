@@ -32,14 +32,14 @@ def load_corpus(file):
 
     return nodes
 
-from llama_index.llms.openai import OpenAI
+from llama_index.llms. import 
 
 
 train_dataset = generate_qa_embedding_pairs(
-    llm=OpenAI(model="gpt-3.5-turbo"), nodes=train_nodes, verbose=False
+    llm=(model="gpt-3.5-turbo"), nodes=train_nodes, verbose=False
 )
 val_dataset = generate_qa_embedding_pairs(
-    llm=OpenAI(model="gpt-3.5-turbo"), nodes=val_nodes, verbose=False
+    llm=(model="gpt-3.5-turbo"), nodes=val_nodes, verbose=False
 )
 ```
 

@@ -9,7 +9,7 @@ You can perform hybrid search in LanceDB by combining the results of semantic an
 import os
 
 import lancedb
-import openai
+import 
 from lancedb.embeddings import get_registry
 from lancedb.pydantic import LanceModel, Vector
 
@@ -19,8 +19,8 @@ db = lancedb.connect("~/.lancedb")
 # Configuring the environment variable 
 if "" not in os.environ:
 # OR set the key here as a variable
-    openai.api_key = "sk-..."
-embeddings = get_registry().get("openai").create()
+    .api_key = "sk-..."
+embeddings = get_registry().get("").create()
 
 class Documents(LanceModel):
     vector: Vector(embeddings.ndims()) = embeddings.VectorField()

@@ -18,7 +18,7 @@ from .gemini_text import GeminiText
 from .instructor import InstructorEmbeddingFunction
 from .ollama import OllamaEmbeddings
 from .open_clip import OpenClipEmbeddings
-from .openai import OpenAIEmbeddings
+from . import Embeddings
 from .registry import EmbeddingFunctionRegistry, get_registry
 from .sentence_transformers import SentenceTransformerEmbeddings
 from .gte import GteEmbeddings

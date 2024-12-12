@@ -16,9 +16,9 @@ from llama_index.core import SimpleDirectoryReader, Document, StorageContext
 from llama_index.core import VectorStoreIndex
 from llama_index.vector_stores.lancedb import LanceDBVectorStore
 import textwrap
-import openai
+import 
 
-openai.api_key = "sk-..."
+.api_key = "sk-..."
 
 documents = SimpleDirectoryReader("./data/your-data-dir/").load_data()
 print("Document ID:", documents[0].doc_id, "Document Hash:", documents[0].hash)

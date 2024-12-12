@@ -53,7 +53,7 @@ is also an [asynchronous API client](#connections-asynchronous).
 
 ::: lancedb.embeddings.sentence_transformers.SentenceTransformerEmbeddings
 
-::: lancedb.embeddings.openai.OpenAIEmbeddings
+::: lancedb.embeddings..Embeddings
 
 ::: lancedb.embeddings.open_clip.OpenClipEmbeddings
 
@@ -99,7 +99,7 @@ is also an [asynchronous API client](#connections-asynchronous).
 
 ::: lancedb.rerankers.cross_encoder.CrossEncoderReranker
 
-::: lancedb.rerankers.openai.OpenaiReranker
+::: lancedb.rerankers..Reranker
 
 ## Connections (Asynchronous)
 

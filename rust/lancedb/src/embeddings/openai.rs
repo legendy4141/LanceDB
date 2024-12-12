@@ -4,8 +4,8 @@ use arrow::array::{AsArray, Float32Builder};
 use arrow_array::{Array, ArrayRef, FixedSizeListArray, Float32Array};
 use arrow_data::ArrayData;
 use arrow_schema::DataType;
-use async_openai::{
-    config::OpenAIConfig,
+use async_::{
+    config::Config,
     types::{CreateEmbeddingRequest, Embedding, EmbeddingInput, EncodingFormat},
     Client,
 };
@@ -65,14 +65,14 @@ impl TryFrom<&str> for EmbeddingModel {
     }
 }
 
-pub struct OpenAIEmbeddingFunction {
+pub struct EmbeddingFunction {
     model: EmbeddingModel,
     api_key: String,
     api_base: Option<String>,
     org_id: Option<String>,
 }
 
-impl std::fmt::Debug for OpenAIEmbeddingFunction {
+impl std::fmt::Debug for EmbeddingFunction {
     fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
         // let's be safe and not print the full API key
         let creds_display = if self.api_key.len() > 6 {
@@ -85,7 +85,7 @@ impl std::fmt::Debug for OpenAIEmbeddingFunction {
             "[INVALID]".to_string()
         };
 
-        f.debug_struct("OpenAI")
+        f.debug_struct("")
             .field("model", &self.model)
             .field("api_key", &creds_display)
             .field("api_base", &self.api_base)
@@ -94,8 +94,8 @@ impl std::fmt::Debug for OpenAIEmbeddingFunction {
     }
 }
 
-impl OpenAIEmbeddingFunction {
-    /// Create a new OpenAIEmbeddingFunction
+impl EmbeddingFunction {
+    /// Create a new EmbeddingFunction
     pub fn new<A: Into<String>>(api_key: A) -> Self {
         Self::new_impl(api_key.into(), EmbeddingModel::TextEmbeddingAda002)
     }
@@ -123,22 +123,22 @@ impl OpenAIEmbeddingFunction {
         }
     }
 
-    /// To use a API base url different from default "https://api.openai.com/v1"
+    /// To use a API base url different from default "https://api..com/v1"
     pub fn api_base<S: Into<String>>(mut self, api_base: S) -> Self {
         self.api_base = Some(api_base.into());
         self
     }
 
-    /// To use a different OpenAI organization id other than default
+    /// To use a different  organization id other than default
     pub fn org_id<S: Into<String>>(mut self, org_id: S) -> Self {
         self.org_id = Some(org_id.into());
         self
     }
 }
 
-impl EmbeddingFunction for OpenAIEmbeddingFunction {
+impl EmbeddingFunction for EmbeddingFunction {
     fn name(&self) -> &str {
-        "openai"
+        ""
     }
 
     fn source_type(&self) -> Result<Cow<DataType>> {
@@ -177,23 +177,23 @@ impl EmbeddingFunction for OpenAIEmbeddingFunction {
     }
 }
 
-impl OpenAIEmbeddingFunction {
+impl EmbeddingFunction {
     fn compute_inner(&self, source: Arc<dyn Array>) -> Result<Float32Array> {
-        // OpenAI only supports non-nullable string arrays
+        //  only supports non-nullable string arrays
         if source.is_nullable() {
             return Err(crate::Error::InvalidInput {
                 message: "Expected non-nullable data type".to_string(),
             });
         }
 
-        // OpenAI only supports string arrays
+        //  only supports string arrays
         if !matches!(source.data_type(), DataType::Utf8 | DataType::LargeUtf8) {
             return Err(crate::Error::InvalidInput {
                 message: "Expected Utf8 data type".to_string(),
             });
         };
 
-        let mut creds = OpenAIConfig::new().with_api_key(self.api_key.clone());
+        let mut creds = Config::new().with_api_key(self.api_key.clone());
 
         if let Some(api_base) = &self.api_base {
             creds = creds.with_api_base(api_base.clone());
@@ -244,7 +244,7 @@ impl OpenAIEmbeddingFunction {
                 let mut builder = Float32Builder::new();
 
                 let res = embed.create(req).await.map_err(|e| crate::Error::Runtime {
-                    message: format!("OpenAI embed request failed: {e}"),
+                    message: format!(" embed request failed: {e}"),
                 })?;
 
                 for Embedding { embedding, .. } in res.data.iter() {

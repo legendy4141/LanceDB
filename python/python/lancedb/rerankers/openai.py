@@ -22,9 +22,9 @@ from ..util import attempt_import_or_raise
 from .base import Reranker
 
 
-class OpenaiReranker(Reranker):
+class Reranker(Reranker):
     """
-    Reranks the results using the OpenAI API.
+    Reranks the results using the  API.
     WARNING: This is a prompt based reranker that uses chat model that is
     not a dedicated reranker API. This should be treated as experimental.
 
@@ -100,7 +100,7 @@ class OpenaiReranker(Reranker):
             combined_results = self._keep_relevance_score(combined_results)
         elif self.score == "all":
             raise NotImplementedError(
-                "OpenAI Reranker does not support score='all' yet"
+                " Reranker does not support score='all' yet"
             )
 
         combined_results = combined_results.sort_by(
@@ -129,12 +129,12 @@ class OpenaiReranker(Reranker):
 
     @cached_property
     def _client(self):
-        openai = attempt_import_or_raise(
-            "openai"
+         = attempt_import_or_raise(
+            ""
         )  # TODO: force version or handle versions < 1.0
         if os.environ.get("") is None and self.api_key is None:
             raise ValueError(
                 " not set. Either set it in your environment or \
                 pass it as `api_key` argument to the CohereReranker."
             )
-        return openai.OpenAI(api_key=os.environ.get("") or self.api_key)
+        return .(api_key=os.environ.get("") or self.api_key)

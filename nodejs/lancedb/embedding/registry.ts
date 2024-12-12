@@ -191,7 +191,7 @@ export function register(name?: string) {
  * @example
  * ```ts
  * const registry = getRegistry();
- * const openai = registry.get("openai").create();
+ * const  = registry.get("").create();
  */
 export function getRegistry(): EmbeddingFunctionRegistry {
   return _REGISTRY;

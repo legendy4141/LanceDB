@@ -547,13 +547,13 @@ Use the `drop_table()` method on the database to remove a table.
 
 
 ## Using the Embedding API
-You can use the embedding API when working with embedding models. It automatically vectorizes the data at ingestion and query time and comes with built-in integrations with popular embedding models like Openai, Hugging Face, Sentence Transformers, CLIP and more.
+You can use the embedding API when working with embedding models. It automatically vectorizes the data at ingestion and query time and comes with built-in integrations with popular embedding models like , Hugging Face, Sentence Transformers, CLIP and more.
 
 === "Python"
 
     ```python
     --8<-- "python/python/tests/docs/test_embeddings_optional.py:imports"
-    --8<-- "python/python/tests/docs/test_embeddings_optional.py:openai_embeddings"
+    --8<-- "python/python/tests/docs/test_embeddings_optional.py:_embeddings"
     ```
 
 === "Typescript[^1]"
@@ -562,14 +562,14 @@ You can use the embedding API when working with embedding models. It automatical
 
         ```typescript
         --8<-- "nodejs/examples/embedding.test.ts:imports"
-        --8<-- "nodejs/examples/embedding.test.ts:openai_embeddings"
+        --8<-- "nodejs/examples/embedding.test.ts:_embeddings"
         ```
 
 === "Rust"
 
     ```rust
-    --8<-- "rust/lancedb/examples/openai.rs:imports"
-    --8<-- "rust/lancedb/examples/openai.rs:openai_embeddings"
+    --8<-- "rust/lancedb/examples/.rs:imports"
+    --8<-- "rust/lancedb/examples/.rs:_embeddings"
     ```
 
 Learn about using the existing integrations and creating custom embedding functions in the [embedding API guide](./embeddings/index.md).

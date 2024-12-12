@@ -139,7 +139,7 @@ nav:
               - Cross Encoder Reranker: reranking/cross_encoder.md
               - ColBERT Reranker: reranking/colbert.md
               - Jina Reranker: reranking/jina.md
-              - OpenAI Reranker: reranking/openai.md
+              -  Reranker: reranking/.md
               - AnswerDotAi Rerankers: reranking/answerdotai.md
               - Voyage AI Rerankers: reranking/voyageai.md
               - Building Custom Rerankers: reranking/custom_reranker.md
@@ -162,7 +162,7 @@ nav:
                   - Sentence Transformers: embeddings/available_embedding_models/text_embedding_functions/sentence_transformers.md
                   - Huggingface Embedding Models: embeddings/available_embedding_models/text_embedding_functions/huggingface_embedding.md
                   - Ollama Embeddings: embeddings/available_embedding_models/text_embedding_functions/ollama_embedding.md
-                  - OpenAI Embeddings: embeddings/available_embedding_models/text_embedding_functions/openai_embedding.md
+                  -  Embeddings: embeddings/available_embedding_models/text_embedding_functions/_embedding.md
                   - Instructor Embeddings: embeddings/available_embedding_models/text_embedding_functions/instructor_embedding.md
                   - Gemini Embeddings: embeddings/available_embedding_models/text_embedding_functions/gemini_embedding.md
                   - Cohere Embeddings: embeddings/available_embedding_models/text_embedding_functions/cohere_embedding.md
@@ -271,7 +271,7 @@ nav:
           - Cross Encoder Reranker: reranking/cross_encoder.md
           - ColBERT Reranker: reranking/colbert.md
           - Jina Reranker: reranking/jina.md
-          - OpenAI Reranker: reranking/openai.md
+          -  Reranker: reranking/.md
           - AnswerDotAi Rerankers: reranking/answerdotai.md
           - Building Custom Rerankers: reranking/custom_reranker.md
           - Example: notebooks/lancedb_reranking.ipynb
@@ -293,7 +293,7 @@ nav:
               - Sentence Transformers: embeddings/available_embedding_models/text_embedding_functions/sentence_transformers.md
               - Huggingface Embedding Models: embeddings/available_embedding_models/text_embedding_functions/huggingface_embedding.md
               - Ollama Embeddings: embeddings/available_embedding_models/text_embedding_functions/ollama_embedding.md
-              - OpenAI Embeddings: embeddings/available_embedding_models/text_embedding_functions/openai_embedding.md
+              -  Embeddings: embeddings/available_embedding_models/text_embedding_functions/_embedding.md
               - Instructor Embeddings: embeddings/available_embedding_models/text_embedding_functions/instructor_embedding.md
               - Gemini Embeddings: embeddings/available_embedding_models/text_embedding_functions/gemini_embedding.md
               - Cohere Embeddings: embeddings/available_embedding_models/text_embedding_functions/cohere_embedding.md

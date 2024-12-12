@@ -15,11 +15,11 @@
 import { describe } from 'mocha'
 import { assert } from 'chai'
 
-import { OpenAIEmbeddingFunction } from '../../embedding/openai'
+import { EmbeddingFunction } from '../../embedding/'
 import { isEmbeddingFunction } from '../../embedding/embedding_function'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const OpenAIApi = require('openai')
+const Api = require('')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { stub } = require('sinon')
 
@@ -37,10 +37,10 @@ describe('OpenAPIEmbeddings', function () {
 
   describe('#embed', function () {
     it('should create vector embeddings', async function () {
-      const openAIStub = stub(OpenAIApi.Embeddings.prototype, 'create').returns(stubValue)
-      const f = new OpenAIEmbeddingFunction('text', 'sk-key')
+      const Stub = stub(Api.Embeddings.prototype, 'create').returns(stubValue)
+      const f = new EmbeddingFunction('text', 'sk-key')
       const vectors = await f.embed(['abc', 'def'])
-      assert.isTrue(openAIStub.calledOnce)
+      assert.isTrue(Stub.calledOnce)
       assert.equal(vectors.length, 2)
       assert.deepEqual(vectors[0], stubValue.data[0].embedding)
       assert.deepEqual(vectors[1], stubValue.data[1].embedding)
@@ -49,7 +49,7 @@ describe('OpenAPIEmbeddings', function () {
 
   describe('isEmbeddingFunction', function () {
     it('should match the isEmbeddingFunction guard', function () {
-      assert.isTrue(isEmbeddingFunction(new OpenAIEmbeddingFunction('text', 'sk-key')))
+      assert.isTrue(isEmbeddingFunction(new EmbeddingFunction('text', 'sk-key')))
     })
   })
 })

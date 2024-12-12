@@ -24,20 +24,20 @@ def embed_func(batch):
 ```
 
 
-### OpenAI
+### 
 
-Another popular alternative is to use an external API like OpenAI's [embeddings API](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
+Another popular alternative is to use an external API like 's [embeddings API](https://platform..com/docs/guides/embeddings/what-are-embeddings).
 
 ```python
-import openai
+import 
 import os
 
 # Configuring the environment variable 
 if "" not in os.environ:
 # OR set the key here as a variable
-openai.api_key = ""
+.api_key = ""
 
-client = openai.OpenAI()
+client = .()
 
 def embed_func(c):    
     rs = client.embeddings.create(input=c, model="text-embedding-ada-002")
@@ -75,7 +75,7 @@ If your data is in a different column, you can specify the `column` kwarg to `wi
 By default, LanceDB calls the function with batches of 1000 rows. This can be configured
 using the `batch_size` parameter to `with_embeddings`.
 
-LanceDB automatically wraps the function with retry and rate-limit logic to ensure the OpenAI
+LanceDB automatically wraps the function with retry and rate-limit logic to ensure the 
 API call is reliable.
 
 ## Querying using an embedding function

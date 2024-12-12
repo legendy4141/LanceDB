@@ -23,7 +23,7 @@ from lancedb.pydantic import LanceModel, Vector
 from lancedb.embeddings import get_registry
 
 # model definition using LanceDB Embedding API
-model1 = get_registry().get("openai").create()
+model1 = get_registry().get("").create()
 model2 = get_registry().get("ollama").create(name="llama3")
 model3 = get_registry().get("ollama").create(name="mistral")
 

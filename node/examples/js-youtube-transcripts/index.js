@@ -18,16 +18,16 @@ const lancedb = require('vectordb')
 const fs = require('fs/promises')
 const readline = require('readline/promises')
 const { stdin: input, stdout: output } = require('process')
-const { Configuration, OpenAIApi } = require('openai')
+const { Configuration, Api } = require('')
 
 // Download file from XYZ
 const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
 
 (async () => {
-  // You need to provide an OpenAI API key, here we read it from the  environment variable
+  // You need to provide an  API key, here we read it from the  environment variable
   const apiKey = process.env.
   // The embedding function will create embeddings for the 'context' column
-  const embedFunction = new lancedb.OpenAIEmbeddingFunction('context', apiKey)
+  const embedFunction = new lancedb.EmbeddingFunction('context', apiKey)
 
   // Connects to LanceDB
   const db = await lancedb.connect('data/youtube-lancedb')
@@ -40,9 +40,9 @@ const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
     tbl = await createEmbeddingsTable(db, embedFunction)
   }
 
-  // Use OpenAI Completion API to generate and answer based on the context that LanceDB provides
+  // Use  Completion API to generate and answer based on the context that LanceDB provides
   const configuration = new Configuration({ apiKey })
-  const openai = new OpenAIApi(configuration)
+  const  = new Api(configuration)
   const rl = readline.createInterface({ input, output })
   try {
     while (true) {
@@ -55,7 +55,7 @@ const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
 
       // console.table(results)
 
-      const response = await openai.createCompletion({
+      const response = await .createCompletion({
         model: 'text-davinci-003',
         prompt: createPrompt(query, results),
         max_tokens: 400,

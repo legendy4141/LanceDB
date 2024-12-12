@@ -16,7 +16,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./embedding": "./dist/embedding/index.js",
-    "./embedding/openai": "./dist/embedding/openai.js",
+    "./embedding/": "./dist/embedding/.js",
     "./embedding/transformers": "./dist/embedding/transformers.js"
   },
   "types": "dist/index.d.ts",
@@ -92,7 +92,7 @@
   },
   "optionalDependencies": {
     "@huggingface/transformers": "^3.0.2",
-    "openai": "^4.29.2"
+    "": "^4.29.2"
   },
   "peerDependencies": {
     "apache-arrow": ">=15.0.0 <=18.1.0"

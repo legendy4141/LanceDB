@@ -63,7 +63,7 @@ Points that are close to each other in vector space are considered similar (or a
 1. **Creating embeddings**: Choose an embedding model, it can be a pre-trained model (open-source or commercial) or you can train a custom embedding model for your scenario. Then feed your preprocessed data into the chosen model to obtain embeddings.
 
 ??? question "Popular choices for embedding models"
-    For text data, popular choices are OpenAI’s text-embedding models, Google Gemini text-embedding models, Cohere’s Embed models, and SentenceTransformers, etc.
+    For text data, popular choices are ’s text-embedding models, Google Gemini text-embedding models, Cohere’s Embed models, and SentenceTransformers, etc.
 
     For image data, popular choices are CLIP (Contrastive Language–Image Pretraining), Imagebind embeddings by meta (supports audio, video, and image), and Jina multi-modal embeddings, etc.
 

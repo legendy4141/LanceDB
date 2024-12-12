@@ -75,11 +75,11 @@ def grade_documents(state):
 
         binary_score: str = Field(description="Relevance score 'yes' or 'no'")
 
-    model = ChatOpenAI(temperature=0, model="gpt-4-0125-preview", streaming=True)
-    # grading using openai
-    grade_tool_oai = convert_to_openai_tool(grade)
+    model = Chat(temperature=0, model="gpt-4-0125-preview", streaming=True)
+    # grading using 
+    grade_tool_oai = convert_to__tool(grade)
     llm_with_tool = model.bind(
-        tools=[convert_to_openai_tool(grade_tool_oai)],
+        tools=[convert_to__tool(grade_tool_oai)],
         tool_choice={"type": "function", "function": {"name": "grade"}},
     )
 

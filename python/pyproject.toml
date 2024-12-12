@@ -58,7 +58,7 @@ docs = ["mkdocs", "mkdocs-jupyter", "mkdocs-material", "mkdocstrings[python]"]
 clip = ["torch", "pillow", "open-clip"]
 embeddings = [
     "requests>=2.31.0",
-    "openai>=1.6.1",
+    ">=1.6.1",
     "sentence-transformers",
     "torch",
     "pillow",

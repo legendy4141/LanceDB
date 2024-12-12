@@ -1,6 +1,6 @@
 # YouTube transcript QA bot with NodeJS
 
-## use LanceDB's Javascript API and OpenAI to build a QA bot for YouTube transcripts
+## use LanceDB's Javascript API and  to build a QA bot for YouTube transcripts
 
 <img id="splash" width="400" alt="nodejs" src="https://github.com/lancedb/lancedb/assets/917119/3a140e75-bf8e-438a-a1e4-af14a72bcf98">
 
@@ -60,13 +60,13 @@ function contextualize (rows, contextSize, groupColumn) {
 
 ## Create the LanceDB Table
 
-To load our data into LanceDB, we need to create embedding (vectors) for each item. For this example, we will use the OpenAI embedding functions, which have a native integration with LanceDB.
+To load our data into LanceDB, we need to create embedding (vectors) for each item. For this example, we will use the  embedding functions, which have a native integration with LanceDB.
 
 ```javascript
-// You need to provide an OpenAI API key, here we read it from the  environment variable
+// You need to provide an  API key, here we read it from the  environment variable
 const apiKey = process.env.
 // The embedding function will create embeddings for the 'context' column
-const embedFunction = new lancedb.OpenAIEmbeddingFunction('context', apiKey)
+const embedFunction = new lancedb.EmbeddingFunction('context', apiKey)
 // Connects to LanceDB
 const db = await lancedb.connect('data/youtube-lancedb')
 const tbl = await db.createTable('vectors', data, embedFunction)
@@ -74,11 +74,11 @@ const tbl = await db.createTable('vectors', data, embedFunction)
 
 ## Create and answer the prompt
 
-We will accept questions in natural language and use our corpus stored in LanceDB to answer them. First, we need to set up the OpenAI client:
+We will accept questions in natural language and use our corpus stored in LanceDB to answer them. First, we need to set up the  client:
 
 ```javascript
 const configuration = new Configuration({ apiKey })
-const openai = new OpenAIApi(configuration)
+const  = new Api(configuration)
 ```
 
 Then we can prompt questions and use LanceDB to retrieve the three most relevant transcripts for this prompt.
@@ -107,10 +107,10 @@ function createPrompt (query, context) {
 }
 ```
 
-We can now use the OpenAI Completion API to process our custom prompt and give us an answer.
+We can now use the  Completion API to process our custom prompt and give us an answer.
 
 ```javascript
-const response = await openai.createCompletion({
+const response = await .createCompletion({
   model: 'text-davinci-003',
   prompt: createPrompt(query, results),
   max_tokens: 400,

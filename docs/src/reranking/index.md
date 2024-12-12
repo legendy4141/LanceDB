@@ -8,7 +8,7 @@ LanceDB comes with some built-in rerankers. Some of the rerankers that are avail
 | `CohereReranker` | Uses cohere Reranker API to rerank results | Vector, FTS, Hybrid |
 | `CrossEncoderReranker` | Uses a cross-encoder model to rerank search results | Vector, FTS, Hybrid |
 | `ColbertReranker` | Uses a colbert model to rerank search results | Vector, FTS, Hybrid |
-| `OpenaiReranker`(Experimental) | Uses OpenAI's chat model to rerank search results | Vector, FTS, Hybrid |
+| `Reranker`(Experimental) | Uses 's chat model to rerank search results | Vector, FTS, Hybrid |
 | `VoyageAIReranker` | Uses voyageai Reranker API to rerank results | Vector, FTS, Hybrid |
 
 
@@ -69,7 +69,7 @@ LanceDB comes with some built-in rerankers. Here are some of the rerankers that 
 - [Cohere Reranker](./cohere.md)
 - [Cross Encoder Reranker](./cross_encoder.md)
 - [ColBERT Reranker](./colbert.md)
-- [OpenAI Reranker](./openai.md)
+- [ Reranker](./.md)
 - [Linear Combination Reranker](./linear_combination.md)
 - [Jina Reranker](./jina.md)
 - [AnswerDotAI Rerankers](./answerdotai.md)

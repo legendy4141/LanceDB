@@ -26,13 +26,13 @@ from datasets import load_dataset
 from transformers import CLIPModel, CLIPProcessor, CLIPTokenizerFast
 
 
-MODEL_ID = "openai/clip-vit-base-patch32"
+MODEL_ID = "/clip-vit-base-patch32"
 
 device = "cuda"
 
 tokenizer = CLIPTokenizerFast.from_pretrained(MODEL_ID)
-model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
-processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+model = CLIPModel.from_pretrained("/clip-vit-base-patch32").to(device)
+processor = CLIPProcessor.from_pretrained("/clip-vit-base-patch32")
 
 schema = pa.schema(
     [

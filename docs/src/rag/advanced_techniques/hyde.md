@@ -14,16 +14,16 @@ HyDE, stands for Hypothetical Document Embeddings is an approach used for precis
 Here’s a code snippet for using HyDE with Langchain
 
 ```python
-from langchain.llms import OpenAI
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.llms import 
+from langchain.embeddings import Embeddings
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, HypotheticalDocumentEmbedder
 from langchain.vectorstores import LanceDB
 
 # set  as env variable before this step
 # initialize LLM and embedding function
-llm = OpenAI()
-emebeddings = OpenAIEmbeddings()
+llm = ()
+emebeddings = Embeddings()
 
 # HyDE embedding
 embeddings = HypotheticalDocumentEmbedder(llm_chain=llm_chain,base_embeddings=embeddings)

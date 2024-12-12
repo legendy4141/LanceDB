@@ -7,12 +7,12 @@ LangChain streamlines these stages (in figure above) by providing pre-built comp
 Integration of **Langchain** with **LanceDB** enables applications to retrieve the most relevant data by comparing query vectors against stored vectors, facilitating effective information retrieval. It results in better and context aware replies and actions by the LLMs.
 
 ## Quick Start
-You can load your document data using langchain's loaders, for this example we are using `TextLoader` and `OpenAIEmbeddings` as the embedding model. Checkout Complete example here - [LangChain demo](../notebooks/langchain_example.ipynb)
+You can load your document data using langchain's loaders, for this example we are using `TextLoader` and `Embeddings` as the embedding model. Checkout Complete example here - [LangChain demo](../notebooks/langchain_example.ipynb)
 ```python
 import os
 from langchain.document_loaders import TextLoader
 from langchain.vectorstores import LanceDB
-from langchain_openai import OpenAIEmbeddings
+from langchain_ import Embeddings
 from langchain_text_splitters import CharacterTextSplitter
 
 os.environ[""] = "sk-..."
@@ -21,7 +21,7 @@ loader = TextLoader("../../modules/state_of_the_union.txt") # Replace with your 
 documents = loader.load()
 
 documents = CharacterTextSplitter().split_documents(documents)
-embeddings = OpenAIEmbeddings()
+embeddings = Embeddings()
 
 docsearch = LanceDB.from_documents(documents, embeddings)
 query = "What did the president say about Ketanji Brown Jackson"

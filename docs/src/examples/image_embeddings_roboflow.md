@@ -2,7 +2,7 @@
 
 With the rise of Large Multimodal Models (LMMs) such as [GPT-4 Vision](https://blog.roboflow.com/gpt-4-vision/), the need for storing image embeddings is growing. The most effective way to store text and image embeddings is in a vector database such as LanceDB. Vector databases are a special kind of data store that enables efficient search over stored embeddings. 
 
-[CLIP](https://blog.roboflow.com/openai-clip/), a multimodal model developed by OpenAI, is commonly used to calculate image embeddings. These embeddings can then be used with a vector database to build a semantic search engine that you can query using images or text. For example, you could use LanceDB and CLIP embeddings to build a search engine for a database of folders.
+[CLIP](https://blog.roboflow.com/-clip/), a multimodal model developed by , is commonly used to calculate image embeddings. These embeddings can then be used with a vector database to build a semantic search engine that you can query using images or text. For example, you could use LanceDB and CLIP embeddings to build a search engine for a database of folders.
 
 In this guide, we are going to show you how to use Roboflow Inference to load image embeddings into LanceDB. Without further ado, let’s get started!
 

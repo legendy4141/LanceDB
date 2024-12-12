@@ -1,11 +1,11 @@
-# OpenAI embeddings
+#  embeddings
 
-LanceDB registers the OpenAI embeddings function in the registry by default, as `openai`. Below are the parameters that you can customize when creating the instances:
+LanceDB registers the  embeddings function in the registry by default, as ``. Below are the parameters that you can customize when creating the instances:
 
 | Parameter | Type | Default Value | Description |
 |---|---|---|---|
 | `name` | `str` | `"text-embedding-ada-002"` | The name of the model. |
-| `dim` | `int` |  Model default   | For OpenAI's newer text-embedding-3 model, we can specify a dimensionality that is smaller than the 1536 size. This feature supports it |
+| `dim` | `int` |  Model default   | For 's newer text-embedding-3 model, we can specify a dimensionality that is smaller than the 1536 size. This feature supports it |
 | `use_azure` | bool | `False` | Set true to use Azure OpenAPI SDK |
 
 
@@ -15,7 +15,7 @@ from lancedb.pydantic import LanceModel, Vector
 from lancedb.embeddings import get_registry
 
 db = lancedb.connect("/tmp/db")
-func = get_registry().get("openai").create(name="text-embedding-ada-002")
+func = get_registry().get("").create(name="text-embedding-ada-002")
 
 class Words(LanceModel):
     text: str = func.SourceField()

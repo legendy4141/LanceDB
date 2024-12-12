@@ -8,33 +8,33 @@ use futures::StreamExt;
 use lancedb::{
     arrow::IntoArrow,
     connect,
-    embeddings::{openai::OpenAIEmbeddingFunction, EmbeddingDefinition, EmbeddingFunction},
+    embeddings::{::EmbeddingFunction, EmbeddingDefinition, EmbeddingFunction},
     query::{ExecutableQuery, QueryBase},
     Result,
 };
 
 // --8<-- [end:imports]
 
-// --8<-- [start:openai_embeddings]
+// --8<-- [start:_embeddings]
 #[tokio::main]
 async fn main() -> Result<()> {
     let tempdir = tempfile::tempdir().unwrap();
     let tempdir = tempdir.path().to_str().unwrap();
     let api_key = std::env::var("").expect(" is not set");
-    let embedding = Arc::new(OpenAIEmbeddingFunction::new_with_model(
+    let embedding = Arc::new(EmbeddingFunction::new_with_model(
         api_key,
         "text-embedding-3-large",
     )?);
 
     let db = connect(tempdir).execute().await?;
     db.embedding_registry()
-        .register("openai", embedding.clone())?;
+        .register("", embedding.clone())?;
 
     let table = db
         .create_table("vectors", make_data())
         .add_embedding(EmbeddingDefinition::new(
             "text",
-            "openai",
+            "",
             Some("embeddings"),
         ))?
         .execute()
@@ -59,7 +59,7 @@ async fn main() -> Result<()> {
     println!("Closest match: {}", text);
     Ok(())
 }
-// --8<-- [end:openai_embeddings]
+// --8<-- [end:_embeddings]
 
 fn make_data() -> impl IntoArrow {
     let schema = Schema::new(vec![

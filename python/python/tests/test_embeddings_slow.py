@@ -37,7 +37,7 @@ except Exception:
 
 @pytest.mark.slow
 @pytest.mark.parametrize(
-    "alias", ["sentence-transformers", "openai", "huggingface", "ollama"]
+    "alias", ["sentence-transformers", "", "huggingface", "ollama"]
 )
 def test_basic_text_embeddings(alias, tmp_path):
     db = lancedb.connect(tmp_path)
@@ -369,7 +369,7 @@ def test_bedrock_embedding(tmp_path):
 @pytest.mark.skipif(
     os.environ.get("") is None, reason=" not set"
 )
-def test_openai_embedding(tmp_path):
+def test__embedding(tmp_path):
     def _get_table(model):
         class TextModel(LanceModel):
             text: str = model.SourceField()
@@ -380,7 +380,7 @@ def test_openai_embedding(tmp_path):
 
         return tbl
 
-    model = get_registry().get("openai").create(max_retries=0)
+    model = get_registry().get("").create(max_retries=0)
     tbl = _get_table(model)
     df = pd.DataFrame({"text": ["hello world", "goodbye world"]})
 
@@ -390,7 +390,7 @@ def test_openai_embedding(tmp_path):
 
     model = (
         get_registry()
-        .get("openai")
+        .get("")
         .create(max_retries=0, name="text-embedding-3-large")
     )
     tbl = _get_table(model)
@@ -401,7 +401,7 @@ def test_openai_embedding(tmp_path):
 
     model = (
         get_registry()
-        .get("openai")
+        .get("")
         .create(max_retries=0, name="text-embedding-3-large", dim=1024)
     )
     tbl = _get_table(model)
@@ -440,8 +440,8 @@ def test_watsonx_embedding(tmp_path):
 @pytest.mark.skipif(
     os.environ.get("") is None, reason=" not set"
 )
-def test_openai_with_empty_strs(tmp_path):
-    model = get_registry().get("openai").create(max_retries=0)
+def test__with_empty_strs(tmp_path):
+    model = get_registry().get("").create(max_retries=0)
 
     class TextModel(LanceModel):
         text: str = model.SourceField()

@@ -19,7 +19,7 @@
   "dependencies": {
     "@huggingface/transformers": "^3.0.2",
     "@lancedb/lancedb": "file:../dist",
-    "openai": "^4.29.2",
+    "": "^4.29.2",
     "sharp": "^0.33.5"
   },
   "devDependencies": {

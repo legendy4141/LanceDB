@@ -16,7 +16,7 @@ Even though there are many strategies for reranking search results, none works f
 
 Here's some evaluation numbers from experiment comparing these re-rankers on about 800 queries. It is modified version of an evaluation script from [llama-index](https://github.com/run-llama/finetune-embedding/blob/main/evaluate.ipynb) that measures hit-rate at top-k.
 
-<b> With OpenAI ada2 embedding </b>
+<b> With  ada2 embedding </b>
 
 Vector Search baseline - `0.64`
 
@@ -31,7 +31,7 @@ Vector Search baseline - `0.64`
 <img src="https://github.com/AyushExel/assets/assets/15766192/d57b1780-ef27-414c-a5c3-73bee7808a45">
 </p>
 
-<b> With OpenAI embedding-v3-small </b>
+<b> With  embedding-v3-small </b>
 
 Vector Search baseline - `0.59`
 

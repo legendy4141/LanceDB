@@ -1,6 +1,6 @@
-[vectordb](../README.md) / [Exports](../modules.md) / OpenAIEmbeddingFunction
+[vectordb](../README.md) / [Exports](../modules.md) / EmbeddingFunction
 
-# Class: OpenAIEmbeddingFunction
+# Class: EmbeddingFunction
 
 An embedding function that automatically creates vector representation for a given column.
 
@@ -12,35 +12,35 @@ An embedding function that automatically creates vector representation for a giv
 
 ### Constructors
 
-- [constructor](OpenAIEmbeddingFunction.md#constructor)
+- [constructor](EmbeddingFunction.md#constructor)
 
 ### Properties
 
-- [\_modelName](OpenAIEmbeddingFunction.md#_modelname)
-- [\_openai](OpenAIEmbeddingFunction.md#_openai)
-- [sourceColumn](OpenAIEmbeddingFunction.md#sourcecolumn)
+- [\_modelName](EmbeddingFunction.md#_modelname)
+- [\_](EmbeddingFunction.md#_)
+- [sourceColumn](EmbeddingFunction.md#sourcecolumn)
 
 ### Methods
 
-- [embed](OpenAIEmbeddingFunction.md#embed)
+- [embed](EmbeddingFunction.md#embed)
 
 ## Constructors
 
 ### constructor
 
-• **new OpenAIEmbeddingFunction**(`sourceColumn`, `openAIKey`, `modelName?`)
+• **new EmbeddingFunction**(`sourceColumn`, `Key`, `modelName?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `sourceColumn` | `string` | `undefined` |
-| `openAIKey` | `string` | `undefined` |
+| `Key` | `string` | `undefined` |
 | `modelName` | `string` | `'text-embedding-ada-002'` |
 
 #### Defined in
 
-[embedding/openai.ts:22](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/openai.ts#L22)
+[embedding/.ts:22](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/.ts#L22)
 
 ## Properties
 
@@ -50,17 +50,17 @@ An embedding function that automatically creates vector representation for a giv
 
 #### Defined in
 
-[embedding/openai.ts:20](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/openai.ts#L20)
+[embedding/.ts:20](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/.ts#L20)
 
 ___
 
-### \_openai
+### \_
 
-• `Private` `Readonly` **\_openai**: `OpenAI`
+• `Private` `Readonly` **\_**: ``
 
 #### Defined in
 
-[embedding/openai.ts:19](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/openai.ts#L19)
+[embedding/.ts:19](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/.ts#L19)
 
 ___
 
@@ -76,7 +76,7 @@ The name of the column that will be used as input for the Embedding Function.
 
 #### Defined in
 
-[embedding/openai.ts:56](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/openai.ts#L56)
+[embedding/.ts:56](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/.ts#L56)
 
 ## Methods
 
@@ -102,4 +102,4 @@ Creates a vector representation for the given values.
 
 #### Defined in
 
-[embedding/openai.ts:43](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/openai.ts#L43)
+[embedding/.ts:43](https://github.com/lancedb/lancedb/blob/92179835/node/src/embedding/.ts#L43)

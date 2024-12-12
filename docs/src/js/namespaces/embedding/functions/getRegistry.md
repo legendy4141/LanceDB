@@ -22,4 +22,4 @@ Utility function to get the global instance of the registry
 
 ```ts
 const registry = getRegistry();
-const openai = registry.get("openai").create();
+const  = registry.get("").create();

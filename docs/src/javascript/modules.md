@@ -16,7 +16,7 @@
 - [LocalConnection](classes/LocalConnection.md)
 - [LocalTable](classes/LocalTable.md)
 - [MakeArrowTableOptions](classes/MakeArrowTableOptions.md)
-- [OpenAIEmbeddingFunction](classes/OpenAIEmbeddingFunction.md)
+- [EmbeddingFunction](classes/EmbeddingFunction.md)
 - [Query](classes/Query.md)
 
 ### Interfaces

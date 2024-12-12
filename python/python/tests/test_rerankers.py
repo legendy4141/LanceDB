@@ -13,7 +13,7 @@ from lancedb.rerankers import (
     CohereReranker,
     ColbertReranker,
     CrossEncoderReranker,
-    OpenaiReranker,
+    Reranker,
     JinaReranker,
     AnswerdotaiRerankers,
     VoyageAIReranker,
@@ -329,10 +329,10 @@ def test_answerdotai_reranker(tmp_path, use_tantivy):
     os.environ.get("") is None, reason=" not set"
 )
 @pytest.mark.parametrize("use_tantivy", [True, False])
-def test_openai_reranker(tmp_path, use_tantivy):
-    pytest.importorskip("openai")
+def test__reranker(tmp_path, use_tantivy):
+    pytest.importorskip("")
     table, schema = get_test_table(tmp_path, use_tantivy)
-    reranker = OpenaiReranker()
+    reranker = Reranker()
     _run_test_reranker(reranker, table, "single player experience", None, schema)
 
 

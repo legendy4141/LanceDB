@@ -346,7 +346,7 @@ def test_add_optional_vector(tmp_path):
 @pytest.mark.parametrize(
     "embedding_type",
     [
-        "openai",
+        "",
         "sentence-transformers",
         "huggingface",
         "ollama",

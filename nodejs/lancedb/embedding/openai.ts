@@ -12,54 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type OpenAI from "openai";
-import type { EmbeddingCreateParams } from "openai/resources/index";
+import type  from "";
+import type { EmbeddingCreateParams } from "/resources/index";
 import { Float, Float32 } from "../arrow";
 import { EmbeddingFunction } from "./embedding_function";
 import { register } from "./registry";
 
-export type OpenAIOptions = {
+export type Options = {
   apiKey: string;
   model: EmbeddingCreateParams["model"];
 };
 
-@register("openai")
-export class OpenAIEmbeddingFunction extends EmbeddingFunction<
+@register("")
+export class EmbeddingFunction extends EmbeddingFunction<
   string,
-  Partial<OpenAIOptions>
+  Partial<Options>
 > {
-  #openai: OpenAI;
-  #modelName: OpenAIOptions["model"];
+  #: ;
+  #modelName: Options["model"];
 
   constructor(
-    options: Partial<OpenAIOptions> = {
+    options: Partial<Options> = {
       model: "text-embedding-ada-002",
     },
   ) {
     super();
-    const openAIKey = options?.apiKey ?? process.env.;
-    if (!openAIKey) {
-      throw new Error("OpenAI API key is required");
+    const Key = options?.apiKey ?? process.env.;
+    if (!Key) {
+      throw new Error("is required");
     }
     const modelName = options?.model ?? "text-embedding-ada-002";
 
     /**
-     * @type {import("openai").default}
+     * @type {import("").default}
      */
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    let Openai;
+    let ;
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      Openai = require("openai");
+       = require("");
     } catch {
-      throw new Error("please install openai@^4.24.1 using npm install openai");
+      throw new Error("please install @^4.24.1 using npm install ");
     }
 
     const configuration = {
-      apiKey: openAIKey,
+      apiKey: Key,
     };
 
-    this.#openai = new Openai(configuration);
+    this.# = new (configuration);
     this.#modelName = modelName;
   }
 
@@ -87,7 +87,7 @@ export class OpenAIEmbeddingFunction extends EmbeddingFunction<
   }
 
   async computeSourceEmbeddings(data: string[]): Promise<number[][]> {
-    const response = await this.#openai.embeddings.create({
+    const response = await this.#.embeddings.create({
       model: this.#modelName,
       input: data,
     });
@@ -103,7 +103,7 @@ export class OpenAIEmbeddingFunction extends EmbeddingFunction<
     if (typeof data !== "string") {
       throw new Error("Data must be a string");
     }
-    const response = await this.#openai.embeddings.create({
+    const response = await this.#.embeddings.create({
       model: this.#modelName,
       input: data,
     });

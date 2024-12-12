@@ -175,6 +175,6 @@ def get_registry() -> EmbeddingFunctionRegistry:
     from lancedb.embeddings import get_registry
 
     registry = get_registry()
-    openai = registry.get("openai").create()
+     = registry.get("").create()
     """
     return __REGISTRY__.get_instance()
