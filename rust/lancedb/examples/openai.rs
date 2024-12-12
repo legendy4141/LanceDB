@@ -20,7 +20,7 @@ use lancedb::{
 async fn main() -> Result<()> {
     let tempdir = tempfile::tempdir().unwrap();
     let tempdir = tempdir.path().to_str().unwrap();
-    let api_key = std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY is not set");
+    let api_key = std::env::var("").expect(" is not set");
     let embedding = Arc::new(OpenAIEmbeddingFunction::new_with_model(
         api_key,
         "text-embedding-3-large",

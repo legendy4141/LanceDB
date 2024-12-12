@@ -20,7 +20,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, HypotheticalDocumentEmbedder
 from langchain.vectorstores import LanceDB
 
-# set OPENAI_API_KEY as env variable before this step
+# set  as env variable before this step
 # initialize LLM and embedding function
 llm = OpenAI()
 emebeddings = OpenAIEmbeddings()

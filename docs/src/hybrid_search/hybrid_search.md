@@ -16,8 +16,8 @@ from lancedb.pydantic import LanceModel, Vector
 db = lancedb.connect("~/.lancedb")
 
 # Ingest embedding function in LanceDB table
-# Configuring the environment variable OPENAI_API_KEY
-if "OPENAI_API_KEY" not in os.environ:
+# Configuring the environment variable 
+if "" not in os.environ:
 # OR set the key here as a variable
     openai.api_key = "sk-..."
 embeddings = get_registry().get("openai").create()

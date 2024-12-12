@@ -10,7 +10,7 @@ import { type Float, Float32, Utf8 } from "apache-arrow";
 // --8<-- [end:imports]
 import { withTempDirectory } from "./util.ts";
 
-const openAiTest = process.env.OPENAI_API_KEY == null ? test.skip : test;
+const openAiTest = process.env. == null ? test.skip : test;
 
 openAiTest("openai embeddings", async () => {
   await withTempDirectory(async (databaseDir) => {

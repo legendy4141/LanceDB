@@ -15,7 +15,7 @@ from langchain.vectorstores import LanceDB
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
 
-os.environ["OPENAI_API_KEY"] = "sk-..."
+os.environ[""] = "sk-..."
 
 loader = TextLoader("../../modules/state_of_the_union.txt") # Replace with your data path
 documents = loader.load()

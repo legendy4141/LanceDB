@@ -24,8 +24,8 @@ const { Configuration, OpenAIApi } = require('openai')
 const INPUT_FILE_NAME = 'data/youtube-transcriptions_sample.jsonl';
 
 (async () => {
-  // You need to provide an OpenAI API key, here we read it from the OPENAI_API_KEY environment variable
-  const apiKey = process.env.OPENAI_API_KEY
+  // You need to provide an OpenAI API key, here we read it from the  environment variable
+  const apiKey = process.env.
   // The embedding function will create embeddings for the 'context' column
   const embedFunction = new lancedb.OpenAIEmbeddingFunction('context', apiKey)
 

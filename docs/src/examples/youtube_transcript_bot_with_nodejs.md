@@ -63,8 +63,8 @@ function contextualize (rows, contextSize, groupColumn) {
 To load our data into LanceDB, we need to create embedding (vectors) for each item. For this example, we will use the OpenAI embedding functions, which have a native integration with LanceDB.
 
 ```javascript
-// You need to provide an OpenAI API key, here we read it from the OPENAI_API_KEY environment variable
-const apiKey = process.env.OPENAI_API_KEY
+// You need to provide an OpenAI API key, here we read it from the  environment variable
+const apiKey = process.env.
 // The embedding function will create embeddings for the 'context' column
 const embedFunction = new lancedb.OpenAIEmbeddingFunction('context', apiKey)
 // Connects to LanceDB

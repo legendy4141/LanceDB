@@ -367,7 +367,7 @@ def test_bedrock_embedding(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("OPENAI_API_KEY") is None, reason="OPENAI_API_KEY not set"
+    os.environ.get("") is None, reason=" not set"
 )
 def test_openai_embedding(tmp_path):
     def _get_table(model):
@@ -438,7 +438,7 @@ def test_watsonx_embedding(tmp_path):
 
 @pytest.mark.slow
 @pytest.mark.skipif(
-    os.environ.get("OPENAI_API_KEY") is None, reason="OPENAI_API_KEY not set"
+    os.environ.get("") is None, reason=" not set"
 )
 def test_openai_with_empty_strs(tmp_path):
     model = get_registry().get("openai").create(max_retries=0)

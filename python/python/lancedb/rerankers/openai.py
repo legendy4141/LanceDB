@@ -37,7 +37,7 @@ class OpenaiReranker(Reranker):
     return_score : str, default "relevance"
         options are "relevance" or "all". Only "relevance" is supported for now.
     api_key : str, default None
-        The API key to use. If None, will use the OPENAI_API_KEY environment variable.
+        The API key to use. If None, will use the  environment variable.
     """
 
     def __init__(
@@ -132,9 +132,9 @@ class OpenaiReranker(Reranker):
         openai = attempt_import_or_raise(
             "openai"
         )  # TODO: force version or handle versions < 1.0
-        if os.environ.get("OPENAI_API_KEY") is None and self.api_key is None:
+        if os.environ.get("") is None and self.api_key is None:
             raise ValueError(
-                "OPENAI_API_KEY not set. Either set it in your environment or \
+                " not set. Either set it in your environment or \
                 pass it as `api_key` argument to the CohereReranker."
             )
-        return openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY") or self.api_key)
+        return openai.OpenAI(api_key=os.environ.get("") or self.api_key)

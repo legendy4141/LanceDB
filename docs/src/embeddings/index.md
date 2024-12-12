@@ -107,7 +107,7 @@ import os
 import lancedb
 from lancedb.pydantic import LanceModel, Vector
 from lancedb.embeddings import get_registry
-os.environ['OPENAI_API_KEY'] = "..."
+os.environ[''] = "..."
 
 db = lancedb.connect(
   uri="db://....",

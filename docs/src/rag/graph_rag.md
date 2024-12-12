@@ -18,7 +18,7 @@ Working with Graph RAG is quite straightforward
 
 - **Installation and API KEY as env variable**
 
-Set `OPENAI_API_KEY` as `GRAPHRAG_API_KEY`
+Set `` as `GRAPHRAG_API_KEY`
 
 ```bash
 pip install graphrag

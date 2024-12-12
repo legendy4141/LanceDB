@@ -37,7 +37,7 @@ export class OpenAIEmbeddingFunction extends EmbeddingFunction<
     },
   ) {
     super();
-    const openAIKey = options?.apiKey ?? process.env.OPENAI_API_KEY;
+    const openAIKey = options?.apiKey ?? process.env.;
     if (!openAIKey) {
       throw new Error("OpenAI API key is required");
     }

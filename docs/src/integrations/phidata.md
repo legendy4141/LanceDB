@@ -64,7 +64,7 @@ You need to create two files - `transcript.py` and `ollama_assistant.py` or `ope
     from phi.embedder.openai import OpenAIEmbedder
     from transcript import extract_transcript
 
-    if "OPENAI_API_KEY" not in os.environ:
+    if "" not in os.environ:
     # OR set the key here as a variable
         openai.api_key = "sk-..."
 

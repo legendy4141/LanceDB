@@ -32,8 +32,8 @@ Another popular alternative is to use an external API like OpenAI's [embeddings 
 import openai
 import os
 
-# Configuring the environment variable OPENAI_API_KEY
-if "OPENAI_API_KEY" not in os.environ:
+# Configuring the environment variable 
+if "" not in os.environ:
 # OR set the key here as a variable
 openai.api_key = ""
 

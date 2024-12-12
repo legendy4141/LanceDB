@@ -16,8 +16,8 @@
 
 async function example () {
   const lancedb = require('vectordb')
-  // You need to provide an OpenAI API key, here we read it from the OPENAI_API_KEY environment variable
-  const apiKey = process.env.OPENAI_API_KEY
+  // You need to provide an OpenAI API key, here we read it from the  environment variable
+  const apiKey = process.env.
   // The embedding function will create embeddings for the 'text' column(text in this case)
   const embedding = new lancedb.OpenAIEmbeddingFunction('text', apiKey)
 
