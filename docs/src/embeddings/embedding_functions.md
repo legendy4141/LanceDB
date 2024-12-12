@@ -38,7 +38,7 @@ For this purpose, LanceDB introduces an **embedding functions API**, that allow 
     import { getRegistry } from '@lancedb/lancedb/embeddings'
 
     // You need to provide an OpenAI API key
-    const apiKey = "sk-..."
+    const apiKey = ""
     // The embedding function will create embeddings for the 'text' column
     const func = getRegistry().get("openai").create({apiKey})
     ```
